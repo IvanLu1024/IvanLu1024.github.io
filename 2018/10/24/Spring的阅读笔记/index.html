@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT,博客,GitHub" />
+  <meta name="keywords" content="Spring," />
 
 
 
@@ -94,17 +94,18 @@
 
 
 
-<meta name="description" content="这是我学习过程的记录">
-<meta name="keywords" content="博客，Java，Geek">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Ivan的记录">
-<meta property="og:url" content="https://ivanlu1024.github.io/index.html">
+<meta name="description" content="Spring的阅读笔记 前言  在阅读 Spring的源代码（依赖注入部分和面向切面编程部分）时遇到不少困惑，庞大的类文件结构、纷繁复杂的方法调用、波诡云谲的多态实现，让自己深陷其中、一头雾水。后来注意到 code4craft 的 tiny-spring 项目，实现了一个微型的 Spring，提供对 IoC 和 AOP的最基本支持，麻雀虽小，五脏俱全，对 Spring 的认知清晰了不少。这个微型框">
+<meta name="keywords" content="Spring">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring的阅读笔记">
+<meta property="og:url" content="https://ivanlu1024.github.io/2018/10/24/Spring的阅读笔记/index.html">
 <meta property="og:site_name" content="Ivan的记录">
-<meta property="og:description" content="这是我学习过程的记录">
+<meta property="og:description" content="Spring的阅读笔记 前言  在阅读 Spring的源代码（依赖注入部分和面向切面编程部分）时遇到不少困惑，庞大的类文件结构、纷繁复杂的方法调用、波诡云谲的多态实现，让自己深陷其中、一头雾水。后来注意到 code4craft 的 tiny-spring 项目，实现了一个微型的 Spring，提供对 IoC 和 AOP的最基本支持，麻雀虽小，五脏俱全，对 Spring 的认知清晰了不少。这个微型框">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-24T13:14:53.834Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ivan的记录">
-<meta name="twitter:description" content="这是我学习过程的记录">
+<meta name="twitter:title" content="Spring的阅读笔记">
+<meta name="twitter:description" content="Spring的阅读笔记 前言  在阅读 Spring的源代码（依赖注入部分和面向切面编程部分）时遇到不少困惑，庞大的类文件结构、纷繁复杂的方法调用、波诡云谲的多态实现，让自己深陷其中、一头雾水。后来注意到 code4craft 的 tiny-spring 项目，实现了一个微型的 Spring，提供对 IoC 和 AOP的最基本支持，麻雀虽小，五脏俱全，对 Spring 的认知清晰了不少。这个微型框">
 
 
 
@@ -133,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://ivanlu1024.github.io/"/>
+  <link rel="canonical" href="https://ivanlu1024.github.io/2018/10/24/Spring的阅读笔记/"/>
 
 
 
 
 
-  <title>Ivan的记录</title>
+  <title>Spring的阅读笔记 | Ivan的记录</title>
   
 
 
@@ -164,9 +165,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-   page-home 
- ">
+  <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 	<a href=https://github.com/IvanLu1024"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -269,9 +268,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -301,9 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/24/Spring的阅读笔记/" itemprop="url">Spring的阅读笔记</a></h1>
+          <h1 class="post-title" itemprop="name headline">Spring的阅读笔记</h1>
         
 
         <div class="post-meta">
@@ -353,9 +350,7 @@
       
 
       
-        
-          
-            <h1 id="Spring的阅读笔记"><a href="#Spring的阅读笔记" class="headerlink" title="Spring的阅读笔记"></a>Spring的阅读笔记</h1><hr>
+        <h1 id="Spring的阅读笔记"><a href="#Spring的阅读笔记" class="headerlink" title="Spring的阅读笔记"></a>Spring的阅读笔记</h1><hr>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><hr>
 <blockquote>
 <p>在阅读 Spring<br>的源代码（依赖注入部分和面向切面编程部分）时遇到不少困惑，庞大的类文件结构、纷繁复杂的方法调用、波诡云谲的多态实现，让自己深陷其中、一头雾水。<br>后来注意到 code4craft 的 tiny-spring 项目，实现了一个微型的 Spring，提供对 IoC 和 AOP<br>的最基本支持，麻雀虽小，五脏俱全，对 Spring 的认知清晰了不少。这个微型框架的结构包括文件名、方法名都是参照 Spring<br>来实现的，对于初读 Spring 的学习者，作为研究 Spring 的辅助工具应该能够受益匪浅。  在研究 tiny-spring<br>的时候，收获颇多，把对这个微型框架的一些分析写了下来，行文可能有点紊乱。</p>
@@ -411,8 +406,6 @@
 <p>将 proceed() 方法修改为调用代理对象的方法 method.invoke(proxy,args)。<br>在代理对象的 InvocationHandler 的 invoke 函数中，查看拦截器列表，如果有拦截器，则调用第一个拦截器并返回，否则调用原始对象的方法。</p>
 <p>在此输入正文</p>
 
-          
-        
       
     </div>
     
@@ -427,252 +420,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ivanlu1024.github.io/2018/10/22/利用Hexo搭建自己的博客/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ivan Lu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/IMG_ivan.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ivan的记录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/22/利用Hexo搭建自己的博客/" itemprop="url">利用Hexo搭建自己的博客</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-22T21:06:17+08:00">
-                2018-10-22
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/Spring/" rel="tag"># Spring</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ivanlu1024.github.io/2018/10/14/newArticle/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Ivan Lu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/IMG_ivan.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Ivan的记录">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/14/newArticle/" itemprop="url">关于我</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+              <a href="/2018/10/22/利用Hexo搭建自己的博客/" rel="next" title="利用Hexo搭建自己的博客">
+                <i class="fa fa-chevron-left"></i> 利用Hexo搭建自己的博客
+              </a>
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-14T12:40:00+08:00">
-                2018-10-14
-              </time>
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -682,10 +459,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -693,6 +471,10 @@
 
 
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
         
@@ -713,8 +495,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/IMG_ivan.jpg"
@@ -802,6 +593,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring的阅读笔记"><span class="nav-number">1.</span> <span class="nav-text">Spring的阅读笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本文结构"><span class="nav-number">1.2.</span> <span class="nav-text">本文结构</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -947,10 +754,10 @@
 
 
   
-    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
 
-  
+
 
   
 
