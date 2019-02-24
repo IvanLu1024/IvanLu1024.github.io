@@ -284,6 +284,173 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://ivanlu1024.github.io/2019/02/24/访问一个网站的过程详解/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Ivan Lu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/IMG_ivan.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Ivan的记录">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/02/24/访问一个网站的过程详解/" itemprop="url">HTTP访问一个网站的过程详解</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-02-24T21:10:34+08:00">
+                2019-02-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="访问一个网站的过程详解"><a href="#访问一个网站的过程详解" class="headerlink" title="访问一个网站的过程详解"></a>访问一个网站的过程详解</h1><p>例如访问：<a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a></p>
+<h2 id="HTTP请求的准备"><a href="#HTTP请求的准备" class="headerlink" title="HTTP请求的准备"></a>HTTP请求的准备</h2><p>浏览器会将<a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a> 这个域名发送给DNS服务器，让它解析成IP地址。由于HTTP是基于TCP协议的，先建立TCP连接，在HTTP 1.1的协议里面，默认开启了Keep-Alive,这样建立的TCP连接，就可以在多次请求中复用。</p>
+<h2 id="HTTP请求的发送"><a href="#HTTP请求的发送" class="headerlink" title="HTTP请求的发送"></a>HTTP请求的发送</h2><p>建立TCP连接以后，通过<strong>stream二进制流</strong>的方式传给对方，到了TCP层，会将二进制流变成一个报文段发送给服务器。</p>
+<p>在<strong>发送每个报文段的时候，都需要对方有一个回应ACK</strong>，来保证报文可靠地到达了对方。如果没有回应，那么TCP就会重新传输，直到可以到达。有时候同一个包可能被传输好多次，但这对于HTTP是透明的。</p>
+<p>TCP层发送每一个报文的时候，都需要<strong>加上自己的地址（源地址）和它想要去的地方（目标地址），</strong>然后将源MAC和目标MAC放入MAC头，发送出去即可；若不在同一局域网内，就需要发送给<strong>网关，</strong>这时还需要发送ARP协议，来获取网关的MAC地址，然后将<strong>源MAC和网关MAC</strong>放入MAC头，发送出去。</p>
+<p>网关收到包以后，发现MAC符合，取出目标IP，<strong>根据路由协议</strong>找到下一跳的路由器，<strong>获取下一跳路由器的MAC地址</strong>，将包发送给下一跳路由器。</p>
+<p>这样路由器一跳一跳终于到达目标的局域网。这时候，最后一跳路由器能够发现，<strong>目标地址就在自己的某一个出口的局域网上。</strong>于是，在这个局域网上发送ARP，获得这个目标地址的MAC地址，将包发送出去。</p>
+<p>目标机器发现MAC地址符合就将包收起来；发现IP地址符合，根据IP头中协议项，知道自己上一层是TCP协议，于是解析TCP头，里面有序列号，看一看这个序列包是不是我需要的，如果是就放入缓存中然后返回一个ACK，如果不是则丢弃。</p>
+<p>TCP头里面还有端口号，HTTP的服务器正在监听这个端口号。于是，目标机器自然知道是 HTTP 服务器这个进程想要这个包，于是将包发给 HTTP 服务器。HTTP 服务器的进程看到，原来这个请求是要访问一个网页，于是就把这个网页发给客户端。</p>
+<h2 id="HTTP返回的发送"><a href="#HTTP返回的发送" class="headerlink" title="HTTP返回的发送"></a>HTTP返回的发送</h2><p>根据HTTP 响应报文的格式构造好返回的HTTP报文，接下来就是把这个报文发送出去。还是交给Socket去发送，还是交给TCP层，让TCP层将返回的HTML，也分成一个个小的段，并且保证每一段都可靠到达。</p>
+<p>这些段<strong>加上 TCP 头后会交给 IP 层</strong>，然后把刚才的发送过程反向走一遍。虽然两次不一定走相同的路径，但是逻辑过程是一样的，一直到达客户端。</p>
+<p>客户端发现 <strong>MAC 地址符合、IP 地址符合，于是就会交给 TCP 层</strong>。根据序列号看是不是自己要的报文段，如果是，则会根据 TCP 头中的端口号，发给相应的进程。这个进程就是浏览器，浏览器作为客户端也在监听某个端口。</p>
+<p>当浏览器拿到了 HTTP 的报文。发现返回“200”，一切正常，于是就从正文中将 HTML 拿出来。HTML 是一个标准的网页格式。浏览器只要根据这个格式，展示出一个绚丽多彩的网页。</p>
+<p>这就是一个正常的 HTTP 请求和返回的完整过程。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://time.geekbang.org/column/intro/85" target="_blank" rel="noopener">极客时间：《趣谈网络协议》</a></li>
+</ul>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="https://ivanlu1024.github.io/2019/02/18/001职业的天花板来自认识的局限性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -336,6 +503,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -498,6 +696,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
 
           
 
@@ -647,6 +876,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
 
           
 
@@ -765,6 +1025,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -775,6 +1057,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -904,6 +1217,37 @@
 
           
 
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
           
 
           
@@ -1079,6 +1423,37 @@
           
 
           
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time</span>
+                
+                <span title="Reading time">
+                  
+                </span>
+              
+            </div>
+          
 
           
 
@@ -1178,12 +1553,21 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives/">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
 
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">categories</span>
+              </a>
+            </div>
           
 
           
@@ -1191,7 +1575,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">tags</span>
               </a>
             </div>
@@ -1337,11 +1721,12 @@
   
 
 
+
+
+
+
   
-
-
-
-
+  
 
 
 
@@ -1370,7 +1755,10 @@
   <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
 
   
-  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script type="text/javascript" src="/lib/three/three.min.js"></script>
+
+  
+  <script type="text/javascript" src="/lib/three/canvas_lines.min.js"></script>
 
   
   <script type="text/javascript" src="/lib/canvas-ribbon/canvas-ribbon.js"></script>
