@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Hexo, NexT,博客,GitHub" />
+  <meta name="keywords" content="Java并发,锁," />
 
 
 
@@ -94,18 +94,21 @@
 
 
 
-<meta name="description" content="这是我学习过程的记录">
-<meta name="keywords" content="博客，Java，Geek">
+<meta name="description" content="Java中锁的总结自旋锁自旋锁是计算机科学用于多线程同步的一种锁，线程反复检查锁变量是否可用。由于线程在这一过程中保持执行，因此是一种忙等待。一旦获取了自旋锁，线程会一直保持该锁，直至显式释放自旋锁。 自旋锁避免了进程上下文的调度开销，因此对于线程只会阻塞很短时间的场合是有效的。因此操作系统的实现在很多地方往往用自旋锁。 线程的阻塞和唤醒需要CPU从用户态转为核心态，频繁的阻塞和唤醒对CPU来说是">
+<meta name="keywords" content="Java并发,锁">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用Hexo搭建自己的博客">
-<meta property="og:url" content="https://ivanlu1024.github.io/2018/10/22/利用Hexo搭建自己的博客/index.html">
+<meta property="og:title" content="Java中锁的总结">
+<meta property="og:url" content="https://ivanlu1024.github.io/2019/03/05/Java中锁的总结/index.html">
 <meta property="og:site_name" content="Ivan的记录">
-<meta property="og:description" content="这是我学习过程的记录">
+<meta property="og:description" content="Java中锁的总结自旋锁自旋锁是计算机科学用于多线程同步的一种锁，线程反复检查锁变量是否可用。由于线程在这一过程中保持执行，因此是一种忙等待。一旦获取了自旋锁，线程会一直保持该锁，直至显式释放自旋锁。 自旋锁避免了进程上下文的调度开销，因此对于线程只会阻塞很短时间的场合是有效的。因此操作系统的实现在很多地方往往用自旋锁。 线程的阻塞和唤醒需要CPU从用户态转为核心态，频繁的阻塞和唤醒对CPU来说是">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-22T13:06:17.699Z">
+<meta property="og:image" content="https://ivanlu1024.github.io/2019/03/05/images/notes/锁的转化关系.png">
+<meta property="og:image" content="https://ivanlu1024.github.io/2019/03/05/images/notes/markWord结构.png">
+<meta property="og:updated_time" content="2019-03-05T15:25:37.427Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用Hexo搭建自己的博客">
-<meta name="twitter:description" content="这是我学习过程的记录">
+<meta name="twitter:title" content="Java中锁的总结">
+<meta name="twitter:description" content="Java中锁的总结自旋锁自旋锁是计算机科学用于多线程同步的一种锁，线程反复检查锁变量是否可用。由于线程在这一过程中保持执行，因此是一种忙等待。一旦获取了自旋锁，线程会一直保持该锁，直至显式释放自旋锁。 自旋锁避免了进程上下文的调度开销，因此对于线程只会阻塞很短时间的场合是有效的。因此操作系统的实现在很多地方往往用自旋锁。 线程的阻塞和唤醒需要CPU从用户态转为核心态，频繁的阻塞和唤醒对CPU来说是">
+<meta name="twitter:image" content="https://ivanlu1024.github.io/2019/03/05/images/notes/锁的转化关系.png">
 
 
 
@@ -134,13 +137,13 @@
 
 
 
-  <link rel="canonical" href="https://ivanlu1024.github.io/2018/10/22/利用Hexo搭建自己的博客/"/>
+  <link rel="canonical" href="https://ivanlu1024.github.io/2019/03/05/Java中锁的总结/"/>
 
 
 
 
 
-  <title>利用Hexo搭建自己的博客 | Ivan的记录</title>
+  <title>Java中锁的总结 | Ivan的记录</title>
   
 
 
@@ -283,7 +286,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ivanlu1024.github.io/2018/10/22/利用Hexo搭建自己的博客/">
+    <link itemprop="mainEntityOfPage" href="https://ivanlu1024.github.io/2019/03/05/Java中锁的总结/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ivan Lu">
@@ -300,7 +303,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">利用Hexo搭建自己的博客</h1>
+          <h1 class="post-title" itemprop="name headline">Java中锁的总结</h1>
         
 
         <div class="post-meta">
@@ -312,8 +315,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-22T21:06:17+08:00">
-                2018-10-22
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-05T23:05:19+08:00">
+                2019-03-05
               </time>
             
 
@@ -381,7 +384,40 @@
       
 
       
-        
+        <h1 id="Java中锁的总结"><a href="#Java中锁的总结" class="headerlink" title="Java中锁的总结"></a>Java中锁的总结</h1><h2 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h2><p>自旋锁是计算机科学用于多线程同步的一种锁，线程<strong>反复检查锁变量是否可用</strong>。由于线程在这一过程中保持执行，因此是一种<strong>忙等待</strong>。一旦获取了自旋锁，线程会一直保持该锁，直至显式释放自旋锁。 自旋锁<strong>避免了进程上下文的调度开销</strong>，因此对于线程只会阻塞很短时间的场合是有效的。因此操作系统的实现在很多地方往往用自旋锁。</p>
+<p>线程的阻塞和唤醒需要CPU从用户态转为核心态，频繁的阻塞和唤醒对CPU来说是一件负担很重的工作。同时我们可以发现，<strong>很多对象锁的锁定状态只会持续很短的一段时间</strong>，例如整数的自加操作，在很短的时间内阻塞并唤醒线程显然不值得，为此引入了自旋锁。自旋锁的思想是让一个线程在请求一个共享数据的锁时执行忙循环（自旋）一段时间，如果在这段时间内能获得锁，就可以避免进入阻塞状态。</p>
+<p>自旋锁有以下特点：</p>
+<ul>
+<li>用于临界区互斥</li>
+<li>在任何时刻最多只能有一个执行单元获得锁</li>
+<li>要求持有锁的线程所占用的时间尽可能短</li>
+<li>等待锁的线程进入忙循环状态</li>
+</ul>
+<h2 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h2><p>偏向锁是在JDK 1.6之后加入的，其目的是消除数据在无竞争情况下的同步原语，进一步提高程序的运行性能。其思想是<strong>偏向于让第一个获得锁的线程，这个线程在之后获取该锁就不再需要进行同步操作，甚至连 CAS 操作也不再需要</strong>。</p>
+<p>当锁对象第一次被线程获得的时候，进入偏向状态，标记为 01。同时使用 CAS 操作将线程 ID 记录到 Mark Word 中，如果 CAS 操作成功，这个线程以后每次进入这个锁相关的同步块就不需要再进行任何同步操作。</p>
+<p>当有另外一个线程去尝试获取这个锁对象时，偏向模式就宣告结束，此时撤销偏向（Revoke Bias）后恢复到未锁定状态或者轻量级锁状态。偏向锁、轻量级锁的状态转化如下所示：</p>
+<div align="center"><br>    <img src="../images/notes/锁的转化关系.png"><br></div>
+
+
+<h2 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h2><p>轻量级锁是JDK 1.6之后加入的新型锁机制，是相对于传统的重量级锁而言，它<strong>使用 CAS 操作来避免重量级锁使用互斥量的开销</strong>。对于绝大部分的锁，在整个同步周期内都是不存在竞争的，因此也就不需要都使用互斥量进行同步，可以先采用 CAS 操作进行同步，如果 CAS 失败了再改用互斥量进行同步。</p>
+<p>Mark Word（HotSpot虚拟机的对象头的第一部分）是实现轻量级锁和偏向锁的关键。对象头信息是与对象自身定义的数据无关的额外存储成本，它会根据对象的状态复用自己的存储空间。32位的Mark Word结构如下图示：</p>
+<div align="center"><br>    <img src="../images/notes/markWord结构.png"><br></div>
+
+
+
+
+<p>当尝试获取一个锁对象时，如果锁对象标记为 0 01，说明锁对象的锁为无锁（unlocked）状态。此时虚拟机在当前线程的虚拟机栈中创建 Lock Record，然后使用 CAS 操作将对象的 Mark Word 更新为 Lock Record 指针。如果 CAS 操作成功了，那么线程就获取了该对象上的锁，并且对象的 Mark Word 的锁标记变为 00，表示该对象处于轻量级锁状态。</p>
+<p>如果 CAS 操作失败了，虚拟机首先会检查对象的 Mark Word 是否指向当前线程的虚拟机栈，如果是的话说明当前线程已经拥有了这个锁对象，那就可以直接进入同步块继续执行，否则说明这个锁对象已经被其他线程线程抢占了。如果有两条以上的线程争用同一个锁，那轻量级锁就不再有效，要膨胀为重量级锁。</p>
+<p>轻量级锁能够提升程序同步性能的依据是“<strong>对于绝大部分的锁，在整个同步周期内都是不存在竞争的</strong>”，如果没有竞争，使用CAS操作能够避免使用互斥操作的开销。但如果存在锁竞争，除了互斥量的开销以外，还有额外的CAS操作，因此在竞争的情况下，轻量级锁会比传统的重量级锁更慢。</p>
+<h2 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h2><p>总是假设最好的情况，每次去读数据的时候都认为别人不会修改，所以不会上锁， 但是在更新的时候会判断一下在此期间有没有其他线程更新该数据， 可以使用<strong>版本号机制</strong>和<strong>CAS算法</strong>实现。 乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库提供的类似于write_condition机制，其实都是提供的乐观锁。 在Java中<strong>java.util.concurrent.atomic包下面的原子变量类</strong>就是基于CAS实现的乐观锁。</p>
+<h2 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h2><p>总是假设最坏的情况，每次去读数据的时候都认为别人会修改，所以<strong>每次在读数据的时候都会上锁</strong>， 这样别人想读取数据就会阻塞直到它获取锁 （共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程）。 传统的关系型数据库里边就用到了很多悲观锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。Java中的悲观锁就是Synchronized,AQS框架下的锁则是先尝试CAS乐观锁去获取锁，获取不到，才会转换为悲观锁，如ReentrantLock</p>
+<blockquote>
+<p>乐观锁好比生活中乐观的人总是想着事情往好的方向发展，悲观锁好比生活中悲观的人总是想着事情往坏的方向发展。 这两种人各有优缺点，不能不以场景而定说一种人好于另外一种人。</p>
+</blockquote>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li>《深入理解Java虚拟机》</li>
+</ul>
+
       
     </div>
     
@@ -396,6 +432,14 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Java并发/" rel="tag"># Java并发</a>
+          
+            <a href="/tags/锁/" rel="tag"># 锁</a>
+          
+        </div>
+      
 
       
       
@@ -405,14 +449,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2019/02/24/访问一个网站的过程详解/" rel="next" title="HTTP访问一个网站的过程详解">
+                <i class="fa fa-chevron-left"></i> HTTP访问一个网站的过程详解
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/10/24/Spring的阅读笔记/" rel="prev" title="Spring的阅读笔记">
-                Spring的阅读笔记 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/05/Kafka原理分析/" rel="prev" title="Kafka原理分析">
+                Kafka原理分析 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -465,8 +513,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/IMG_ivan.jpg"
@@ -563,6 +620,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Java中锁的总结"><span class="nav-number">1.</span> <span class="nav-text">Java中锁的总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#自旋锁"><span class="nav-number">1.1.</span> <span class="nav-text">自旋锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#偏向锁"><span class="nav-number">1.2.</span> <span class="nav-text">偏向锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#轻量级锁"><span class="nav-number">1.3.</span> <span class="nav-text">轻量级锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乐观锁"><span class="nav-number">1.4.</span> <span class="nav-text">乐观锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#悲观锁"><span class="nav-number">1.5.</span> <span class="nav-text">悲观锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.6.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
