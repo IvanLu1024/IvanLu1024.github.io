@@ -104,7 +104,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://ivanlu1024.github.io/2019/03/05/Java中锁的总结/picts/notes/锁的转化关系.png">
 <meta property="og:image" content="https://ivanlu1024.github.io/2019/03/05/Java中锁的总结/picts/notes/markWord结构.png">
-<meta property="og:updated_time" content="2019-03-14T16:02:05.064Z">
+<meta property="og:updated_time" content="2019-03-14T16:06:31.969Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中锁的总结">
 <meta name="twitter:description" content="Java中锁的总结自旋锁自旋锁是计算机科学用于多线程同步的一种锁，线程反复检查锁变量是否可用。由于线程在这一过程中保持执行，因此是一种忙等待。一旦获取了自旋锁，线程会一直保持该锁，直至显式释放自旋锁。 自旋锁避免了进程上下文的调度开销，因此对于线程只会阻塞很短时间的场合是有效的。因此操作系统的实现在很多地方往往用自旋锁。 线程的阻塞和唤醒需要CPU从用户态转为核心态，频繁的阻塞和唤醒对CPU来说是">
@@ -347,7 +347,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  
+                  1.6k 字
                 </span>
               
 
@@ -363,7 +363,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  
+                  5 分钟
                 </span>
               
             </div>
@@ -403,6 +403,7 @@
 <h2 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h2><p>轻量级锁是JDK 1.6之后加入的新型锁机制，是相对于传统的重量级锁而言，它<strong>使用 CAS 操作来避免重量级锁使用互斥量的开销</strong>。对于绝大部分的锁，在整个同步周期内都是不存在竞争的，因此也就不需要都使用互斥量进行同步，可以先采用 CAS 操作进行同步，如果 CAS 失败了再改用互斥量进行同步。</p>
 <p>Mark Word（HotSpot虚拟机的对象头的第一部分）是实现轻量级锁和偏向锁的关键。对象头信息是与对象自身定义的数据无关的额外存储成本，它会根据对象的状态复用自己的存储空间。32位的Mark Word结构如下图示：</p>
 <div align="center"><br>    <img src="picts/notes/markWord结构.png"><br></div>
+
 
 
 
