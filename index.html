@@ -387,7 +387,7 @@
         
           
             <p>发表于2018</p>
-<h2 id="一、-smile-存在的问题"><a href="#一、-smile-存在的问题" class="headerlink" title="一、:smile: 存在的问题"></a>一、:smile: 存在的问题</h2><p>Spark集群在存储介质（HDDs 和 SSDs）异构的问题，导致不同结点的读写速度不一致，没有充分地利用异构存储的优势。当前针对于异构环境下的调度，只考虑了计算资源，而忽视了存储设备异构性的问题。</p>
+<h2 id="一、存在的问题"><a href="#一、存在的问题" class="headerlink" title="一、存在的问题"></a>一、存在的问题</h2><p>Spark集群在存储介质（HDDs 和 SSDs）异构的问题，导致不同结点的读写速度不一致，没有充分地利用异构存储的优势。当前针对于异构环境下的调度，只考虑了计算资源，而忽视了存储设备异构性的问题。</p>
 <h2 id="二、提出的方法"><a href="#二、提出的方法" class="headerlink" title="二、提出的方法"></a>二、提出的方法</h2><h3 id="2-1-创新点"><a href="#2-1-创新点" class="headerlink" title="2.1 创新点"></a>2.1 创新点</h3><p>考虑Spark集群上<strong>存储介质的不同</strong>对任务完成时间的影响，提出了对于异构存储介质集群存储感知的任务调度策略。</p>
 <h3 id="2-2-结果"><a href="#2-2-结果" class="headerlink" title="2.2 结果"></a>2.2 结果</h3><p>实验结果显示，H-Scheduler能够降低Job 73.6%的执行时间。</p>
 <h2 id="三、背景-amp-动机"><a href="#三、背景-amp-动机" class="headerlink" title="三、背景&amp;动机"></a>三、背景&amp;动机</h2><ul>

@@ -387,7 +387,8 @@
         
           
             <h1 id="Kafka原理分析"><a href="#Kafka原理分析" class="headerlink" title="Kafka原理分析"></a>Kafka原理分析</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Apache Kafka是一个分布式发布-订阅消息传递系统，最初由LinkedIn公司开发，后于2010年贡献给Apache 基金会并成为顶级开源项目。它是一个分布式的、可划分的、冗余备份的持久性的日志服务，主要用于处理活跃的流式数据。其架构如下图所示：</p>
-<div align="center"><br>    <img src="../images/notes/kafka_00.png"><br></div>
+<div align="center"><br>    <img src="picts/notes/kafka_00.png"><br></div>
+
 
 
 <p>Kafka的工作流程大致如下：</p>
@@ -400,7 +401,8 @@
 <p>每个消息在被添加到分区时，都会被分配一个offset，它是消息在此分区中的唯一编号，Kafka通过offset保证消息在分区内的顺序，offset的顺序性不跨分区，即Kafka只保证在同一个分区内的消息是有序的；同一Topic的多个分区内的消息，Kafka并不保证其顺序性。</p>
 <h3 id="副本"><a href="#副本" class="headerlink" title="副本"></a>副本</h3><p>Kafka对消息进行了冗余备份，每个Partition可以有多个副本，每个副本中包含的消息是一样的。每个分区的副本集合中，都会选举出一个副本作为Leader副本，Kafka在不同的场景下会采用不同的选举策略。所有的读写请求都由选举出的Leader副本处理，其他都作为Follower副本，Follower副本仅仅是从Leader 副本处把数据拉取（pull）到本地之后，同步更新到自己的Log中。一般情况下，同一分区的多个分区会被分配到不同的Broker上，这样，当Leader所在的Broker宕机之后，可以重新选举新的Leader，继续对外提供服务。</p>
 <p>如下图所示：</p>
-<div align="center"><br>    <img src="../images/notes/kafka_01.png"><br></div>
+<div align="center"><br>    <img src="picts/notes/kafka_01.png"><br></div>
+
 
 
 <h3 id="ISR集合"><a href="#ISR集合" class="headerlink" title="ISR集合"></a>ISR集合</h3><p>ISR（In-Sync Replica）集合表示的是目前“可用”（alive）且消息量与Leader相差不多的副本集合，这是整个副本集合的一个子集。“可用”和“相差不多”都是很模糊的描述，其实际含义是ISR集合中的副本必须满足下面两个条件：</p>
@@ -411,7 +413,7 @@
 <p>每个分区中的Leader副本都会维护此分区的ISR集合。写请求首先由Leader副本处理，之后Follower副本会从Leader上拉取写入的消息，这个过程会有一定的延迟，导致Follower副本中保存的消息略少于Leader副本，<strong>只要未超出阈值都是可以容忍的</strong>。如果一个Follower副本出现异常，比如：宕机，发生长时间GC而导致Kafka僵死或是网络断开连接导致长时间没有拉取消息进行同步，就会违反上面的两个条件，从而被Leader副本踢出ISR集合。当Follower副本从异常中恢复之后，会继续与Leader副本进行同步，当Follower副本“追上”（即最后一条消息的offset的差值小于指定阈值）Leader副本的时候，此Follower副本会被Leader副本重新加入到ISR中。</p>
 <h3 id="HW"><a href="#HW" class="headerlink" title="HW"></a>HW</h3><p>HW（HighWatermark）标记了一个特殊的offset，当消费者处理消息的时候，只能拉取到HW之前的消息，HW之后的消息对消费者来说是不可见的。与ISR集合类似，HW也是由Leader副本管理的。当ISR集合中全部的Follower副本都拉取HW指定消息进行同步后，Leader副本会递增HW的值。Kafka官方网站将HW之前的消息的状态称为“commit”，其含义是这些消息在多个副本中同时存在，即使此时Leader副本损坏，也不会出现数据丢失。</p>
 <h3 id="LEO"><a href="#LEO" class="headerlink" title="LEO"></a>LEO</h3><p>LEO（Log End Offset）是所有的副本都会有的一个offset标记，它指向追加到当前副本的最后一个消息的offset。当生产者向Leader副本追加消息的时候，Leader副本的LEO标记会递增；当Follower副本成功从Leader副本拉取消息并更新到本地的时候，Follower副本的LEO就会增加。下图展示了针对offset为11的消息，ISR集合、HW与LEO是如何协调工作的：</p>
-<div align="center"><br>    <img src="../images/notes/kafka_02.png"><br></div>
+<div align="center"><br>    <img src="picts/notes/kafka_02.png"><br></div>
 
 
 <p>①Producer向此Partition推送消息。<br>②Leader副本将消息追加到Log中，并递增其LEO。<br>③Follower副本从Leader副本拉取消息进行同步。<br>④Follower副本将拉取到的消息更新到本地Log中，并递增其LEO。<br>⑤当ISR集合中所有副本都完成了对offset=11的消息的同步，Leader副本会递增HW。</p>
@@ -602,12 +604,13 @@
 <h2 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a>偏向锁</h2><p>偏向锁是在JDK 1.6之后加入的，其目的是消除数据在无竞争情况下的同步原语，进一步提高程序的运行性能。其思想是<strong>偏向于让第一个获得锁的线程，这个线程在之后获取该锁就不再需要进行同步操作，甚至连 CAS 操作也不再需要</strong>。</p>
 <p>当锁对象第一次被线程获得的时候，进入偏向状态，标记为 01。同时使用 CAS 操作将线程 ID 记录到 Mark Word 中，如果 CAS 操作成功，这个线程以后每次进入这个锁相关的同步块就不需要再进行任何同步操作。</p>
 <p>当有另外一个线程去尝试获取这个锁对象时，偏向模式就宣告结束，此时撤销偏向（Revoke Bias）后恢复到未锁定状态或者轻量级锁状态。偏向锁、轻量级锁的状态转化如下所示：</p>
-<div align="center"><br>    <img src="../images/notes/锁的转化关系.png"><br></div>
+<div align="center"><br>    <img src="picts/notes/锁的转化关系.png"><br></div>
+
 
 
 <h2 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a>轻量级锁</h2><p>轻量级锁是JDK 1.6之后加入的新型锁机制，是相对于传统的重量级锁而言，它<strong>使用 CAS 操作来避免重量级锁使用互斥量的开销</strong>。对于绝大部分的锁，在整个同步周期内都是不存在竞争的，因此也就不需要都使用互斥量进行同步，可以先采用 CAS 操作进行同步，如果 CAS 失败了再改用互斥量进行同步。</p>
 <p>Mark Word（HotSpot虚拟机的对象头的第一部分）是实现轻量级锁和偏向锁的关键。对象头信息是与对象自身定义的数据无关的额外存储成本，它会根据对象的状态复用自己的存储空间。32位的Mark Word结构如下图示：</p>
-<div align="center"><br>    <img src="../images/notes/markWord结构.png"><br></div>
+<div align="center"><br>    <img src="picts/notes/markWord结构.png"><br></div>
 
 
 
@@ -615,7 +618,9 @@
 <p>当尝试获取一个锁对象时，如果锁对象标记为 0 01，说明锁对象的锁为无锁（unlocked）状态。此时虚拟机在当前线程的虚拟机栈中创建 Lock Record，然后使用 CAS 操作将对象的 Mark Word 更新为 Lock Record 指针。如果 CAS 操作成功了，那么线程就获取了该对象上的锁，并且对象的 Mark Word 的锁标记变为 00，表示该对象处于轻量级锁状态。</p>
 <p>如果 CAS 操作失败了，虚拟机首先会检查对象的 Mark Word 是否指向当前线程的虚拟机栈，如果是的话说明当前线程已经拥有了这个锁对象，那就可以直接进入同步块继续执行，否则说明这个锁对象已经被其他线程线程抢占了。如果有两条以上的线程争用同一个锁，那轻量级锁就不再有效，要膨胀为重量级锁。</p>
 <p>轻量级锁能够提升程序同步性能的依据是“<strong>对于绝大部分的锁，在整个同步周期内都是不存在竞争的</strong>”，如果没有竞争，使用CAS操作能够避免使用互斥操作的开销。但如果存在锁竞争，除了互斥量的开销以外，还有额外的CAS操作，因此在竞争的情况下，轻量级锁会比传统的重量级锁更慢。</p>
-<h2 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h2><p>总是假设最好的情况，每次去读数据的时候都认为别人不会修改，所以不会上锁， 但是在更新的时候会判断一下在此期间有没有其他线程更新该数据， 可以使用<strong>版本号机制</strong>和<strong>CAS算法</strong>实现。 乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库提供的类似于write_condition机制，其实都是提供的乐观锁。 在Java中<strong>java.util.concurrent.atomic包下面的原子变量类</strong>就是基于CAS实现的乐观锁。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><div align="center"></div></h2><pre><code>&lt;img src=&quot;picts/notes/kafka_02.png&quot;/&gt;
+</code></pre><p></p>
+<p>总是假设最好的情况，每次去读数据的时候都认为别人不会修改，所以不会上锁， 但是在更新的时候会判断一下在此期间有没有其他线程更新该数据， 可以使用<strong>版本号机制</strong>和<strong>CAS算法</strong>实现。 乐观锁适用于多读的应用类型，这样可以提高吞吐量，像数据库提供的类似于write_condition机制，其实都是提供的乐观锁。 在Java中<strong>java.util.concurrent.atomic包下面的原子变量类</strong>就是基于CAS实现的乐观锁。</p>
 <h2 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h2><p>总是假设最坏的情况，每次去读数据的时候都认为别人会修改，所以<strong>每次在读数据的时候都会上锁</strong>， 这样别人想读取数据就会阻塞直到它获取锁 （共享资源每次只给一个线程使用，其它线程阻塞，用完后再把资源转让给其它线程）。 传统的关系型数据库里边就用到了很多悲观锁机制，比如行锁，表锁等，读锁，写锁等，都是在做操作之前先上锁。Java中的悲观锁就是Synchronized,AQS框架下的锁则是先尝试CAS乐观锁去获取锁，获取不到，才会转换为悲观锁，如ReentrantLock</p>
 <blockquote>
 <p>乐观锁好比生活中乐观的人总是想着事情往好的方向发展，悲观锁好比生活中悲观的人总是想着事情往坏的方向发展。 这两种人各有优缺点，不能不以场景而定说一种人好于另外一种人。</p>

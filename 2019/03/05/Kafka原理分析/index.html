@@ -94,22 +94,22 @@
 
 
 
-<meta name="description" content="Kafka原理分析介绍Apache Kafka是一个分布式发布-订阅消息传递系统，最初由LinkedIn公司开发，后于2010年贡献给Apache 基金会并成为顶级开源项目。它是一个分布式的、可划分的、冗余备份的持久性的日志服务，主要用于处理活跃的流式数据。其架构如下图所示：        Kafka的工作流程大致如下： 生产者会根据业务逻辑产生消息，之后根据路由规则将消息发送到指定分区的Lead">
+<meta name="description" content="Kafka原理分析介绍Apache Kafka是一个分布式发布-订阅消息传递系统，最初由LinkedIn公司开发，后于2010年贡献给Apache 基金会并成为顶级开源项目。它是一个分布式的、可划分的、冗余备份的持久性的日志服务，主要用于处理活跃的流式数据。其架构如下图所示：         Kafka的工作流程大致如下： 生产者会根据业务逻辑产生消息，之后根据路由规则将消息发送到指定分区的Lea">
 <meta name="keywords" content="Kafka">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Kafka原理分析">
 <meta property="og:url" content="https://ivanlu1024.github.io/2019/03/05/Kafka原理分析/index.html">
 <meta property="og:site_name" content="Ivan的记录">
-<meta property="og:description" content="Kafka原理分析介绍Apache Kafka是一个分布式发布-订阅消息传递系统，最初由LinkedIn公司开发，后于2010年贡献给Apache 基金会并成为顶级开源项目。它是一个分布式的、可划分的、冗余备份的持久性的日志服务，主要用于处理活跃的流式数据。其架构如下图所示：        Kafka的工作流程大致如下： 生产者会根据业务逻辑产生消息，之后根据路由规则将消息发送到指定分区的Lead">
+<meta property="og:description" content="Kafka原理分析介绍Apache Kafka是一个分布式发布-订阅消息传递系统，最初由LinkedIn公司开发，后于2010年贡献给Apache 基金会并成为顶级开源项目。它是一个分布式的、可划分的、冗余备份的持久性的日志服务，主要用于处理活跃的流式数据。其架构如下图所示：         Kafka的工作流程大致如下： 生产者会根据业务逻辑产生消息，之后根据路由规则将消息发送到指定分区的Lea">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://ivanlu1024.github.io/2019/03/05/images/notes/kafka_00.png">
-<meta property="og:image" content="https://ivanlu1024.github.io/2019/03/05/images/notes/kafka_01.png">
-<meta property="og:image" content="https://ivanlu1024.github.io/2019/03/05/images/notes/kafka_02.png">
-<meta property="og:updated_time" content="2019-03-05T15:24:30.747Z">
+<meta property="og:image" content="https://ivanlu1024.github.io/2019/03/05/Kafka原理分析/picts/notes/kafka_00.png">
+<meta property="og:image" content="https://ivanlu1024.github.io/2019/03/05/Kafka原理分析/picts/notes/kafka_01.png">
+<meta property="og:image" content="https://ivanlu1024.github.io/2019/03/05/Kafka原理分析/picts/notes/kafka_02.png">
+<meta property="og:updated_time" content="2019-03-14T16:01:30.606Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Kafka原理分析">
-<meta name="twitter:description" content="Kafka原理分析介绍Apache Kafka是一个分布式发布-订阅消息传递系统，最初由LinkedIn公司开发，后于2010年贡献给Apache 基金会并成为顶级开源项目。它是一个分布式的、可划分的、冗余备份的持久性的日志服务，主要用于处理活跃的流式数据。其架构如下图所示：        Kafka的工作流程大致如下： 生产者会根据业务逻辑产生消息，之后根据路由规则将消息发送到指定分区的Lead">
-<meta name="twitter:image" content="https://ivanlu1024.github.io/2019/03/05/images/notes/kafka_00.png">
+<meta name="twitter:description" content="Kafka原理分析介绍Apache Kafka是一个分布式发布-订阅消息传递系统，最初由LinkedIn公司开发，后于2010年贡献给Apache 基金会并成为顶级开源项目。它是一个分布式的、可划分的、冗余备份的持久性的日志服务，主要用于处理活跃的流式数据。其架构如下图所示：         Kafka的工作流程大致如下： 生产者会根据业务逻辑产生消息，之后根据路由规则将消息发送到指定分区的Lea">
+<meta name="twitter:image" content="https://ivanlu1024.github.io/2019/03/05/Kafka原理分析/picts/notes/kafka_00.png">
 
 
 
@@ -386,7 +386,8 @@
 
       
         <h1 id="Kafka原理分析"><a href="#Kafka原理分析" class="headerlink" title="Kafka原理分析"></a>Kafka原理分析</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><p>Apache Kafka是一个分布式发布-订阅消息传递系统，最初由LinkedIn公司开发，后于2010年贡献给Apache 基金会并成为顶级开源项目。它是一个分布式的、可划分的、冗余备份的持久性的日志服务，主要用于处理活跃的流式数据。其架构如下图所示：</p>
-<div align="center"><br>    <img src="../images/notes/kafka_00.png"><br></div>
+<div align="center"><br>    <img src="picts/notes/kafka_00.png"><br></div>
+
 
 
 <p>Kafka的工作流程大致如下：</p>
@@ -399,7 +400,8 @@
 <p>每个消息在被添加到分区时，都会被分配一个offset，它是消息在此分区中的唯一编号，Kafka通过offset保证消息在分区内的顺序，offset的顺序性不跨分区，即Kafka只保证在同一个分区内的消息是有序的；同一Topic的多个分区内的消息，Kafka并不保证其顺序性。</p>
 <h3 id="副本"><a href="#副本" class="headerlink" title="副本"></a>副本</h3><p>Kafka对消息进行了冗余备份，每个Partition可以有多个副本，每个副本中包含的消息是一样的。每个分区的副本集合中，都会选举出一个副本作为Leader副本，Kafka在不同的场景下会采用不同的选举策略。所有的读写请求都由选举出的Leader副本处理，其他都作为Follower副本，Follower副本仅仅是从Leader 副本处把数据拉取（pull）到本地之后，同步更新到自己的Log中。一般情况下，同一分区的多个分区会被分配到不同的Broker上，这样，当Leader所在的Broker宕机之后，可以重新选举新的Leader，继续对外提供服务。</p>
 <p>如下图所示：</p>
-<div align="center"><br>    <img src="../images/notes/kafka_01.png"><br></div>
+<div align="center"><br>    <img src="picts/notes/kafka_01.png"><br></div>
+
 
 
 <h3 id="ISR集合"><a href="#ISR集合" class="headerlink" title="ISR集合"></a>ISR集合</h3><p>ISR（In-Sync Replica）集合表示的是目前“可用”（alive）且消息量与Leader相差不多的副本集合，这是整个副本集合的一个子集。“可用”和“相差不多”都是很模糊的描述，其实际含义是ISR集合中的副本必须满足下面两个条件：</p>
@@ -410,7 +412,7 @@
 <p>每个分区中的Leader副本都会维护此分区的ISR集合。写请求首先由Leader副本处理，之后Follower副本会从Leader上拉取写入的消息，这个过程会有一定的延迟，导致Follower副本中保存的消息略少于Leader副本，<strong>只要未超出阈值都是可以容忍的</strong>。如果一个Follower副本出现异常，比如：宕机，发生长时间GC而导致Kafka僵死或是网络断开连接导致长时间没有拉取消息进行同步，就会违反上面的两个条件，从而被Leader副本踢出ISR集合。当Follower副本从异常中恢复之后，会继续与Leader副本进行同步，当Follower副本“追上”（即最后一条消息的offset的差值小于指定阈值）Leader副本的时候，此Follower副本会被Leader副本重新加入到ISR中。</p>
 <h3 id="HW"><a href="#HW" class="headerlink" title="HW"></a>HW</h3><p>HW（HighWatermark）标记了一个特殊的offset，当消费者处理消息的时候，只能拉取到HW之前的消息，HW之后的消息对消费者来说是不可见的。与ISR集合类似，HW也是由Leader副本管理的。当ISR集合中全部的Follower副本都拉取HW指定消息进行同步后，Leader副本会递增HW的值。Kafka官方网站将HW之前的消息的状态称为“commit”，其含义是这些消息在多个副本中同时存在，即使此时Leader副本损坏，也不会出现数据丢失。</p>
 <h3 id="LEO"><a href="#LEO" class="headerlink" title="LEO"></a>LEO</h3><p>LEO（Log End Offset）是所有的副本都会有的一个offset标记，它指向追加到当前副本的最后一个消息的offset。当生产者向Leader副本追加消息的时候，Leader副本的LEO标记会递增；当Follower副本成功从Leader副本拉取消息并更新到本地的时候，Follower副本的LEO就会增加。下图展示了针对offset为11的消息，ISR集合、HW与LEO是如何协调工作的：</p>
-<div align="center"><br>    <img src="../images/notes/kafka_02.png"><br></div>
+<div align="center"><br>    <img src="picts/notes/kafka_02.png"><br></div>
 
 
 <p>①Producer向此Partition推送消息。<br>②Leader副本将消息追加到Log中，并递增其LEO。<br>③Follower副本从Leader副本拉取消息进行同步。<br>④Follower副本将拉取到的消息更新到本地Log中，并递增其LEO。<br>⑤当ISR集合中所有副本都完成了对offset=11的消息的同步，Leader副本会递增HW。</p>
