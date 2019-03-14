@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="网络,HTTP," />
+  <meta name="keywords" content="Java,JVM," />
 
 
 
@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="访问一个网站的过程详解例如访问：http://www.baidu.com HTTP请求的准备浏览器会将http://www.baidu.com 这个域名发送给DNS服务器，让它解析成IP地址。由于HTTP是基于TCP协议的，先建立TCP连接，在HTTP 1.1的协议里面，默认开启了Keep-Alive,这样建立的TCP连接，就可以在多次请求中复用。 HTTP请求的发送建立TCP连接以后，通过str">
-<meta name="keywords" content="网络,HTTP">
+<meta name="description" content="除了PC（程序计数器）以外，Java虚拟机内存区域的都有可能发生OOM（OutOfMemoryError）。 Java堆溢出Java堆是用于存储对象实例的，只要不断地创建对象，并且保证GC Roots到对象之间有可达路径避免垃圾回收机制被清楚，那么在对象数量到达最大堆的容量限制之后便会产生OOM异常。 解决思路一般的手段是：先通过内存映像工具对Dump出来的堆转储快照进行分析，重点是确认内存中的对">
+<meta name="keywords" content="Java,JVM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTTP访问一个网站的过程详解">
-<meta property="og:url" content="https://ivanlu1024.github.io/2019/02/24/访问一个网站的过程详解/index.html">
+<meta property="og:title" content="Java中常见的几个OOM的情况">
+<meta property="og:url" content="https://ivanlu1024.github.io/2019/03/14/Java中常见的几个OOM的情况/index.html">
 <meta property="og:site_name" content="Ivan的记录">
-<meta property="og:description" content="访问一个网站的过程详解例如访问：http://www.baidu.com HTTP请求的准备浏览器会将http://www.baidu.com 这个域名发送给DNS服务器，让它解析成IP地址。由于HTTP是基于TCP协议的，先建立TCP连接，在HTTP 1.1的协议里面，默认开启了Keep-Alive,这样建立的TCP连接，就可以在多次请求中复用。 HTTP请求的发送建立TCP连接以后，通过str">
+<meta property="og:description" content="除了PC（程序计数器）以外，Java虚拟机内存区域的都有可能发生OOM（OutOfMemoryError）。 Java堆溢出Java堆是用于存储对象实例的，只要不断地创建对象，并且保证GC Roots到对象之间有可达路径避免垃圾回收机制被清楚，那么在对象数量到达最大堆的容量限制之后便会产生OOM异常。 解决思路一般的手段是：先通过内存映像工具对Dump出来的堆转储快照进行分析，重点是确认内存中的对">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-02-24T13:50:05.950Z">
+<meta property="og:updated_time" content="2019-03-14T14:33:59.215Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="HTTP访问一个网站的过程详解">
-<meta name="twitter:description" content="访问一个网站的过程详解例如访问：http://www.baidu.com HTTP请求的准备浏览器会将http://www.baidu.com 这个域名发送给DNS服务器，让它解析成IP地址。由于HTTP是基于TCP协议的，先建立TCP连接，在HTTP 1.1的协议里面，默认开启了Keep-Alive,这样建立的TCP连接，就可以在多次请求中复用。 HTTP请求的发送建立TCP连接以后，通过str">
+<meta name="twitter:title" content="Java中常见的几个OOM的情况">
+<meta name="twitter:description" content="除了PC（程序计数器）以外，Java虚拟机内存区域的都有可能发生OOM（OutOfMemoryError）。 Java堆溢出Java堆是用于存储对象实例的，只要不断地创建对象，并且保证GC Roots到对象之间有可达路径避免垃圾回收机制被清楚，那么在对象数量到达最大堆的容量限制之后便会产生OOM异常。 解决思路一般的手段是：先通过内存映像工具对Dump出来的堆转储快照进行分析，重点是确认内存中的对">
 
 
 
@@ -134,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="https://ivanlu1024.github.io/2019/02/24/访问一个网站的过程详解/"/>
+  <link rel="canonical" href="https://ivanlu1024.github.io/2019/03/14/Java中常见的几个OOM的情况/"/>
 
 
 
 
 
-  <title>HTTP访问一个网站的过程详解 | Ivan的记录</title>
+  <title>Java中常见的几个OOM的情况 | Ivan的记录</title>
   
 
 
@@ -283,7 +283,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://ivanlu1024.github.io/2019/02/24/访问一个网站的过程详解/">
+    <link itemprop="mainEntityOfPage" href="https://ivanlu1024.github.io/2019/03/14/Java中常见的几个OOM的情况/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ivan Lu">
@@ -300,7 +300,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">HTTP访问一个网站的过程详解</h1>
+          <h1 class="post-title" itemprop="name headline">Java中常见的几个OOM的情况</h1>
         
 
         <div class="post-meta">
@@ -312,8 +312,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-24T21:10:34+08:00">
-                2019-02-24
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T22:26:46+08:00">
+                2019-03-14
               </time>
             
 
@@ -381,22 +381,31 @@
       
 
       
-        <h1 id="访问一个网站的过程详解"><a href="#访问一个网站的过程详解" class="headerlink" title="访问一个网站的过程详解"></a>访问一个网站的过程详解</h1><p>例如访问：<a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a></p>
-<h2 id="HTTP请求的准备"><a href="#HTTP请求的准备" class="headerlink" title="HTTP请求的准备"></a>HTTP请求的准备</h2><p>浏览器会将<a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a> 这个域名发送给DNS服务器，让它解析成IP地址。由于HTTP是基于TCP协议的，先建立TCP连接，在HTTP 1.1的协议里面，默认开启了Keep-Alive,这样建立的TCP连接，就可以在多次请求中复用。</p>
-<h2 id="HTTP请求的发送"><a href="#HTTP请求的发送" class="headerlink" title="HTTP请求的发送"></a>HTTP请求的发送</h2><p>建立TCP连接以后，通过<strong>stream二进制流</strong>的方式传给对方，到了TCP层，会将二进制流变成一个报文段发送给服务器。</p>
-<p>在<strong>发送每个报文段的时候，都需要对方有一个回应ACK</strong>，来保证报文可靠地到达了对方。如果没有回应，那么TCP就会重新传输，直到可以到达。有时候同一个包可能被传输好多次，但这对于HTTP是透明的。</p>
-<p>TCP层发送每一个报文的时候，都需要<strong>加上自己的地址（源地址）和它想要去的地方（目标地址），</strong>然后将源MAC和目标MAC放入MAC头，发送出去即可；若不在同一局域网内，就需要发送给<strong>网关，</strong>这时还需要发送ARP协议，来获取网关的MAC地址，然后将<strong>源MAC和网关MAC</strong>放入MAC头，发送出去。</p>
-<p>网关收到包以后，发现MAC符合，取出目标IP，<strong>根据路由协议</strong>找到下一跳的路由器，<strong>获取下一跳路由器的MAC地址</strong>，将包发送给下一跳路由器。</p>
-<p>这样路由器一跳一跳终于到达目标的局域网。这时候，最后一跳路由器能够发现，<strong>目标地址就在自己的某一个出口的局域网上。</strong>于是，在这个局域网上发送ARP，获得这个目标地址的MAC地址，将包发送出去。</p>
-<p>目标机器发现MAC地址符合就将包收起来；发现IP地址符合，根据IP头中协议项，知道自己上一层是TCP协议，于是解析TCP头，里面有序列号，看一看这个序列包是不是我需要的，如果是就放入缓存中然后返回一个ACK，如果不是则丢弃。</p>
-<p>TCP头里面还有端口号，HTTP的服务器正在监听这个端口号。于是，目标机器自然知道是 HTTP 服务器这个进程想要这个包，于是将包发给 HTTP 服务器。HTTP 服务器的进程看到，原来这个请求是要访问一个网页，于是就把这个网页发给客户端。</p>
-<h2 id="HTTP返回的发送"><a href="#HTTP返回的发送" class="headerlink" title="HTTP返回的发送"></a>HTTP返回的发送</h2><p>根据HTTP 响应报文的格式构造好返回的HTTP报文，接下来就是把这个报文发送出去。还是交给Socket去发送，还是交给TCP层，让TCP层将返回的HTML，也分成一个个小的段，并且保证每一段都可靠到达。</p>
-<p>这些段<strong>加上 TCP 头后会交给 IP 层</strong>，然后把刚才的发送过程反向走一遍。虽然两次不一定走相同的路径，但是逻辑过程是一样的，一直到达客户端。</p>
-<p>客户端发现 <strong>MAC 地址符合、IP 地址符合，于是就会交给 TCP 层</strong>。根据序列号看是不是自己要的报文段，如果是，则会根据 TCP 头中的端口号，发给相应的进程。这个进程就是浏览器，浏览器作为客户端也在监听某个端口。</p>
-<p>当浏览器拿到了 HTTP 的报文。发现返回“200”，一切正常，于是就从正文中将 HTML 拿出来。HTML 是一个标准的网页格式。浏览器只要根据这个格式，展示出一个绚丽多彩的网页。</p>
-<p>这就是一个正常的 HTTP 请求和返回的完整过程。</p>
+        <p>除了PC（程序计数器）以外，Java虚拟机内存区域的都有可能发生OOM（OutOfMemoryError）。</p>
+<h2 id="Java堆溢出"><a href="#Java堆溢出" class="headerlink" title="Java堆溢出"></a>Java堆溢出</h2><p>Java堆是用于存储对象实例的，只要不断地创建对象，并且保证GC Roots到对象之间有可达路径避免垃圾回收机制被清楚，那么在对象数量到达最大堆的容量限制之后便会产生OOM异常。</p>
+<h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>一般的手段是：先通过内存映像工具对Dump出来的堆转储快照进行分析，<strong>重点是确认内存中的对象是否是必要的，也就是要先分清楚到底是出现了内存泄漏还是内存溢出。</strong></p>
+<ul>
+<li>如果是内存泄漏，可进一步通过工具查看泄漏对象到GC Roots的引用链。这样就能够找到泄漏的对象是通过怎么样的路径与GC Roots相关联的导致垃圾回收机制无法将其回收。掌握了泄漏对象的类信息和GC Roots引用链的信息，就可以比较准确地定位泄漏代码的位置。</li>
+<li>如果不存在泄漏，换句话说，就是内存中的对象确实必须存活着，那么此时就需要通过虚拟机的堆参数（       -Xmx和-Xms）来适当调大参数；从代码上检查是否存在某些对象存活时间过长、持有时间过长的情况，尝试减少运行时内存的消耗。</li>
+</ul>
+<blockquote>
+<p>-Xmx : 最大堆空间；</p>
+<p>-Xms : 初始堆空间大小，如果初始堆空间耗尽，JVM会对堆空间扩容，其扩展上限为最大堆空间。通常-Xms与-Xmx设置为同样大小，避免扩容造成性能损耗。</p>
+</blockquote>
+<h2 id="虚拟机栈和本地方法栈溢出"><a href="#虚拟机栈和本地方法栈溢出" class="headerlink" title="虚拟机栈和本地方法栈溢出"></a>虚拟机栈和本地方法栈溢出</h2><p>由于在HotSpot虚拟机上并不区分<strong>虚拟机栈</strong>和<strong>本地方法栈</strong>，因此栈容量只能由-Xss参数设定。在Java虚拟机规范中描述了两种异常：</p>
+<ul>
+<li>StackOverflowError ：如果线程请求的栈深度超过了虚拟机所允许的最大深度，就会抛出该异常；  </li>
+<li>OutOfMemoryError：如果虚拟机在拓展栈的时候，无法申请到足够的空间，就会抛出该异常。</li>
+</ul>
+<p>对于这两种异常来说，存在着一些互相重叠的地方：当栈空间无法继续分配的时候，到底是<strong>内存太小</strong>还是已使用的<strong>栈空间太大</strong>，其实只是对同一件事情的两种描述罢了。</p>
+<p>当在单线程环境下，无论是由于栈帧太大还是虚拟机栈容量太小，当内存无法继续分配的时候，虚拟机抛出的都是StackOverflowError 异常。</p>
+<p>在多线程环境下，<strong>如果为每个线程的栈分配的内存越大，反而越容易产生OOM异常</strong>。每个线程分配到的栈容量越大，可以建立的线程数量就自然减少了，那么在新建立线程的时候就很容易把内存耗尽，产生OOM异常。虚拟机默认参数栈深度大多数情况下能够达到1000~2000，对于正常的方法调用（包括递归）是完全够用的。但是，在多线程环境下的OOM，就只能<strong>通过减少最大堆和减少栈容量</strong>来换取更多的线程数量。</p>
+<h2 id="方法区和运行时常量池溢出"><a href="#方法区和运行时常量池溢出" class="headerlink" title="方法区和运行时常量池溢出"></a>方法区和运行时常量池溢出</h2><p>方法区用于存放Class的相关信息，如类名、访问修饰符、常量池、字段描述、方法描述等。当前的一些主流框架，如Spring、Hibernate，对于类进行增强的时候都会使用到CGLib这类字节码技术，增强的类越多，就需要越大的方法区来保证动态生成Class可以加载入内存，这样的情况下可能会造成方法区的OOM异常。</p>
+<p>在经常动态生成大量Class的应用中，需要特别注意类的回收状况。这类场景还在：大量JSP或动态生成JSP文件的应用（JSP第一次运行时需要编译为Java类）、基于OSGi的应用（即使是同一个类文件，被不同的加载器加载也会视作不同的类）等。</p>
+<h2 id="直接内存溢出"><a href="#直接内存溢出" class="headerlink" title="直接内存溢出"></a>直接内存溢出</h2><p>直接内存（DirectMemory）容量可以通过-XX : MaxDirectMemorySize指定，如果不指定，则默认与Java最大堆（-Xmx指定）一样。</p>
+<p>由于直接内存（DirectMemory）导致的内存溢出，一个明显的特征是在Heap Dump文件中不会看见明显的异常，如果发现OOM之后Dump文件很小，而程序中又直接或间接使用了NIO，就可以考虑检查一下是否为直接内存（DirectMemory）溢出异常。</p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://time.geekbang.org/column/intro/85" target="_blank" rel="noopener">极客时间：《趣谈网络协议》</a></li>
+<li><a href="https://book.douban.com/subject/24722612/" target="_blank" rel="noopener">《深入理解Java虚拟机（第2版）》</a></li>
 </ul>
 
       
@@ -415,9 +424,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/网络/" rel="tag"># 网络</a>
+            <a href="/tags/Java/" rel="tag"># Java</a>
           
-            <a href="/tags/HTTP/" rel="tag"># HTTP</a>
+            <a href="/tags/JVM/" rel="tag"># JVM</a>
           
         </div>
       
@@ -430,8 +439,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/02/18/001职业的天花板来自认识的局限性/" rel="next" title="001职业的天花板来自认识的局限性">
-                <i class="fa fa-chevron-left"></i> 001职业的天花板来自认识的局限性
+              <a href="/2019/03/05/Kafka原理分析/" rel="next" title="Kafka原理分析">
+                <i class="fa fa-chevron-left"></i> Kafka原理分析
               </a>
             
           </div>
@@ -440,8 +449,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/05/Java中锁的总结/" rel="prev" title="Java中锁的总结">
-                Java中锁的总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/14/论文笔记02：Comparative Analysis of Energy-Efficient Scheduling Algorithms for Big Data Applications/" rel="prev" title="论文笔记02：Comparative Analysis of Energy-Efficient Scheduling Algorithms for Big Data Applications">
+                论文笔记02：Comparative Analysis of Energy-Efficient Scheduling Algorithms for Big Data Applications <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -611,7 +620,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#访问一个网站的过程详解"><span class="nav-number">1.</span> <span class="nav-text">访问一个网站的过程详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP请求的准备"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP请求的准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP请求的发送"><span class="nav-number">1.2.</span> <span class="nav-text">HTTP请求的发送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP返回的发送"><span class="nav-number">1.3.</span> <span class="nav-text">HTTP返回的发送</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.4.</span> <span class="nav-text">参考资料</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Java堆溢出"><span class="nav-number">1.</span> <span class="nav-text">Java堆溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决思路"><span class="nav-number">1.1.</span> <span class="nav-text">解决思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#虚拟机栈和本地方法栈溢出"><span class="nav-number">2.</span> <span class="nav-text">虚拟机栈和本地方法栈溢出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法区和运行时常量池溢出"><span class="nav-number">3.</span> <span class="nav-text">方法区和运行时常量池溢出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#直接内存溢出"><span class="nav-number">4.</span> <span class="nav-text">直接内存溢出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
