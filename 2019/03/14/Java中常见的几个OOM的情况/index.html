@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="除了PC（程序计数器）以外，Java虚拟机内存区域的都有可能发生OOM（OutOfMemoryError）。 Java堆溢出Java堆是用于存储对象实例的，只要不断地创建对象，并且保证GC Roots到对象之间有可达路径避免垃圾回收机制被清楚，那么在对象数量到达最大堆的容量限制之后便会产生OOM异常。 解决思路一般的手段是：先通过内存映像工具对Dump出来的堆转储快照进行分析，重点是确认内存中的对">
+<meta name="description" content="&amp;#x9664;&amp;#x4E86;PC&amp;#xFF08;&amp;#x7A0B;&amp;#x5E8F;&amp;#x8BA1;&amp;#x6570;&amp;#x5668;&amp;#xFF09;&amp;#x4EE5;&amp;#x5916;&amp;#xFF0C;Java&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x5185;&amp;#x5B58;&amp;#x533A;&amp;#x57DF;&amp;#x7684;&amp;#x90FD;&amp;#x6709;&amp;#x53EF;&amp;#x80FD;&amp;#">
 <meta name="keywords" content="Java,JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java中常见的几个OOM的情况">
 <meta property="og:url" content="https://ivanlu1024.github.io/2019/03/14/Java中常见的几个OOM的情况/index.html">
 <meta property="og:site_name" content="Ivan的记录">
-<meta property="og:description" content="除了PC（程序计数器）以外，Java虚拟机内存区域的都有可能发生OOM（OutOfMemoryError）。 Java堆溢出Java堆是用于存储对象实例的，只要不断地创建对象，并且保证GC Roots到对象之间有可达路径避免垃圾回收机制被清楚，那么在对象数量到达最大堆的容量限制之后便会产生OOM异常。 解决思路一般的手段是：先通过内存映像工具对Dump出来的堆转储快照进行分析，重点是确认内存中的对">
+<meta property="og:description" content="&amp;#x9664;&amp;#x4E86;PC&amp;#xFF08;&amp;#x7A0B;&amp;#x5E8F;&amp;#x8BA1;&amp;#x6570;&amp;#x5668;&amp;#xFF09;&amp;#x4EE5;&amp;#x5916;&amp;#xFF0C;Java&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x5185;&amp;#x5B58;&amp;#x533A;&amp;#x57DF;&amp;#x7684;&amp;#x90FD;&amp;#x6709;&amp;#x53EF;&amp;#x80FD;&amp;#">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2019-03-14T14:33:59.215Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java中常见的几个OOM的情况">
-<meta name="twitter:description" content="除了PC（程序计数器）以外，Java虚拟机内存区域的都有可能发生OOM（OutOfMemoryError）。 Java堆溢出Java堆是用于存储对象实例的，只要不断地创建对象，并且保证GC Roots到对象之间有可达路径避免垃圾回收机制被清楚，那么在对象数量到达最大堆的容量限制之后便会产生OOM异常。 解决思路一般的手段是：先通过内存映像工具对Dump出来的堆转储快照进行分析，重点是确认内存中的对">
+<meta name="twitter:description" content="&amp;#x9664;&amp;#x4E86;PC&amp;#xFF08;&amp;#x7A0B;&amp;#x5E8F;&amp;#x8BA1;&amp;#x6570;&amp;#x5668;&amp;#xFF09;&amp;#x4EE5;&amp;#x5916;&amp;#xFF0C;Java&amp;#x865A;&amp;#x62DF;&amp;#x673A;&amp;#x5185;&amp;#x5B58;&amp;#x533A;&amp;#x57DF;&amp;#x7684;&amp;#x90FD;&amp;#x6709;&amp;#x53EF;&amp;#x80FD;&amp;#">
 
 
 
@@ -114,7 +114,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -167,7 +167,7 @@
 
   <div class="container sidebar-position-left page-post-detail ">
     <div class="headband"></div>
-	<a href=https://github.com/IvanLu1024"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+	<a href=https://github.com/IvanLu1024><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
@@ -252,9 +252,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -288,7 +322,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ivan Lu">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/IMG_ivan.jpg">
+      <meta itemprop="image" content="http://poimikjf2.bkt.clouddn.com/blog/20190317/DatX5jjyDBu4.jpg?imageslim">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -344,7 +378,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1.2k 字
+                  1.4k 字
                 </span>
               
 
@@ -360,7 +394,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4 分钟
+                  8 分钟
                 </span>
               
             </div>
@@ -381,33 +415,51 @@
       
 
       
-        <p>除了PC（程序计数器）以外，Java虚拟机内存区域的都有可能发生OOM（OutOfMemoryError）。</p>
-<h2 id="Java堆溢出"><a href="#Java堆溢出" class="headerlink" title="Java堆溢出"></a>Java堆溢出</h2><p>Java堆是用于存储对象实例的，只要不断地创建对象，并且保证GC Roots到对象之间有可达路径避免垃圾回收机制被清楚，那么在对象数量到达最大堆的容量限制之后便会产生OOM异常。</p>
-<h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>一般的手段是：先通过内存映像工具对Dump出来的堆转储快照进行分析，<strong>重点是确认内存中的对象是否是必要的，也就是要先分清楚到底是出现了内存泄漏还是内存溢出。</strong></p>
+        <p>&#x9664;&#x4E86;PC&#xFF08;&#x7A0B;&#x5E8F;&#x8BA1;&#x6570;&#x5668;&#xFF09;&#x4EE5;&#x5916;&#xFF0C;Java&#x865A;&#x62DF;&#x673A;&#x5185;&#x5B58;&#x533A;&#x57DF;&#x7684;&#x90FD;&#x6709;&#x53EF;&#x80FD;&#x53D1;&#x751F;OOM&#xFF08;OutOfMemoryError&#xFF09;&#x3002;</p>
+<h2 id="Java&#x5806;&#x6EA2;&#x51FA;"><a href="#Java&#x5806;&#x6EA2;&#x51FA;" class="headerlink" title="Java&#x5806;&#x6EA2;&#x51FA;"></a>Java&#x5806;&#x6EA2;&#x51FA;</h2><p>Java&#x5806;&#x662F;&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;&#x7684;&#xFF0C;&#x53EA;&#x8981;&#x4E0D;&#x65AD;&#x5730;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E14;&#x4FDD;&#x8BC1;GC Roots&#x5230;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x6709;&#x53EF;&#x8FBE;&#x8DEF;&#x5F84;&#x907F;&#x514D;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x88AB;&#x6E05;&#x695A;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x5BF9;&#x8C61;&#x6570;&#x91CF;&#x5230;&#x8FBE;&#x6700;&#x5927;&#x5806;&#x7684;&#x5BB9;&#x91CF;&#x9650;&#x5236;&#x4E4B;&#x540E;&#x4FBF;&#x4F1A;&#x4EA7;&#x751F;OOM&#x5F02;&#x5E38;&#x3002;</p>
+<h3 id="&#x89E3;&#x51B3;&#x601D;&#x8DEF;"><a href="#&#x89E3;&#x51B3;&#x601D;&#x8DEF;" class="headerlink" title="&#x89E3;&#x51B3;&#x601D;&#x8DEF;"></a>&#x89E3;&#x51B3;&#x601D;&#x8DEF;</h3><p>&#x4E00;&#x822C;&#x7684;&#x624B;&#x6BB5;&#x662F;&#xFF1A;&#x5148;&#x901A;&#x8FC7;&#x5185;&#x5B58;&#x6620;&#x50CF;&#x5DE5;&#x5177;&#x5BF9;Dump&#x51FA;&#x6765;&#x7684;&#x5806;&#x8F6C;&#x50A8;&#x5FEB;&#x7167;&#x8FDB;&#x884C;&#x5206;&#x6790;&#xFF0C;<strong>&#x91CD;&#x70B9;&#x662F;&#x786E;&#x8BA4;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x662F;&#x5FC5;&#x8981;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8981;&#x5148;&#x5206;&#x6E05;&#x695A;&#x5230;&#x5E95;&#x662F;&#x51FA;&#x73B0;&#x4E86;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x8FD8;&#x662F;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x3002;</strong></p>
 <ul>
-<li>如果是内存泄漏，可进一步通过工具查看泄漏对象到GC Roots的引用链。这样就能够找到泄漏的对象是通过怎么样的路径与GC Roots相关联的导致垃圾回收机制无法将其回收。掌握了泄漏对象的类信息和GC Roots引用链的信息，就可以比较准确地定位泄漏代码的位置。</li>
-<li>如果不存在泄漏，换句话说，就是内存中的对象确实必须存活着，那么此时就需要通过虚拟机的堆参数（       -Xmx和-Xms）来适当调大参数；从代码上检查是否存在某些对象存活时间过长、持有时间过长的情况，尝试减少运行时内存的消耗。</li>
+<li>&#x5982;&#x679C;&#x662F;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#xFF0C;&#x53EF;&#x8FDB;&#x4E00;&#x6B65;&#x901A;&#x8FC7;&#x5DE5;&#x5177;&#x67E5;&#x770B;&#x6CC4;&#x6F0F;&#x5BF9;&#x8C61;&#x5230;GC Roots&#x7684;&#x5F15;&#x7528;&#x94FE;&#x3002;&#x8FD9;&#x6837;&#x5C31;&#x80FD;&#x591F;&#x627E;&#x5230;&#x6CC4;&#x6F0F;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x901A;&#x8FC7;&#x600E;&#x4E48;&#x6837;&#x7684;&#x8DEF;&#x5F84;&#x4E0E;GC Roots&#x76F8;&#x5173;&#x8054;&#x7684;&#x5BFC;&#x81F4;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x65E0;&#x6CD5;&#x5C06;&#x5176;&#x56DE;&#x6536;&#x3002;&#x638C;&#x63E1;&#x4E86;&#x6CC4;&#x6F0F;&#x5BF9;&#x8C61;&#x7684;&#x7C7B;&#x4FE1;&#x606F;&#x548C;GC Roots&#x5F15;&#x7528;&#x94FE;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x6BD4;&#x8F83;&#x51C6;&#x786E;&#x5730;&#x5B9A;&#x4F4D;&#x6CC4;&#x6F0F;&#x4EE3;&#x7801;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#x6CC4;&#x6F0F;&#xFF0C;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x786E;&#x5B9E;&#x5FC5;&#x987B;&#x5B58;&#x6D3B;&#x7740;&#xFF0C;&#x90A3;&#x4E48;&#x6B64;&#x65F6;&#x5C31;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x865A;&#x62DF;&#x673A;&#x7684;&#x5806;&#x53C2;&#x6570;&#xFF08;       -Xmx&#x548C;-Xms&#xFF09;&#x6765;&#x9002;&#x5F53;&#x8C03;&#x5927;&#x53C2;&#x6570;&#xFF1B;&#x4ECE;&#x4EE3;&#x7801;&#x4E0A;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x5B58;&#x5728;&#x67D0;&#x4E9B;&#x5BF9;&#x8C61;&#x5B58;&#x6D3B;&#x65F6;&#x95F4;&#x8FC7;&#x957F;&#x3001;&#x6301;&#x6709;&#x65F6;&#x95F4;&#x8FC7;&#x957F;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5C1D;&#x8BD5;&#x51CF;&#x5C11;&#x8FD0;&#x884C;&#x65F6;&#x5185;&#x5B58;&#x7684;&#x6D88;&#x8017;&#x3002;</li>
 </ul>
 <blockquote>
-<p>-Xmx : 最大堆空间；</p>
-<p>-Xms : 初始堆空间大小，如果初始堆空间耗尽，JVM会对堆空间扩容，其扩展上限为最大堆空间。通常-Xms与-Xmx设置为同样大小，避免扩容造成性能损耗。</p>
+<p>-Xmx : &#x6700;&#x5927;&#x5806;&#x7A7A;&#x95F4;&#xFF1B;</p>
+<p>-Xms : &#x521D;&#x59CB;&#x5806;&#x7A7A;&#x95F4;&#x5927;&#x5C0F;&#xFF0C;&#x5982;&#x679C;&#x521D;&#x59CB;&#x5806;&#x7A7A;&#x95F4;&#x8017;&#x5C3D;&#xFF0C;JVM&#x4F1A;&#x5BF9;&#x5806;&#x7A7A;&#x95F4;&#x6269;&#x5BB9;&#xFF0C;&#x5176;&#x6269;&#x5C55;&#x4E0A;&#x9650;&#x4E3A;&#x6700;&#x5927;&#x5806;&#x7A7A;&#x95F4;&#x3002;&#x901A;&#x5E38;-Xms&#x4E0E;-Xmx&#x8BBE;&#x7F6E;&#x4E3A;&#x540C;&#x6837;&#x5927;&#x5C0F;&#xFF0C;&#x907F;&#x514D;&#x6269;&#x5BB9;&#x9020;&#x6210;&#x6027;&#x80FD;&#x635F;&#x8017;&#x3002;</p>
 </blockquote>
-<h2 id="虚拟机栈和本地方法栈溢出"><a href="#虚拟机栈和本地方法栈溢出" class="headerlink" title="虚拟机栈和本地方法栈溢出"></a>虚拟机栈和本地方法栈溢出</h2><p>由于在HotSpot虚拟机上并不区分<strong>虚拟机栈</strong>和<strong>本地方法栈</strong>，因此栈容量只能由-Xss参数设定。在Java虚拟机规范中描述了两种异常：</p>
+<h2 id="&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;"><a href="#&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;" class="headerlink" title="&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;"></a>&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;</h2><p>&#x7531;&#x4E8E;&#x5728;HotSpot&#x865A;&#x62DF;&#x673A;&#x4E0A;&#x5E76;&#x4E0D;&#x533A;&#x5206;<strong>&#x865A;&#x62DF;&#x673A;&#x6808;</strong>&#x548C;<strong>&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;</strong>&#xFF0C;&#x56E0;&#x6B64;&#x6808;&#x5BB9;&#x91CF;&#x53EA;&#x80FD;&#x7531;-Xss&#x53C2;&#x6570;&#x8BBE;&#x5B9A;&#x3002;&#x5728;Java&#x865A;&#x62DF;&#x673A;&#x89C4;&#x8303;&#x4E2D;&#x63CF;&#x8FF0;&#x4E86;&#x4E24;&#x79CD;&#x5F02;&#x5E38;&#xFF1A;</p>
 <ul>
-<li>StackOverflowError ：如果线程请求的栈深度超过了虚拟机所允许的最大深度，就会抛出该异常；  </li>
-<li>OutOfMemoryError：如果虚拟机在拓展栈的时候，无法申请到足够的空间，就会抛出该异常。</li>
+<li>StackOverflowError &#xFF1A;&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x8BF7;&#x6C42;&#x7684;&#x6808;&#x6DF1;&#x5EA6;&#x8D85;&#x8FC7;&#x4E86;&#x865A;&#x62DF;&#x673A;&#x6240;&#x5141;&#x8BB8;&#x7684;&#x6700;&#x5927;&#x6DF1;&#x5EA6;&#xFF0C;&#x5C31;&#x4F1A;&#x629B;&#x51FA;&#x8BE5;&#x5F02;&#x5E38;&#xFF1B;  </li>
+<li>OutOfMemoryError&#xFF1A;&#x5982;&#x679C;&#x865A;&#x62DF;&#x673A;&#x5728;&#x62D3;&#x5C55;&#x6808;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x65E0;&#x6CD5;&#x7533;&#x8BF7;&#x5230;&#x8DB3;&#x591F;&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x5C31;&#x4F1A;&#x629B;&#x51FA;&#x8BE5;&#x5F02;&#x5E38;&#x3002;</li>
 </ul>
-<p>对于这两种异常来说，存在着一些互相重叠的地方：当栈空间无法继续分配的时候，到底是<strong>内存太小</strong>还是已使用的<strong>栈空间太大</strong>，其实只是对同一件事情的两种描述罢了。</p>
-<p>当在单线程环境下，无论是由于栈帧太大还是虚拟机栈容量太小，当内存无法继续分配的时候，虚拟机抛出的都是StackOverflowError 异常。</p>
-<p>在多线程环境下，<strong>如果为每个线程的栈分配的内存越大，反而越容易产生OOM异常</strong>。每个线程分配到的栈容量越大，可以建立的线程数量就自然减少了，那么在新建立线程的时候就很容易把内存耗尽，产生OOM异常。虚拟机默认参数栈深度大多数情况下能够达到1000~2000，对于正常的方法调用（包括递归）是完全够用的。但是，在多线程环境下的OOM，就只能<strong>通过减少最大堆和减少栈容量</strong>来换取更多的线程数量。</p>
-<h2 id="方法区和运行时常量池溢出"><a href="#方法区和运行时常量池溢出" class="headerlink" title="方法区和运行时常量池溢出"></a>方法区和运行时常量池溢出</h2><p>方法区用于存放Class的相关信息，如类名、访问修饰符、常量池、字段描述、方法描述等。当前的一些主流框架，如Spring、Hibernate，对于类进行增强的时候都会使用到CGLib这类字节码技术，增强的类越多，就需要越大的方法区来保证动态生成Class可以加载入内存，这样的情况下可能会造成方法区的OOM异常。</p>
-<p>在经常动态生成大量Class的应用中，需要特别注意类的回收状况。这类场景还在：大量JSP或动态生成JSP文件的应用（JSP第一次运行时需要编译为Java类）、基于OSGi的应用（即使是同一个类文件，被不同的加载器加载也会视作不同的类）等。</p>
-<h2 id="直接内存溢出"><a href="#直接内存溢出" class="headerlink" title="直接内存溢出"></a>直接内存溢出</h2><p>直接内存（DirectMemory）容量可以通过-XX : MaxDirectMemorySize指定，如果不指定，则默认与Java最大堆（-Xmx指定）一样。</p>
-<p>由于直接内存（DirectMemory）导致的内存溢出，一个明显的特征是在Heap Dump文件中不会看见明显的异常，如果发现OOM之后Dump文件很小，而程序中又直接或间接使用了NIO，就可以考虑检查一下是否为直接内存（DirectMemory）溢出异常。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://book.douban.com/subject/24722612/" target="_blank" rel="noopener">《深入理解Java虚拟机（第2版）》</a></li>
+<p>&#x5BF9;&#x4E8E;&#x8FD9;&#x4E24;&#x79CD;&#x5F02;&#x5E38;&#x6765;&#x8BF4;&#xFF0C;&#x5B58;&#x5728;&#x7740;&#x4E00;&#x4E9B;&#x4E92;&#x76F8;&#x91CD;&#x53E0;&#x7684;&#x5730;&#x65B9;&#xFF1A;&#x5F53;&#x6808;&#x7A7A;&#x95F4;&#x65E0;&#x6CD5;&#x7EE7;&#x7EED;&#x5206;&#x914D;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5230;&#x5E95;&#x662F;<strong>&#x5185;&#x5B58;&#x592A;&#x5C0F;</strong>&#x8FD8;&#x662F;&#x5DF2;&#x4F7F;&#x7528;&#x7684;<strong>&#x6808;&#x7A7A;&#x95F4;&#x592A;&#x5927;</strong>&#xFF0C;&#x5176;&#x5B9E;&#x53EA;&#x662F;&#x5BF9;&#x540C;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;&#x7684;&#x4E24;&#x79CD;&#x63CF;&#x8FF0;&#x7F62;&#x4E86;&#x3002;</p>
+<p>&#x5F53;&#x5728;&#x5355;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E0B;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;&#x7531;&#x4E8E;&#x6808;&#x5E27;&#x592A;&#x5927;&#x8FD8;&#x662F;&#x865A;&#x62DF;&#x673A;&#x6808;&#x5BB9;&#x91CF;&#x592A;&#x5C0F;&#xFF0C;&#x5F53;&#x5185;&#x5B58;&#x65E0;&#x6CD5;&#x7EE7;&#x7EED;&#x5206;&#x914D;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x865A;&#x62DF;&#x673A;&#x629B;&#x51FA;&#x7684;&#x90FD;&#x662F;StackOverflowError &#x5F02;&#x5E38;&#x3002;</p>
+<p>&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E0B;&#xFF0C;<strong>&#x5982;&#x679C;&#x4E3A;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x6808;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x8D8A;&#x5927;&#xFF0C;&#x53CD;&#x800C;&#x8D8A;&#x5BB9;&#x6613;&#x4EA7;&#x751F;OOM&#x5F02;&#x5E38;</strong>&#x3002;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x5206;&#x914D;&#x5230;&#x7684;&#x6808;&#x5BB9;&#x91CF;&#x8D8A;&#x5927;&#xFF0C;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x5C31;&#x81EA;&#x7136;&#x51CF;&#x5C11;&#x4E86;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x65B0;&#x5EFA;&#x7ACB;&#x7EBF;&#x7A0B;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x5F88;&#x5BB9;&#x6613;&#x628A;&#x5185;&#x5B58;&#x8017;&#x5C3D;&#xFF0C;&#x4EA7;&#x751F;OOM&#x5F02;&#x5E38;&#x3002;&#x865A;&#x62DF;&#x673A;&#x9ED8;&#x8BA4;&#x53C2;&#x6570;&#x6808;&#x6DF1;&#x5EA6;&#x5927;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#x80FD;&#x591F;&#x8FBE;&#x5230;1000~2000&#xFF0C;&#x5BF9;&#x4E8E;&#x6B63;&#x5E38;&#x7684;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#xFF08;&#x5305;&#x62EC;&#x9012;&#x5F52;&#xFF09;&#x662F;&#x5B8C;&#x5168;&#x591F;&#x7528;&#x7684;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E0B;&#x7684;OOM&#xFF0C;&#x5C31;&#x53EA;&#x80FD;<strong>&#x901A;&#x8FC7;&#x51CF;&#x5C11;&#x6700;&#x5927;&#x5806;&#x548C;&#x51CF;&#x5C11;&#x6808;&#x5BB9;&#x91CF;</strong>&#x6765;&#x6362;&#x53D6;&#x66F4;&#x591A;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x3002;</p>
+<h2 id="&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x6EA2;&#x51FA;"><a href="#&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x6EA2;&#x51FA;" class="headerlink" title="&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x6EA2;&#x51FA;"></a>&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x6EA2;&#x51FA;</h2><p>&#x65B9;&#x6CD5;&#x533A;&#x7528;&#x4E8E;&#x5B58;&#x653E;Class&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF0C;&#x5982;&#x7C7B;&#x540D;&#x3001;&#x8BBF;&#x95EE;&#x4FEE;&#x9970;&#x7B26;&#x3001;&#x5E38;&#x91CF;&#x6C60;&#x3001;&#x5B57;&#x6BB5;&#x63CF;&#x8FF0;&#x3001;&#x65B9;&#x6CD5;&#x63CF;&#x8FF0;&#x7B49;&#x3002;&#x5F53;&#x524D;&#x7684;&#x4E00;&#x4E9B;&#x4E3B;&#x6D41;&#x6846;&#x67B6;&#xFF0C;&#x5982;Spring&#x3001;Hibernate&#xFF0C;&#x5BF9;&#x4E8E;&#x7C7B;&#x8FDB;&#x884C;&#x589E;&#x5F3A;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x4F1A;&#x4F7F;&#x7528;&#x5230;CGLib&#x8FD9;&#x7C7B;&#x5B57;&#x8282;&#x7801;&#x6280;&#x672F;&#xFF0C;&#x589E;&#x5F3A;&#x7684;&#x7C7B;&#x8D8A;&#x591A;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x8D8A;&#x5927;&#x7684;&#x65B9;&#x6CD5;&#x533A;&#x6765;&#x4FDD;&#x8BC1;&#x52A8;&#x6001;&#x751F;&#x6210;Class&#x53EF;&#x4EE5;&#x52A0;&#x8F7D;&#x5165;&#x5185;&#x5B58;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x65B9;&#x6CD5;&#x533A;&#x7684;OOM&#x5F02;&#x5E38;&#x3002;</p>
+<p>&#x5728;&#x7ECF;&#x5E38;&#x52A8;&#x6001;&#x751F;&#x6210;&#x5927;&#x91CF;Class&#x7684;&#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x7279;&#x522B;&#x6CE8;&#x610F;&#x7C7B;&#x7684;&#x56DE;&#x6536;&#x72B6;&#x51B5;&#x3002;&#x8FD9;&#x7C7B;&#x573A;&#x666F;&#x8FD8;&#x5728;&#xFF1A;&#x5927;&#x91CF;JSP&#x6216;&#x52A8;&#x6001;&#x751F;&#x6210;JSP&#x6587;&#x4EF6;&#x7684;&#x5E94;&#x7528;&#xFF08;JSP&#x7B2C;&#x4E00;&#x6B21;&#x8FD0;&#x884C;&#x65F6;&#x9700;&#x8981;&#x7F16;&#x8BD1;&#x4E3A;Java&#x7C7B;&#xFF09;&#x3001;&#x57FA;&#x4E8E;OSGi&#x7684;&#x5E94;&#x7528;&#xFF08;&#x5373;&#x4F7F;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x7C7B;&#x6587;&#x4EF6;&#xFF0C;&#x88AB;&#x4E0D;&#x540C;&#x7684;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#x4E5F;&#x4F1A;&#x89C6;&#x4F5C;&#x4E0D;&#x540C;&#x7684;&#x7C7B;&#xFF09;&#x7B49;&#x3002;</p>
+<h2 id="&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;"><a href="#&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;" class="headerlink" title="&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;"></a>&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;</h2><p>&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF08;DirectMemory&#xFF09;&#x5BB9;&#x91CF;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;-XX : MaxDirectMemorySize&#x6307;&#x5B9A;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;&#xFF0C;&#x5219;&#x9ED8;&#x8BA4;&#x4E0E;Java&#x6700;&#x5927;&#x5806;&#xFF08;-Xmx&#x6307;&#x5B9A;&#xFF09;&#x4E00;&#x6837;&#x3002;</p>
+<p>&#x7531;&#x4E8E;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF08;DirectMemory&#xFF09;&#x5BFC;&#x81F4;&#x7684;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#xFF0C;&#x4E00;&#x4E2A;&#x660E;&#x663E;&#x7684;&#x7279;&#x5F81;&#x662F;&#x5728;Heap Dump&#x6587;&#x4EF6;&#x4E2D;&#x4E0D;&#x4F1A;&#x770B;&#x89C1;&#x660E;&#x663E;&#x7684;&#x5F02;&#x5E38;&#xFF0C;&#x5982;&#x679C;&#x53D1;&#x73B0;OOM&#x4E4B;&#x540E;Dump&#x6587;&#x4EF6;&#x5F88;&#x5C0F;&#xFF0C;&#x800C;&#x7A0B;&#x5E8F;&#x4E2D;&#x53C8;&#x76F4;&#x63A5;&#x6216;&#x95F4;&#x63A5;&#x4F7F;&#x7528;&#x4E86;NIO&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x68C0;&#x67E5;&#x4E00;&#x4E0B;&#x662F;&#x5426;&#x4E3A;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF08;DirectMemory&#xFF09;&#x6EA2;&#x51FA;&#x5F02;&#x5E38;&#x3002;</p>
+<h2 id="&#x53C2;&#x8003;&#x8D44;&#x6599;"><a href="#&#x53C2;&#x8003;&#x8D44;&#x6599;" class="headerlink" title="&#x53C2;&#x8003;&#x8D44;&#x6599;"></a>&#x53C2;&#x8003;&#x8D44;&#x6599;</h2><ul>
+<li><a href="https://book.douban.com/subject/24722612/" target="_blank" rel="noopener">&#x300A;&#x6DF1;&#x5165;&#x7406;&#x89E3;Java&#x865A;&#x62DF;&#x673A;&#xFF08;&#x7B2C;2&#x7248;&#xFF09;&#x300B;</a></li>
 </ul>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
       
     </div>
     
@@ -516,7 +568,7 @@
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/IMG_ivan.jpg"
+               src="http://poimikjf2.bkt.clouddn.com/blog/20190317/DatX5jjyDBu4.jpg?imageslim"
                alt="Ivan Lu" />
           <p class="site-author-name" itemprop="name">Ivan Lu</p>
            
@@ -651,17 +703,8 @@
   <span class="author" itemprop="copyrightHolder">Ivan Lu</span>
 </div>
 
-<div class="powered-by">
-<i class="fa fa-user-md"></i>
-<span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
 
 
-<span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-</span>
 
 
 
@@ -687,6 +730,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
@@ -810,6 +855,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 

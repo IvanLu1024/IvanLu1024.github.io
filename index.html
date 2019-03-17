@@ -113,7 +113,7 @@
   var CONFIG = {
     root: '/',
     scheme: 'Gemini',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: true,
@@ -168,7 +168,7 @@
    page-home 
  ">
     <div class="headband"></div>
-	<a href=https://github.com/IvanLu1024"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+	<a href=https://github.com/IvanLu1024><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
   <div class="site-meta ">
@@ -253,9 +253,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -289,7 +323,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ivan Lu">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/IMG_ivan.jpg">
+      <meta itemprop="image" content="http://poimikjf2.bkt.clouddn.com/blog/20190317/DatX5jjyDBu4.jpg?imageslim">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -347,7 +381,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1.1k 字
+                  1.2k 字
                 </span>
               
 
@@ -363,7 +397,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3 分钟
+                  7 分钟
                 </span>
               
             </div>
@@ -386,123 +420,138 @@
       
         
           
-            <p>发表于2018</p>
-<h2 id="一、存在的问题"><a href="#一、存在的问题" class="headerlink" title="一、存在的问题"></a>一、存在的问题</h2><p>Spark集群在存储介质（HDDs 和 SSDs）异构的问题，导致不同结点的读写速度不一致，没有充分地利用异构存储的优势。当前针对于异构环境下的调度，只考虑了计算资源，而忽视了存储设备异构性的问题。</p>
-<h2 id="二、提出的方法"><a href="#二、提出的方法" class="headerlink" title="二、提出的方法"></a>二、提出的方法</h2><h3 id="2-1-创新点"><a href="#2-1-创新点" class="headerlink" title="2.1 创新点"></a>2.1 创新点</h3><p>考虑Spark集群上<strong>存储介质的不同</strong>对任务完成时间的影响，提出了对于异构存储介质集群存储感知的任务调度策略。</p>
-<h3 id="2-2-结果"><a href="#2-2-结果" class="headerlink" title="2.2 结果"></a>2.2 结果</h3><p>实验结果显示，H-Scheduler能够降低Job 73.6%的执行时间。</p>
-<h2 id="三、背景-amp-动机"><a href="#三、背景-amp-动机" class="headerlink" title="三、背景&amp;动机"></a>三、背景&amp;动机</h2><ul>
-<li>支持异构存储介质的HDFS；</li>
-<li>支持异构存储介质的HDFS和当前调度策略的匹配：</li>
-<li>由于网速的提升，对于数据本地化的影响对于任务执行的影响在降低；</li>
+            <p>&#x53D1;&#x8868;&#x4E8E;2018</p>
+<h2 id="&#x4E00;&#x3001;&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;"><a href="#&#x4E00;&#x3001;&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="&#x4E00;&#x3001;&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;"></a>&#x4E00;&#x3001;&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;</h2><p>Spark&#x96C6;&#x7FA4;&#x5728;&#x5B58;&#x50A8;&#x4ECB;&#x8D28;&#xFF08;HDDs &#x548C; SSDs&#xFF09;&#x5F02;&#x6784;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5BFC;&#x81F4;&#x4E0D;&#x540C;&#x7ED3;&#x70B9;&#x7684;&#x8BFB;&#x5199;&#x901F;&#x5EA6;&#x4E0D;&#x4E00;&#x81F4;&#xFF0C;&#x6CA1;&#x6709;&#x5145;&#x5206;&#x5730;&#x5229;&#x7528;&#x5F02;&#x6784;&#x5B58;&#x50A8;&#x7684;&#x4F18;&#x52BF;&#x3002;&#x5F53;&#x524D;&#x9488;&#x5BF9;&#x4E8E;&#x5F02;&#x6784;&#x73AF;&#x5883;&#x4E0B;&#x7684;&#x8C03;&#x5EA6;&#xFF0C;&#x53EA;&#x8003;&#x8651;&#x4E86;&#x8BA1;&#x7B97;&#x8D44;&#x6E90;&#xFF0C;&#x800C;&#x5FFD;&#x89C6;&#x4E86;&#x5B58;&#x50A8;&#x8BBE;&#x5907;&#x5F02;&#x6784;&#x6027;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<h2 id="&#x4E8C;&#x3001;&#x63D0;&#x51FA;&#x7684;&#x65B9;&#x6CD5;"><a href="#&#x4E8C;&#x3001;&#x63D0;&#x51FA;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x4E8C;&#x3001;&#x63D0;&#x51FA;&#x7684;&#x65B9;&#x6CD5;"></a>&#x4E8C;&#x3001;&#x63D0;&#x51FA;&#x7684;&#x65B9;&#x6CD5;</h2><h3 id="2-1-&#x521B;&#x65B0;&#x70B9;"><a href="#2-1-&#x521B;&#x65B0;&#x70B9;" class="headerlink" title="2.1 &#x521B;&#x65B0;&#x70B9;"></a>2.1 &#x521B;&#x65B0;&#x70B9;</h3><p>&#x8003;&#x8651;Spark&#x96C6;&#x7FA4;&#x4E0A;<strong>&#x5B58;&#x50A8;&#x4ECB;&#x8D28;&#x7684;&#x4E0D;&#x540C;</strong>&#x5BF9;&#x4EFB;&#x52A1;&#x5B8C;&#x6210;&#x65F6;&#x95F4;&#x7684;&#x5F71;&#x54CD;&#xFF0C;&#x63D0;&#x51FA;&#x4E86;&#x5BF9;&#x4E8E;&#x5F02;&#x6784;&#x5B58;&#x50A8;&#x4ECB;&#x8D28;&#x96C6;&#x7FA4;&#x5B58;&#x50A8;&#x611F;&#x77E5;&#x7684;&#x4EFB;&#x52A1;&#x8C03;&#x5EA6;&#x7B56;&#x7565;&#x3002;</p>
+<h3 id="2-2-&#x7ED3;&#x679C;"><a href="#2-2-&#x7ED3;&#x679C;" class="headerlink" title="2.2 &#x7ED3;&#x679C;"></a>2.2 &#x7ED3;&#x679C;</h3><p>&#x5B9E;&#x9A8C;&#x7ED3;&#x679C;&#x663E;&#x793A;&#xFF0C;H-Scheduler&#x80FD;&#x591F;&#x964D;&#x4F4E;Job 73.6%&#x7684;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x3002;</p>
+<h2 id="&#x4E09;&#x3001;&#x80CC;&#x666F;-amp-&#x52A8;&#x673A;"><a href="#&#x4E09;&#x3001;&#x80CC;&#x666F;-amp-&#x52A8;&#x673A;" class="headerlink" title="&#x4E09;&#x3001;&#x80CC;&#x666F;&amp;&#x52A8;&#x673A;"></a>&#x4E09;&#x3001;&#x80CC;&#x666F;&amp;&#x52A8;&#x673A;</h2><ul>
+<li>&#x652F;&#x6301;&#x5F02;&#x6784;&#x5B58;&#x50A8;&#x4ECB;&#x8D28;&#x7684;HDFS&#xFF1B;</li>
+<li>&#x652F;&#x6301;&#x5F02;&#x6784;&#x5B58;&#x50A8;&#x4ECB;&#x8D28;&#x7684;HDFS&#x548C;&#x5F53;&#x524D;&#x8C03;&#x5EA6;&#x7B56;&#x7565;&#x7684;&#x5339;&#x914D;&#xFF1A;</li>
+<li>&#x7531;&#x4E8E;&#x7F51;&#x901F;&#x7684;&#x63D0;&#x5347;&#xFF0C;&#x5BF9;&#x4E8E;&#x6570;&#x636E;&#x672C;&#x5730;&#x5316;&#x7684;&#x5F71;&#x54CD;&#x5BF9;&#x4E8E;&#x4EFB;&#x52A1;&#x6267;&#x884C;&#x7684;&#x5F71;&#x54CD;&#x5728;&#x964D;&#x4F4E;&#xFF1B;</li>
 </ul>
-<h2 id="四、设计"><a href="#四、设计" class="headerlink" title="四、设计"></a>四、设计</h2><p>H-Scheduler在调度决策同时考虑将<strong>数据本地化</strong>和<strong>存储介质</strong>类型这两个因素。</p>
-<h3 id="第一步-任务分类"><a href="#第一步-任务分类" class="headerlink" title="第一步 任务分类"></a>第一步 任务分类</h3><p>H-Scheduler在调度之前应该知道处理每个任务的存储介质类型，根据任务的本地性和数据块存储介质的类型将任务进行分类，分为以下四种类型：</p>
+<h2 id="&#x56DB;&#x3001;&#x8BBE;&#x8BA1;"><a href="#&#x56DB;&#x3001;&#x8BBE;&#x8BA1;" class="headerlink" title="&#x56DB;&#x3001;&#x8BBE;&#x8BA1;"></a>&#x56DB;&#x3001;&#x8BBE;&#x8BA1;</h2><p>H-Scheduler&#x5728;&#x8C03;&#x5EA6;&#x51B3;&#x7B56;&#x540C;&#x65F6;&#x8003;&#x8651;&#x5C06;<strong>&#x6570;&#x636E;&#x672C;&#x5730;&#x5316;</strong>&#x548C;<strong>&#x5B58;&#x50A8;&#x4ECB;&#x8D28;</strong>&#x7C7B;&#x578B;&#x8FD9;&#x4E24;&#x4E2A;&#x56E0;&#x7D20;&#x3002;</p>
+<h3 id="&#x7B2C;&#x4E00;&#x6B65;-&#x4EFB;&#x52A1;&#x5206;&#x7C7B;"><a href="#&#x7B2C;&#x4E00;&#x6B65;-&#x4EFB;&#x52A1;&#x5206;&#x7C7B;" class="headerlink" title="&#x7B2C;&#x4E00;&#x6B65; &#x4EFB;&#x52A1;&#x5206;&#x7C7B;"></a>&#x7B2C;&#x4E00;&#x6B65; &#x4EFB;&#x52A1;&#x5206;&#x7C7B;</h3><p>H-Scheduler&#x5728;&#x8C03;&#x5EA6;&#x4E4B;&#x524D;&#x5E94;&#x8BE5;&#x77E5;&#x9053;&#x5904;&#x7406;&#x6BCF;&#x4E2A;&#x4EFB;&#x52A1;&#x7684;&#x5B58;&#x50A8;&#x4ECB;&#x8D28;&#x7C7B;&#x578B;&#xFF0C;&#x6839;&#x636E;&#x4EFB;&#x52A1;&#x7684;&#x672C;&#x5730;&#x6027;&#x548C;&#x6570;&#x636E;&#x5757;&#x5B58;&#x50A8;&#x4ECB;&#x8D28;&#x7684;&#x7C7B;&#x578B;&#x5C06;&#x4EFB;&#x52A1;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#xFF0C;&#x5206;&#x4E3A;&#x4EE5;&#x4E0B;&#x56DB;&#x79CD;&#x7C7B;&#x578B;&#xFF1A;</p>
 <ol>
 <li>SSD task</li>
 <li>remote SSD task</li>
 <li>local HDD task</li>
 <li>remote HDD task</li>
 </ol>
-<p>四种类型的任务执行时间依次递增</p>
-<p>将任务分成SSD中的任务和HDD中的任务两大类</p>
-<h3 id="第二步-任务优先级设置"><a href="#第二步-任务优先级设置" class="headerlink" title="第二步 任务优先级设置"></a>第二步 任务优先级设置</h3><p>根据四种任务类型来决定任务的执行顺序<br>任务的优先级为：</p>
+<p>&#x56DB;&#x79CD;&#x7C7B;&#x578B;&#x7684;&#x4EFB;&#x52A1;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x4F9D;&#x6B21;&#x9012;&#x589E;</p>
+<p>&#x5C06;&#x4EFB;&#x52A1;&#x5206;&#x6210;SSD&#x4E2D;&#x7684;&#x4EFB;&#x52A1;&#x548C;HDD&#x4E2D;&#x7684;&#x4EFB;&#x52A1;&#x4E24;&#x5927;&#x7C7B;</p>
+<h3 id="&#x7B2C;&#x4E8C;&#x6B65;-&#x4EFB;&#x52A1;&#x4F18;&#x5148;&#x7EA7;&#x8BBE;&#x7F6E;"><a href="#&#x7B2C;&#x4E8C;&#x6B65;-&#x4EFB;&#x52A1;&#x4F18;&#x5148;&#x7EA7;&#x8BBE;&#x7F6E;" class="headerlink" title="&#x7B2C;&#x4E8C;&#x6B65; &#x4EFB;&#x52A1;&#x4F18;&#x5148;&#x7EA7;&#x8BBE;&#x7F6E;"></a>&#x7B2C;&#x4E8C;&#x6B65; &#x4EFB;&#x52A1;&#x4F18;&#x5148;&#x7EA7;&#x8BBE;&#x7F6E;</h3><p>&#x6839;&#x636E;&#x56DB;&#x79CD;&#x4EFB;&#x52A1;&#x7C7B;&#x578B;&#x6765;&#x51B3;&#x5B9A;&#x4EFB;&#x52A1;&#x7684;&#x6267;&#x884C;&#x987A;&#x5E8F;<br>&#x4EFB;&#x52A1;&#x7684;&#x4F18;&#x5148;&#x7EA7;&#x4E3A;&#xFF1A;</p>
 <p> local SSD task &gt; local HDD task &gt; remote HDD task &gt; remote SSD task.</p>
-<h3 id="第三步-节点的选择"><a href="#第三步-节点的选择" class="headerlink" title="第三步 节点的选择"></a>第三步 节点的选择</h3><p>在选择执行远程任务的时候，有以下三种策略：</p>
+<h3 id="&#x7B2C;&#x4E09;&#x6B65;-&#x8282;&#x70B9;&#x7684;&#x9009;&#x62E9;"><a href="#&#x7B2C;&#x4E09;&#x6B65;-&#x8282;&#x70B9;&#x7684;&#x9009;&#x62E9;" class="headerlink" title="&#x7B2C;&#x4E09;&#x6B65; &#x8282;&#x70B9;&#x7684;&#x9009;&#x62E9;"></a>&#x7B2C;&#x4E09;&#x6B65; &#x8282;&#x70B9;&#x7684;&#x9009;&#x62E9;</h3><p>&#x5728;&#x9009;&#x62E9;&#x6267;&#x884C;&#x8FDC;&#x7A0B;&#x4EFB;&#x52A1;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x6709;&#x4EE5;&#x4E0B;&#x4E09;&#x79CD;&#x7B56;&#x7565;&#xFF1A;</p>
 <ol>
-<li>随机选择</li>
-<li>最多优先选择：选择拥有本地任务最多的节点</li>
-<li>最少优先选择：选择拥有本地任务最少的节点</li>
+<li>&#x968F;&#x673A;&#x9009;&#x62E9;</li>
+<li>&#x6700;&#x591A;&#x4F18;&#x5148;&#x9009;&#x62E9;&#xFF1A;&#x9009;&#x62E9;&#x62E5;&#x6709;&#x672C;&#x5730;&#x4EFB;&#x52A1;&#x6700;&#x591A;&#x7684;&#x8282;&#x70B9;</li>
+<li>&#x6700;&#x5C11;&#x4F18;&#x5148;&#x9009;&#x62E9;&#xFF1A;&#x9009;&#x62E9;&#x62E5;&#x6709;&#x672C;&#x5730;&#x4EFB;&#x52A1;&#x6700;&#x5C11;&#x7684;&#x8282;&#x70B9;</li>
 </ol>
-<h2 id="五、算法"><a href="#五、算法" class="headerlink" title="五、算法"></a>五、算法</h2><h3 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h3><div align="center"><br>    <img src="picts/03A01.png"><br></div>
+<h2 id="&#x4E94;&#x3001;&#x7B97;&#x6CD5;"><a href="#&#x4E94;&#x3001;&#x7B97;&#x6CD5;" class="headerlink" title="&#x4E94;&#x3001;&#x7B97;&#x6CD5;"></a>&#x4E94;&#x3001;&#x7B97;&#x6CD5;</h2><h3 id="&#x7B97;&#x6CD5;1"><a href="#&#x7B97;&#x6CD5;1" class="headerlink" title="&#x7B97;&#x6CD5;1"></a>&#x7B97;&#x6CD5;1</h3><div align="center"><br>    <img src="http://poimikjf2.bkt.clouddn.com/blog/20190317/nHPDdDtCgEXP.png?imageslim"><br></div>
 
 
-
-
-
-<p>适合的两个场景：</p>
+<p>&#x9002;&#x5408;&#x7684;&#x4E24;&#x4E2A;&#x573A;&#x666F;&#xFF1A;</p>
 <ol>
-<li>工作量是计算密集型的，任务数量很大；</li>
-<li>能耗低要求较高，对于SLA截止时间要求较低。</li>
+<li>&#x5DE5;&#x4F5C;&#x91CF;&#x662F;&#x8BA1;&#x7B97;&#x5BC6;&#x96C6;&#x578B;&#x7684;&#xFF0C;&#x4EFB;&#x52A1;&#x6570;&#x91CF;&#x5F88;&#x5927;&#xFF1B;</li>
+<li>&#x80FD;&#x8017;&#x4F4E;&#x8981;&#x6C42;&#x8F83;&#x9AD8;&#xFF0C;&#x5BF9;&#x4E8E;SLA&#x622A;&#x6B62;&#x65F6;&#x95F4;&#x8981;&#x6C42;&#x8F83;&#x4F4E;&#x3002;</li>
 </ol>
-<h2 id="六、实验"><a href="#六、实验" class="headerlink" title="六、实验"></a>六、实验</h2><p>四种典型的工作负载：</p>
+<h2 id="&#x516D;&#x3001;&#x5B9E;&#x9A8C;"><a href="#&#x516D;&#x3001;&#x5B9E;&#x9A8C;" class="headerlink" title="&#x516D;&#x3001;&#x5B9E;&#x9A8C;"></a>&#x516D;&#x3001;&#x5B9E;&#x9A8C;</h2><p>&#x56DB;&#x79CD;&#x5178;&#x578B;&#x7684;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#xFF1A;</p>
 <ul>
-<li>Wordcount(500GB)：CPU密集型任务</li>
-<li>Sort(400GB)：Shuffle密集型任务</li>
-<li>Grep(600GB)：I/O密集型任务</li>
-<li>TPC-H：I/O密集型任务</li>
+<li>Wordcount(500GB)&#xFF1A;CPU&#x5BC6;&#x96C6;&#x578B;&#x4EFB;&#x52A1;</li>
+<li>Sort(400GB)&#xFF1A;Shuffle&#x5BC6;&#x96C6;&#x578B;&#x4EFB;&#x52A1;</li>
+<li>Grep(600GB)&#xFF1A;I/O&#x5BC6;&#x96C6;&#x578B;&#x4EFB;&#x52A1;</li>
+<li>TPC-H&#xFF1A;I/O&#x5BC6;&#x96C6;&#x578B;&#x4EFB;&#x52A1;</li>
 </ul>
-<p>三种调度策略进行对比：</p>
+<p>&#x4E09;&#x79CD;&#x8C03;&#x5EA6;&#x7B56;&#x7565;&#x8FDB;&#x884C;&#x5BF9;&#x6BD4;&#xFF1A;</p>
 <ul>
-<li>Original:只考虑了数据本地化而没有考虑存储介质的差异；</li>
-<li>Storage-type：只考虑了存储介质的差异而没有考虑数据本地化；</li>
-<li>H-Scheduler：既考虑了数据本地化又考虑了存储介质的差异。</li>
+<li>Original:&#x53EA;&#x8003;&#x8651;&#x4E86;&#x6570;&#x636E;&#x672C;&#x5730;&#x5316;&#x800C;&#x6CA1;&#x6709;&#x8003;&#x8651;&#x5B58;&#x50A8;&#x4ECB;&#x8D28;&#x7684;&#x5DEE;&#x5F02;&#xFF1B;</li>
+<li>Storage-type&#xFF1A;&#x53EA;&#x8003;&#x8651;&#x4E86;&#x5B58;&#x50A8;&#x4ECB;&#x8D28;&#x7684;&#x5DEE;&#x5F02;&#x800C;&#x6CA1;&#x6709;&#x8003;&#x8651;&#x6570;&#x636E;&#x672C;&#x5730;&#x5316;&#xFF1B;</li>
+<li>H-Scheduler&#xFF1A;&#x65E2;&#x8003;&#x8651;&#x4E86;&#x6570;&#x636E;&#x672C;&#x5730;&#x5316;&#x53C8;&#x8003;&#x8651;&#x4E86;&#x5B58;&#x50A8;&#x4ECB;&#x8D28;&#x7684;&#x5DEE;&#x5F02;&#x3002;</li>
 </ul>
-<p>分别评估了两种job：</p>
+<p>&#x5206;&#x522B;&#x8BC4;&#x4F30;&#x4E86;&#x4E24;&#x79CD;job&#xFF1A;</p>
 <ul>
 <li>Single job on cluster:</li>
-<li>Multiple jobs on cluster：同时运行三个job</li>
+<li>Multiple jobs on cluster&#xFF1A;&#x540C;&#x65F6;&#x8FD0;&#x884C;&#x4E09;&#x4E2A;job</li>
 </ul>
-<p>影响H-Scheduler的三个重要参数：</p>
+<p>&#x5F71;&#x54CD;H-Scheduler&#x7684;&#x4E09;&#x4E2A;&#x91CD;&#x8981;&#x53C2;&#x6570;&#xFF1A;</p>
 <ul>
-<li>SSD 任务的比例：比例越高，性能越好</li>
-<li>SSD的副本数目：</li>
-<li>SSD task，remote SSD task和HDD task之间时间的比例</li>
+<li>SSD &#x4EFB;&#x52A1;&#x7684;&#x6BD4;&#x4F8B;&#xFF1A;&#x6BD4;&#x4F8B;&#x8D8A;&#x9AD8;&#xFF0C;&#x6027;&#x80FD;&#x8D8A;&#x597D;</li>
+<li>SSD&#x7684;&#x526F;&#x672C;&#x6570;&#x76EE;&#xFF1A;</li>
+<li>SSD task&#xFF0C;remote SSD task&#x548C;HDD task&#x4E4B;&#x95F4;&#x65F6;&#x95F4;&#x7684;&#x6BD4;&#x4F8B;</li>
 </ul>
-<h2 id="七、相关研究"><a href="#七、相关研究" class="headerlink" title="七、相关研究"></a>七、相关研究</h2><p>任务调度在大数据处理平台上处理策略：</p>
-<h3 id="提升数据本地化程度"><a href="#提升数据本地化程度" class="headerlink" title="提升数据本地化程度"></a>提升数据本地化程度</h3><p>通过提升数据本地化的程度来提升大数据平台的处理性能</p>
+<h2 id="&#x4E03;&#x3001;&#x76F8;&#x5173;&#x7814;&#x7A76;"><a href="#&#x4E03;&#x3001;&#x76F8;&#x5173;&#x7814;&#x7A76;" class="headerlink" title="&#x4E03;&#x3001;&#x76F8;&#x5173;&#x7814;&#x7A76;"></a>&#x4E03;&#x3001;&#x76F8;&#x5173;&#x7814;&#x7A76;</h2><p>&#x4EFB;&#x52A1;&#x8C03;&#x5EA6;&#x5728;&#x5927;&#x6570;&#x636E;&#x5904;&#x7406;&#x5E73;&#x53F0;&#x4E0A;&#x5904;&#x7406;&#x7B56;&#x7565;&#xFF1A;</p>
+<h3 id="&#x63D0;&#x5347;&#x6570;&#x636E;&#x672C;&#x5730;&#x5316;&#x7A0B;&#x5EA6;"><a href="#&#x63D0;&#x5347;&#x6570;&#x636E;&#x672C;&#x5730;&#x5316;&#x7A0B;&#x5EA6;" class="headerlink" title="&#x63D0;&#x5347;&#x6570;&#x636E;&#x672C;&#x5730;&#x5316;&#x7A0B;&#x5EA6;"></a>&#x63D0;&#x5347;&#x6570;&#x636E;&#x672C;&#x5730;&#x5316;&#x7A0B;&#x5EA6;</h3><p>&#x901A;&#x8FC7;&#x63D0;&#x5347;&#x6570;&#x636E;&#x672C;&#x5730;&#x5316;&#x7684;&#x7A0B;&#x5EA6;&#x6765;&#x63D0;&#x5347;&#x5927;&#x6570;&#x636E;&#x5E73;&#x53F0;&#x7684;&#x5904;&#x7406;&#x6027;&#x80FD;</p>
 <table>
 <thead>
 <tr>
-<th>处理方法</th>
-<th>文章</th>
+<th>&#x5904;&#x7406;&#x65B9;&#x6CD5;</th>
+<th>&#x6587;&#x7AE0;</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>通过延迟调度来获得更高的数据本地化程度</td>
+<td>&#x901A;&#x8FC7;&#x5EF6;&#x8FDF;&#x8C03;&#x5EA6;&#x6765;&#x83B7;&#x5F97;&#x66F4;&#x9AD8;&#x7684;&#x6570;&#x636E;&#x672C;&#x5730;&#x5316;&#x7A0B;&#x5EA6;</td>
 <td>[11]</td>
 </tr>
 <tr>
-<td>从随机网络的角度考虑map任务本地化的问题，并提出一种新的排队算法，以同时最大化吞吐量并最小化重负载条件下的延迟。</td>
+<td>&#x4ECE;&#x968F;&#x673A;&#x7F51;&#x7EDC;&#x7684;&#x89D2;&#x5EA6;&#x8003;&#x8651;map&#x4EFB;&#x52A1;&#x672C;&#x5730;&#x5316;&#x7684;&#x95EE;&#x9898;&#xFF0C;&#x5E76;&#x63D0;&#x51FA;&#x4E00;&#x79CD;&#x65B0;&#x7684;&#x6392;&#x961F;&#x7B97;&#x6CD5;&#xFF0C;&#x4EE5;&#x540C;&#x65F6;&#x6700;&#x5927;&#x5316;&#x541E;&#x5410;&#x91CF;&#x5E76;&#x6700;&#x5C0F;&#x5316;&#x91CD;&#x8D1F;&#x8F7D;&#x6761;&#x4EF6;&#x4E0B;&#x7684;&#x5EF6;&#x8FDF;&#x3002;</td>
 <td>[24]</td>
 </tr>
 <tr>
-<td>通过复制文件的方式</td>
+<td>&#x901A;&#x8FC7;&#x590D;&#x5236;&#x6587;&#x4EF6;&#x7684;&#x65B9;&#x5F0F;</td>
 <td>[12],[16]</td>
 </tr>
 </tbody>
 </table>
-<h3 id="处理异构计算资源"><a href="#处理异构计算资源" class="headerlink" title="处理异构计算资源"></a>处理异构计算资源</h3><table>
+<h3 id="&#x5904;&#x7406;&#x5F02;&#x6784;&#x8BA1;&#x7B97;&#x8D44;&#x6E90;"><a href="#&#x5904;&#x7406;&#x5F02;&#x6784;&#x8BA1;&#x7B97;&#x8D44;&#x6E90;" class="headerlink" title="&#x5904;&#x7406;&#x5F02;&#x6784;&#x8BA1;&#x7B97;&#x8D44;&#x6E90;"></a>&#x5904;&#x7406;&#x5F02;&#x6784;&#x8BA1;&#x7B97;&#x8D44;&#x6E90;</h3><table>
 <thead>
 <tr>
-<th>处理方法</th>
-<th>文章</th>
+<th>&#x5904;&#x7406;&#x65B9;&#x6CD5;</th>
+<th>&#x6587;&#x7AE0;</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>首次考虑异构问题并采取一种静态方法来计算任务的进度</td>
+<td>&#x9996;&#x6B21;&#x8003;&#x8651;&#x5F02;&#x6784;&#x95EE;&#x9898;&#x5E76;&#x91C7;&#x53D6;&#x4E00;&#x79CD;&#x9759;&#x6001;&#x65B9;&#x6CD5;&#x6765;&#x8BA1;&#x7B97;&#x4EFB;&#x52A1;&#x7684;&#x8FDB;&#x5EA6;</td>
 <td>[17]</td>
 </tr>
 <tr>
-<td>探讨落后者/异常值的原因，并在其生命周期的早期发展原因和资源感知技术可以更智能地处理异常值。</td>
+<td>&#x63A2;&#x8BA8;&#x843D;&#x540E;&#x8005;/&#x5F02;&#x5E38;&#x503C;&#x7684;&#x539F;&#x56E0;&#xFF0C;&#x5E76;&#x5728;&#x5176;&#x751F;&#x547D;&#x5468;&#x671F;&#x7684;&#x65E9;&#x671F;&#x53D1;&#x5C55;&#x539F;&#x56E0;&#x548C;&#x8D44;&#x6E90;&#x611F;&#x77E5;&#x6280;&#x672F;&#x53EF;&#x4EE5;&#x66F4;&#x667A;&#x80FD;&#x5730;&#x5904;&#x7406;&#x5F02;&#x5E38;&#x503C;&#x3002;</td>
 <td>[19]</td>
 </tr>
 <tr>
-<td>利用历史信息来调整Map和Reduce阶段的权重，以便更准确地估计任务执行时间</td>
+<td>&#x5229;&#x7528;&#x5386;&#x53F2;&#x4FE1;&#x606F;&#x6765;&#x8C03;&#x6574;Map&#x548C;Reduce&#x9636;&#x6BB5;&#x7684;&#x6743;&#x91CD;&#xFF0C;&#x4EE5;&#x4FBF;&#x66F4;&#x51C6;&#x786E;&#x5730;&#x4F30;&#x8BA1;&#x4EFB;&#x52A1;&#x6267;&#x884C;&#x65F6;&#x95F4;</td>
 <td>[18]</td>
 </tr>
 <tr>
-<td>使用K-means算法对历史数据进行分类，来提升对于任务阶段权重评估的准确性</td>
+<td>&#x4F7F;&#x7528;K-means&#x7B97;&#x6CD5;&#x5BF9;&#x5386;&#x53F2;&#x6570;&#x636E;&#x8FDB;&#x884C;&#x5206;&#x7C7B;&#xFF0C;&#x6765;&#x63D0;&#x5347;&#x5BF9;&#x4E8E;&#x4EFB;&#x52A1;&#x9636;&#x6BB5;&#x6743;&#x91CD;&#x8BC4;&#x4F30;&#x7684;&#x51C6;&#x786E;&#x6027;</td>
 <td>[25]</td>
 </tr>
 <tr>
-<td>使用动态负载重新平衡（更快的节点获取更多数据）来调度任务</td>
+<td>&#x4F7F;&#x7528;&#x52A8;&#x6001;&#x8D1F;&#x8F7D;&#x91CD;&#x65B0;&#x5E73;&#x8861;&#xFF08;&#x66F4;&#x5FEB;&#x7684;&#x8282;&#x70B9;&#x83B7;&#x53D6;&#x66F4;&#x591A;&#x6570;&#x636E;&#xFF09;&#x6765;&#x8C03;&#x5EA6;&#x4EFB;&#x52A1;</td>
 <td>[20],[21]</td>
 </tr>
 </tbody>
 </table>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
           
         
       
@@ -555,7 +604,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ivan Lu">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/IMG_ivan.jpg">
+      <meta itemprop="image" content="http://poimikjf2.bkt.clouddn.com/blog/20190317/DatX5jjyDBu4.jpg?imageslim">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -613,7 +662,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1.1k 字
+                  1.2k 字
                 </span>
               
 
@@ -629,7 +678,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  3 分钟
+                  7 分钟
                 </span>
               
             </div>
@@ -652,111 +701,130 @@
       
         
           
-            <p>发表于2018.7</p>
-<h2 id="一、解决的问题"><a href="#一、解决的问题" class="headerlink" title="一、解决的问题"></a>一、解决的问题</h2><p>Spark集群在反网络犯罪中的能耗问题</p>
-<h2 id="二、提出的方法"><a href="#二、提出的方法" class="headerlink" title="二、提出的方法"></a>二、提出的方法</h2><h3 id="2-1-创新点"><a href="#2-1-创新点" class="headerlink" title="2.1 创新点"></a>2.1 创新点</h3><p>为了避免服务级别协议违反执行时间，提出了一种最优的任务调度算法，其具有通过权衡执行时间和能量消耗的最后期限约束，目的是去最小化大数据处理中的能耗问题。该最优算法能够找到接近最优的任务调度，以在小的shuffle分区中权衡消耗的能量和响应时间的优势。</p>
-<h3 id="2-2-结果"><a href="#2-2-结果" class="headerlink" title="2.2 结果"></a>2.2 结果</h3><p>对比Spark内嵌的FIFO和FAIR算法，能耗上都有优化。</p>
-<h2 id="三、动机"><a href="#三、动机" class="headerlink" title="三、动机"></a>三、动机</h2><ul>
-<li>对于数据中心，不需要一味降低任务的执行时间。而在是截止完成时间之前，只需要提供按需的服务，更多的关心是能耗上的优化。</li>
+            <p>&#x53D1;&#x8868;&#x4E8E;2018.7</p>
+<h2 id="&#x4E00;&#x3001;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;"><a href="#&#x4E00;&#x3001;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;" class="headerlink" title="&#x4E00;&#x3001;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;"></a>&#x4E00;&#x3001;&#x89E3;&#x51B3;&#x7684;&#x95EE;&#x9898;</h2><p>Spark&#x96C6;&#x7FA4;&#x5728;&#x53CD;&#x7F51;&#x7EDC;&#x72AF;&#x7F6A;&#x4E2D;&#x7684;&#x80FD;&#x8017;&#x95EE;&#x9898;</p>
+<h2 id="&#x4E8C;&#x3001;&#x63D0;&#x51FA;&#x7684;&#x65B9;&#x6CD5;"><a href="#&#x4E8C;&#x3001;&#x63D0;&#x51FA;&#x7684;&#x65B9;&#x6CD5;" class="headerlink" title="&#x4E8C;&#x3001;&#x63D0;&#x51FA;&#x7684;&#x65B9;&#x6CD5;"></a>&#x4E8C;&#x3001;&#x63D0;&#x51FA;&#x7684;&#x65B9;&#x6CD5;</h2><h3 id="2-1-&#x521B;&#x65B0;&#x70B9;"><a href="#2-1-&#x521B;&#x65B0;&#x70B9;" class="headerlink" title="2.1 &#x521B;&#x65B0;&#x70B9;"></a>2.1 &#x521B;&#x65B0;&#x70B9;</h3><p>&#x4E3A;&#x4E86;&#x907F;&#x514D;&#x670D;&#x52A1;&#x7EA7;&#x522B;&#x534F;&#x8BAE;&#x8FDD;&#x53CD;&#x6267;&#x884C;&#x65F6;&#x95F4;&#xFF0C;&#x63D0;&#x51FA;&#x4E86;&#x4E00;&#x79CD;&#x6700;&#x4F18;&#x7684;&#x4EFB;&#x52A1;&#x8C03;&#x5EA6;&#x7B97;&#x6CD5;&#xFF0C;&#x5176;&#x5177;&#x6709;&#x901A;&#x8FC7;&#x6743;&#x8861;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x548C;&#x80FD;&#x91CF;&#x6D88;&#x8017;&#x7684;&#x6700;&#x540E;&#x671F;&#x9650;&#x7EA6;&#x675F;&#xFF0C;&#x76EE;&#x7684;&#x662F;&#x53BB;&#x6700;&#x5C0F;&#x5316;&#x5927;&#x6570;&#x636E;&#x5904;&#x7406;&#x4E2D;&#x7684;&#x80FD;&#x8017;&#x95EE;&#x9898;&#x3002;&#x8BE5;&#x6700;&#x4F18;&#x7B97;&#x6CD5;&#x80FD;&#x591F;&#x627E;&#x5230;&#x63A5;&#x8FD1;&#x6700;&#x4F18;&#x7684;&#x4EFB;&#x52A1;&#x8C03;&#x5EA6;&#xFF0C;&#x4EE5;&#x5728;&#x5C0F;&#x7684;shuffle&#x5206;&#x533A;&#x4E2D;&#x6743;&#x8861;&#x6D88;&#x8017;&#x7684;&#x80FD;&#x91CF;&#x548C;&#x54CD;&#x5E94;&#x65F6;&#x95F4;&#x7684;&#x4F18;&#x52BF;&#x3002;</p>
+<h3 id="2-2-&#x7ED3;&#x679C;"><a href="#2-2-&#x7ED3;&#x679C;" class="headerlink" title="2.2 &#x7ED3;&#x679C;"></a>2.2 &#x7ED3;&#x679C;</h3><p>&#x5BF9;&#x6BD4;Spark&#x5185;&#x5D4C;&#x7684;FIFO&#x548C;FAIR&#x7B97;&#x6CD5;&#xFF0C;&#x80FD;&#x8017;&#x4E0A;&#x90FD;&#x6709;&#x4F18;&#x5316;&#x3002;</p>
+<h2 id="&#x4E09;&#x3001;&#x52A8;&#x673A;"><a href="#&#x4E09;&#x3001;&#x52A8;&#x673A;" class="headerlink" title="&#x4E09;&#x3001;&#x52A8;&#x673A;"></a>&#x4E09;&#x3001;&#x52A8;&#x673A;</h2><ul>
+<li>&#x5BF9;&#x4E8E;&#x6570;&#x636E;&#x4E2D;&#x5FC3;&#xFF0C;&#x4E0D;&#x9700;&#x8981;&#x4E00;&#x5473;&#x964D;&#x4F4E;&#x4EFB;&#x52A1;&#x7684;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x3002;&#x800C;&#x5728;&#x662F;&#x622A;&#x6B62;&#x5B8C;&#x6210;&#x65F6;&#x95F4;&#x4E4B;&#x524D;&#xFF0C;&#x53EA;&#x9700;&#x8981;&#x63D0;&#x4F9B;&#x6309;&#x9700;&#x7684;&#x670D;&#x52A1;&#xFF0C;&#x66F4;&#x591A;&#x7684;&#x5173;&#x5FC3;&#x662F;&#x80FD;&#x8017;&#x4E0A;&#x7684;&#x4F18;&#x5316;&#x3002;</li>
 </ul>
-<h2 id="四、相关工作"><a href="#四、相关工作" class="headerlink" title="四、相关工作"></a>四、相关工作</h2><table>
+<h2 id="&#x56DB;&#x3001;&#x76F8;&#x5173;&#x5DE5;&#x4F5C;"><a href="#&#x56DB;&#x3001;&#x76F8;&#x5173;&#x5DE5;&#x4F5C;" class="headerlink" title="&#x56DB;&#x3001;&#x76F8;&#x5173;&#x5DE5;&#x4F5C;"></a>&#x56DB;&#x3001;&#x76F8;&#x5173;&#x5DE5;&#x4F5C;</h2><table>
 <thead>
 <tr>
-<th>考虑的主要因素</th>
-<th>文章</th>
-<th>方法</th>
+<th>&#x8003;&#x8651;&#x7684;&#x4E3B;&#x8981;&#x56E0;&#x7D20;</th>
+<th>&#x6587;&#x7AE0;</th>
+<th>&#x65B9;&#x6CD5;</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>云计算当中优化物理机上的能耗问题</td>
+<td>&#x4E91;&#x8BA1;&#x7B97;&#x5F53;&#x4E2D;&#x4F18;&#x5316;&#x7269;&#x7406;&#x673A;&#x4E0A;&#x7684;&#x80FD;&#x8017;&#x95EE;&#x9898;</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>—</td>
+<td>&#x2014;</td>
 <td>[14]</td>
-<td>提出了考虑CPU,磁盘，内存，网络对于刀片服务器的能耗模型</td>
+<td>&#x63D0;&#x51FA;&#x4E86;&#x8003;&#x8651;CPU,&#x78C1;&#x76D8;&#xFF0C;&#x5185;&#x5B58;&#xFF0C;&#x7F51;&#x7EDC;&#x5BF9;&#x4E8E;&#x5200;&#x7247;&#x670D;&#x52A1;&#x5668;&#x7684;&#x80FD;&#x8017;&#x6A21;&#x578B;</td>
 </tr>
 <tr>
-<td>—</td>
+<td>&#x2014;</td>
 <td>[16]</td>
-<td>提出了考虑CPU,磁盘，内存，网络，风扇对所有服务器的能耗的直接测量</td>
+<td>&#x63D0;&#x51FA;&#x4E86;&#x8003;&#x8651;CPU,&#x78C1;&#x76D8;&#xFF0C;&#x5185;&#x5B58;&#xFF0C;&#x7F51;&#x7EDC;&#xFF0C;&#x98CE;&#x6247;&#x5BF9;&#x6240;&#x6709;&#x670D;&#x52A1;&#x5668;&#x7684;&#x80FD;&#x8017;&#x7684;&#x76F4;&#x63A5;&#x6D4B;&#x91CF;</td>
 </tr>
 <tr>
-<td>Spark调度中主要考虑的是最小化工作执行的完工时间</td>
+<td>Spark&#x8C03;&#x5EA6;&#x4E2D;&#x4E3B;&#x8981;&#x8003;&#x8651;&#x7684;&#x662F;&#x6700;&#x5C0F;&#x5316;&#x5DE5;&#x4F5C;&#x6267;&#x884C;&#x7684;&#x5B8C;&#x5DE5;&#x65F6;&#x95F4;</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>—</td>
+<td>&#x2014;</td>
 <td>[6]</td>
-<td>他们模拟了执行器的应用程序成本和完成时间，因此提供了细粒度的资源分配方案</td>
+<td>&#x4ED6;&#x4EEC;&#x6A21;&#x62DF;&#x4E86;&#x6267;&#x884C;&#x5668;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x6210;&#x672C;&#x548C;&#x5B8C;&#x6210;&#x65F6;&#x95F4;&#xFF0C;&#x56E0;&#x6B64;&#x63D0;&#x4F9B;&#x4E86;&#x7EC6;&#x7C92;&#x5EA6;&#x7684;&#x8D44;&#x6E90;&#x5206;&#x914D;&#x65B9;&#x6848;</td>
 </tr>
 <tr>
-<td>—</td>
+<td>&#x2014;</td>
 <td>[19]</td>
-<td>通过收集在同一个应用下的不同stage执行时间来预测应用的执行时间</td>
+<td>&#x901A;&#x8FC7;&#x6536;&#x96C6;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x5E94;&#x7528;&#x4E0B;&#x7684;&#x4E0D;&#x540C;stage&#x6267;&#x884C;&#x65F6;&#x95F4;&#x6765;&#x9884;&#x6D4B;&#x5E94;&#x7528;&#x7684;&#x6267;&#x884C;&#x65F6;&#x95F4;</td>
 </tr>
 <tr>
-<td>—</td>
+<td>&#x2014;</td>
 <td>[20]</td>
-<td>提出了基于输入数据量，底层集群节点的大小和迭代次数的作业完成时间模型。</td>
+<td>&#x63D0;&#x51FA;&#x4E86;&#x57FA;&#x4E8E;&#x8F93;&#x5165;&#x6570;&#x636E;&#x91CF;&#xFF0C;&#x5E95;&#x5C42;&#x96C6;&#x7FA4;&#x8282;&#x70B9;&#x7684;&#x5927;&#x5C0F;&#x548C;&#x8FED;&#x4EE3;&#x6B21;&#x6570;&#x7684;&#x4F5C;&#x4E1A;&#x5B8C;&#x6210;&#x65F6;&#x95F4;&#x6A21;&#x578B;&#x3002;</td>
 </tr>
 <tr>
-<td>—</td>
+<td>&#x2014;</td>
 <td>[18]</td>
-<td>为了预测具有未知群集配置的大数据应用程序的执行时间，提出基于应用简档数据构建多个多项式回归模型</td>
+<td>&#x4E3A;&#x4E86;&#x9884;&#x6D4B;&#x5177;&#x6709;&#x672A;&#x77E5;&#x7FA4;&#x96C6;&#x914D;&#x7F6E;&#x7684;&#x5927;&#x6570;&#x636E;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x6267;&#x884C;&#x65F6;&#x95F4;&#xFF0C;&#x63D0;&#x51FA;&#x57FA;&#x4E8E;&#x5E94;&#x7528;&#x7B80;&#x6863;&#x6570;&#x636E;&#x6784;&#x5EFA;&#x591A;&#x4E2A;&#x591A;&#x9879;&#x5F0F;&#x56DE;&#x5F52;&#x6A21;&#x578B;</td>
 </tr>
 <tr>
-<td>—</td>
+<td>&#x2014;</td>
 <td>[21]</td>
-<td>为Spark在线分析提供QoS保证，提出了基于熵在线并行分析调度</td>
+<td>&#x4E3A;Spark&#x5728;&#x7EBF;&#x5206;&#x6790;&#x63D0;&#x4F9B;QoS&#x4FDD;&#x8BC1;&#xFF0C;&#x63D0;&#x51FA;&#x4E86;&#x57FA;&#x4E8E;&#x71B5;&#x5728;&#x7EBF;&#x5E76;&#x884C;&#x5206;&#x6790;&#x8C03;&#x5EA6;</td>
 </tr>
 </tbody>
 </table>
-<p>应对上述三个挑战的三种应对策略：</p>
+<p>&#x5E94;&#x5BF9;&#x4E0A;&#x8FF0;&#x4E09;&#x4E2A;&#x6311;&#x6218;&#x7684;&#x4E09;&#x79CD;&#x5E94;&#x5BF9;&#x7B56;&#x7565;&#xFF1A;</p>
 <ul>
-<li>Spark的executors为了及时满足它们资源预留应将被放置到合适的节点上，避免太长时间的等待和低资源利用率；</li>
-<li>分配用于减少任务的资源应根据其随时间变化的需求进行重新平衡，以避免在将任何Spark应用程序提交到群集时浪费资源；</li>
-<li>在考虑Spark和MapReduce应用程序的位置感知的时候,为了减少局部性感知的竞争,Spark和MapReduce应用程序的任务分配策略都应该优化。</li>
+<li>Spark&#x7684;executors&#x4E3A;&#x4E86;&#x53CA;&#x65F6;&#x6EE1;&#x8DB3;&#x5B83;&#x4EEC;&#x8D44;&#x6E90;&#x9884;&#x7559;&#x5E94;&#x5C06;&#x88AB;&#x653E;&#x7F6E;&#x5230;&#x5408;&#x9002;&#x7684;&#x8282;&#x70B9;&#x4E0A;&#xFF0C;&#x907F;&#x514D;&#x592A;&#x957F;&#x65F6;&#x95F4;&#x7684;&#x7B49;&#x5F85;&#x548C;&#x4F4E;&#x8D44;&#x6E90;&#x5229;&#x7528;&#x7387;&#xFF1B;</li>
+<li>&#x5206;&#x914D;&#x7528;&#x4E8E;&#x51CF;&#x5C11;&#x4EFB;&#x52A1;&#x7684;&#x8D44;&#x6E90;&#x5E94;&#x6839;&#x636E;&#x5176;&#x968F;&#x65F6;&#x95F4;&#x53D8;&#x5316;&#x7684;&#x9700;&#x6C42;&#x8FDB;&#x884C;&#x91CD;&#x65B0;&#x5E73;&#x8861;&#xFF0C;&#x4EE5;&#x907F;&#x514D;&#x5728;&#x5C06;&#x4EFB;&#x4F55;Spark&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x63D0;&#x4EA4;&#x5230;&#x7FA4;&#x96C6;&#x65F6;&#x6D6A;&#x8D39;&#x8D44;&#x6E90;&#xFF1B;</li>
+<li>&#x5728;&#x8003;&#x8651;Spark&#x548C;MapReduce&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x4F4D;&#x7F6E;&#x611F;&#x77E5;&#x7684;&#x65F6;&#x5019;,&#x4E3A;&#x4E86;&#x51CF;&#x5C11;&#x5C40;&#x90E8;&#x6027;&#x611F;&#x77E5;&#x7684;&#x7ADE;&#x4E89;,Spark&#x548C;MapReduce&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7684;&#x4EFB;&#x52A1;&#x5206;&#x914D;&#x7B56;&#x7565;&#x90FD;&#x5E94;&#x8BE5;&#x4F18;&#x5316;&#x3002;</li>
 </ul>
-<h2 id="五、算法"><a href="#五、算法" class="headerlink" title="五、算法"></a>五、算法</h2><h3 id="算法1"><a href="#算法1" class="headerlink" title="算法1"></a>算法1</h3><div align="center"><br>    <img src="picts/02A01.png"><br></div>
+<h2 id="&#x4E94;&#x3001;&#x7B97;&#x6CD5;"><a href="#&#x4E94;&#x3001;&#x7B97;&#x6CD5;" class="headerlink" title="&#x4E94;&#x3001;&#x7B97;&#x6CD5;"></a>&#x4E94;&#x3001;&#x7B97;&#x6CD5;</h2><h3 id="&#x7B97;&#x6CD5;1"><a href="#&#x7B97;&#x6CD5;1" class="headerlink" title="&#x7B97;&#x6CD5;1"></a>&#x7B97;&#x6CD5;1</h3><div align="center"><br>    <img src="http://poimikjf2.bkt.clouddn.com/blog/20190317/ywsm41dFB8Fr.png?imageslim"><br></div>
 
 
 
-<p>适合的两个场景：</p>
+
+<p>&#x9002;&#x5408;&#x7684;&#x4E24;&#x4E2A;&#x573A;&#x666F;&#xFF1A;</p>
 <ol>
-<li>工作量是计算密集型的，任务数量很大；</li>
-<li>能耗低要求较高，对于SLA截止时间要求较低。</li>
+<li>&#x5DE5;&#x4F5C;&#x91CF;&#x662F;&#x8BA1;&#x7B97;&#x5BC6;&#x96C6;&#x578B;&#x7684;&#xFF0C;&#x4EFB;&#x52A1;&#x6570;&#x91CF;&#x5F88;&#x5927;&#xFF1B;</li>
+<li>&#x80FD;&#x8017;&#x4F4E;&#x8981;&#x6C42;&#x8F83;&#x9AD8;&#xFF0C;&#x5BF9;&#x4E8E;SLA&#x622A;&#x6B62;&#x65F6;&#x95F4;&#x8981;&#x6C42;&#x8F83;&#x4F4E;&#x3002;</li>
 </ol>
-<h3 id="算法2"><a href="#算法2" class="headerlink" title="算法2"></a>算法2</h3><p>算法B权衡能耗和执行时间，特别对于小shuffle的分区的情况下。</p>
-<p>在小分区的情况下，算法B将任务分配给集群中最佳的一半执行程序，并尝试平衡在执行程序的另一半中花费的执行时间。</p>
-<h3 id="算法3"><a href="#算法3" class="headerlink" title="算法3"></a>算法3</h3><p>算法3将所有任务分成两个集合：</p>
+<h3 id="&#x7B97;&#x6CD5;2"><a href="#&#x7B97;&#x6CD5;2" class="headerlink" title="&#x7B97;&#x6CD5;2"></a>&#x7B97;&#x6CD5;2</h3><p>&#x7B97;&#x6CD5;B&#x6743;&#x8861;&#x80FD;&#x8017;&#x548C;&#x6267;&#x884C;&#x65F6;&#x95F4;&#xFF0C;&#x7279;&#x522B;&#x5BF9;&#x4E8E;&#x5C0F;shuffle&#x7684;&#x5206;&#x533A;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x3002;</p>
+<p>&#x5728;&#x5C0F;&#x5206;&#x533A;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;&#x7B97;&#x6CD5;B&#x5C06;&#x4EFB;&#x52A1;&#x5206;&#x914D;&#x7ED9;&#x96C6;&#x7FA4;&#x4E2D;&#x6700;&#x4F73;&#x7684;&#x4E00;&#x534A;&#x6267;&#x884C;&#x7A0B;&#x5E8F;&#xFF0C;&#x5E76;&#x5C1D;&#x8BD5;&#x5E73;&#x8861;&#x5728;&#x6267;&#x884C;&#x7A0B;&#x5E8F;&#x7684;&#x53E6;&#x4E00;&#x534A;&#x4E2D;&#x82B1;&#x8D39;&#x7684;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x3002;</p>
+<h3 id="&#x7B97;&#x6CD5;3"><a href="#&#x7B97;&#x6CD5;3" class="headerlink" title="&#x7B97;&#x6CD5;3"></a>&#x7B97;&#x6CD5;3</h3><p>&#x7B97;&#x6CD5;3&#x5C06;&#x6240;&#x6709;&#x4EFB;&#x52A1;&#x5206;&#x6210;&#x4E24;&#x4E2A;&#x96C6;&#x5408;&#xFF1A;</p>
 <ul>
-<li>Set0：包含所有需要被探测的任务和当前p和e为0的任务；</li>
-<li>Distribute：包含那些不需要被探测的任务。</li>
+<li>Set0&#xFF1A;&#x5305;&#x542B;&#x6240;&#x6709;&#x9700;&#x8981;&#x88AB;&#x63A2;&#x6D4B;&#x7684;&#x4EFB;&#x52A1;&#x548C;&#x5F53;&#x524D;p&#x548C;e&#x4E3A;0&#x7684;&#x4EFB;&#x52A1;&#xFF1B;</li>
+<li>Distribute&#xFF1A;&#x5305;&#x542B;&#x90A3;&#x4E9B;&#x4E0D;&#x9700;&#x8981;&#x88AB;&#x63A2;&#x6D4B;&#x7684;&#x4EFB;&#x52A1;&#x3002;</li>
 </ul>
-<p>RunTimeEachExe：记录着最优部分的执行时间</p>
-<h2 id="六、实验"><a href="#六、实验" class="headerlink" title="六、实验"></a>六、实验</h2><p>基于<a href="https://www.ibm.com/support/knowledgecenter/en/SSZUMP_7.2.1/mapreduce_integration/map_reduce_hibench.html" target="_blank" rel="noopener">HiBench</a>的基准实验，在三种工作负载上实验：</p>
+<p>RunTimeEachExe&#xFF1A;&#x8BB0;&#x5F55;&#x7740;&#x6700;&#x4F18;&#x90E8;&#x5206;&#x7684;&#x6267;&#x884C;&#x65F6;&#x95F4;</p>
+<h2 id="&#x516D;&#x3001;&#x5B9E;&#x9A8C;"><a href="#&#x516D;&#x3001;&#x5B9E;&#x9A8C;" class="headerlink" title="&#x516D;&#x3001;&#x5B9E;&#x9A8C;"></a>&#x516D;&#x3001;&#x5B9E;&#x9A8C;</h2><p>&#x57FA;&#x4E8E;<a href="https://www.ibm.com/support/knowledgecenter/en/SSZUMP_7.2.1/mapreduce_integration/map_reduce_hibench.html" target="_blank" rel="noopener">HiBench</a>&#x7684;&#x57FA;&#x51C6;&#x5B9E;&#x9A8C;&#xFF0C;&#x5728;&#x4E09;&#x79CD;&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x4E0A;&#x5B9E;&#x9A8C;&#xFF1A;</p>
 <ul>
 <li>Sort</li>
 <li>TeraSort </li>
 <li>PageRank</li>
 </ul>
-<h2 id="七、结果分析"><a href="#七、结果分析" class="headerlink" title="七、结果分析"></a>七、结果分析</h2><p>算法B在保证有效降低能耗的前提下，优化了算法A的执行时间。因为基于贪心策略的算法A尽可能地将任务分配给评估标准的最佳过程，导致单个节点的过载并因此导致总体执行时间的增加。</p>
-<p>算法B使得Shuffle分区的数量从10到40变化，确保可以使用集群中一半的执行程序。因此，算法B减少了单个节点上的负载，并且还加快了作业完成时间。</p>
-<p>算法B的两点改进：</p>
+<h2 id="&#x4E03;&#x3001;&#x7ED3;&#x679C;&#x5206;&#x6790;"><a href="#&#x4E03;&#x3001;&#x7ED3;&#x679C;&#x5206;&#x6790;" class="headerlink" title="&#x4E03;&#x3001;&#x7ED3;&#x679C;&#x5206;&#x6790;"></a>&#x4E03;&#x3001;&#x7ED3;&#x679C;&#x5206;&#x6790;</h2><p>&#x7B97;&#x6CD5;B&#x5728;&#x4FDD;&#x8BC1;&#x6709;&#x6548;&#x964D;&#x4F4E;&#x80FD;&#x8017;&#x7684;&#x524D;&#x63D0;&#x4E0B;&#xFF0C;&#x4F18;&#x5316;&#x4E86;&#x7B97;&#x6CD5;A&#x7684;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x3002;&#x56E0;&#x4E3A;&#x57FA;&#x4E8E;&#x8D2A;&#x5FC3;&#x7B56;&#x7565;&#x7684;&#x7B97;&#x6CD5;A&#x5C3D;&#x53EF;&#x80FD;&#x5730;&#x5C06;&#x4EFB;&#x52A1;&#x5206;&#x914D;&#x7ED9;&#x8BC4;&#x4F30;&#x6807;&#x51C6;&#x7684;&#x6700;&#x4F73;&#x8FC7;&#x7A0B;&#xFF0C;&#x5BFC;&#x81F4;&#x5355;&#x4E2A;&#x8282;&#x70B9;&#x7684;&#x8FC7;&#x8F7D;&#x5E76;&#x56E0;&#x6B64;&#x5BFC;&#x81F4;&#x603B;&#x4F53;&#x6267;&#x884C;&#x65F6;&#x95F4;&#x7684;&#x589E;&#x52A0;&#x3002;</p>
+<p>&#x7B97;&#x6CD5;B&#x4F7F;&#x5F97;Shuffle&#x5206;&#x533A;&#x7684;&#x6570;&#x91CF;&#x4ECE;10&#x5230;40&#x53D8;&#x5316;&#xFF0C;&#x786E;&#x4FDD;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x96C6;&#x7FA4;&#x4E2D;&#x4E00;&#x534A;&#x7684;&#x6267;&#x884C;&#x7A0B;&#x5E8F;&#x3002;&#x56E0;&#x6B64;&#xFF0C;&#x7B97;&#x6CD5;B&#x51CF;&#x5C11;&#x4E86;&#x5355;&#x4E2A;&#x8282;&#x70B9;&#x4E0A;&#x7684;&#x8D1F;&#x8F7D;&#xFF0C;&#x5E76;&#x4E14;&#x8FD8;&#x52A0;&#x5FEB;&#x4E86;&#x4F5C;&#x4E1A;&#x5B8C;&#x6210;&#x65F6;&#x95F4;&#x3002;</p>
+<p>&#x7B97;&#x6CD5;B&#x7684;&#x4E24;&#x70B9;&#x6539;&#x8FDB;&#xFF1A;</p>
 <ul>
-<li>任务分配策略</li>
-<li>不考虑数据局部性，以确保任务可以均匀地分布到最佳的一半过程</li>
+<li>&#x4EFB;&#x52A1;&#x5206;&#x914D;&#x7B56;&#x7565;</li>
+<li>&#x4E0D;&#x8003;&#x8651;&#x6570;&#x636E;&#x5C40;&#x90E8;&#x6027;&#xFF0C;&#x4EE5;&#x786E;&#x4FDD;&#x4EFB;&#x52A1;&#x53EF;&#x4EE5;&#x5747;&#x5300;&#x5730;&#x5206;&#x5E03;&#x5230;&#x6700;&#x4F73;&#x7684;&#x4E00;&#x534A;&#x8FC7;&#x7A0B;</li>
 </ul>
-<p>总而言之，算法B更加适合的场景：</p>
+<p>&#x603B;&#x800C;&#x8A00;&#x4E4B;&#xFF0C;&#x7B97;&#x6CD5;B&#x66F4;&#x52A0;&#x9002;&#x5408;&#x7684;&#x573A;&#x666F;&#xFF1A;</p>
 <ul>
-<li>工作负载更少的任务</li>
-<li>SLA的截止时间要求较高，节能要求较为宽松</li>
+<li>&#x5DE5;&#x4F5C;&#x8D1F;&#x8F7D;&#x66F4;&#x5C11;&#x7684;&#x4EFB;&#x52A1;</li>
+<li>SLA&#x7684;&#x622A;&#x6B62;&#x65F6;&#x95F4;&#x8981;&#x6C42;&#x8F83;&#x9AD8;&#xFF0C;&#x8282;&#x80FD;&#x8981;&#x6C42;&#x8F83;&#x4E3A;&#x5BBD;&#x677E;</li>
 </ul>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
           
         
       
@@ -809,7 +877,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Ivan Lu">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/IMG_ivan.jpg">
+      <meta itemprop="image" content="http://poimikjf2.bkt.clouddn.com/blog/20190317/DatX5jjyDBu4.jpg?imageslim">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -867,7 +935,7 @@
                   <span class="post-meta-item-text">字数统计</span>
                 
                 <span title="字数统计">
-                  1.2k 字
+                  1.4k 字
                 </span>
               
 
@@ -883,7 +951,7 @@
                   <span class="post-meta-item-text">阅读时长</span>
                 
                 <span title="阅读时长">
-                  4 分钟
+                  8 分钟
                 </span>
               
             </div>
@@ -906,33 +974,51 @@
       
         
           
-            <p>除了PC（程序计数器）以外，Java虚拟机内存区域的都有可能发生OOM（OutOfMemoryError）。</p>
-<h2 id="Java堆溢出"><a href="#Java堆溢出" class="headerlink" title="Java堆溢出"></a>Java堆溢出</h2><p>Java堆是用于存储对象实例的，只要不断地创建对象，并且保证GC Roots到对象之间有可达路径避免垃圾回收机制被清楚，那么在对象数量到达最大堆的容量限制之后便会产生OOM异常。</p>
-<h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>一般的手段是：先通过内存映像工具对Dump出来的堆转储快照进行分析，<strong>重点是确认内存中的对象是否是必要的，也就是要先分清楚到底是出现了内存泄漏还是内存溢出。</strong></p>
+            <p>&#x9664;&#x4E86;PC&#xFF08;&#x7A0B;&#x5E8F;&#x8BA1;&#x6570;&#x5668;&#xFF09;&#x4EE5;&#x5916;&#xFF0C;Java&#x865A;&#x62DF;&#x673A;&#x5185;&#x5B58;&#x533A;&#x57DF;&#x7684;&#x90FD;&#x6709;&#x53EF;&#x80FD;&#x53D1;&#x751F;OOM&#xFF08;OutOfMemoryError&#xFF09;&#x3002;</p>
+<h2 id="Java&#x5806;&#x6EA2;&#x51FA;"><a href="#Java&#x5806;&#x6EA2;&#x51FA;" class="headerlink" title="Java&#x5806;&#x6EA2;&#x51FA;"></a>Java&#x5806;&#x6EA2;&#x51FA;</h2><p>Java&#x5806;&#x662F;&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;&#x7684;&#xFF0C;&#x53EA;&#x8981;&#x4E0D;&#x65AD;&#x5730;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E14;&#x4FDD;&#x8BC1;GC Roots&#x5230;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x6709;&#x53EF;&#x8FBE;&#x8DEF;&#x5F84;&#x907F;&#x514D;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x88AB;&#x6E05;&#x695A;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x5BF9;&#x8C61;&#x6570;&#x91CF;&#x5230;&#x8FBE;&#x6700;&#x5927;&#x5806;&#x7684;&#x5BB9;&#x91CF;&#x9650;&#x5236;&#x4E4B;&#x540E;&#x4FBF;&#x4F1A;&#x4EA7;&#x751F;OOM&#x5F02;&#x5E38;&#x3002;</p>
+<h3 id="&#x89E3;&#x51B3;&#x601D;&#x8DEF;"><a href="#&#x89E3;&#x51B3;&#x601D;&#x8DEF;" class="headerlink" title="&#x89E3;&#x51B3;&#x601D;&#x8DEF;"></a>&#x89E3;&#x51B3;&#x601D;&#x8DEF;</h3><p>&#x4E00;&#x822C;&#x7684;&#x624B;&#x6BB5;&#x662F;&#xFF1A;&#x5148;&#x901A;&#x8FC7;&#x5185;&#x5B58;&#x6620;&#x50CF;&#x5DE5;&#x5177;&#x5BF9;Dump&#x51FA;&#x6765;&#x7684;&#x5806;&#x8F6C;&#x50A8;&#x5FEB;&#x7167;&#x8FDB;&#x884C;&#x5206;&#x6790;&#xFF0C;<strong>&#x91CD;&#x70B9;&#x662F;&#x786E;&#x8BA4;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x662F;&#x5FC5;&#x8981;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8981;&#x5148;&#x5206;&#x6E05;&#x695A;&#x5230;&#x5E95;&#x662F;&#x51FA;&#x73B0;&#x4E86;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x8FD8;&#x662F;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x3002;</strong></p>
 <ul>
-<li>如果是内存泄漏，可进一步通过工具查看泄漏对象到GC Roots的引用链。这样就能够找到泄漏的对象是通过怎么样的路径与GC Roots相关联的导致垃圾回收机制无法将其回收。掌握了泄漏对象的类信息和GC Roots引用链的信息，就可以比较准确地定位泄漏代码的位置。</li>
-<li>如果不存在泄漏，换句话说，就是内存中的对象确实必须存活着，那么此时就需要通过虚拟机的堆参数（       -Xmx和-Xms）来适当调大参数；从代码上检查是否存在某些对象存活时间过长、持有时间过长的情况，尝试减少运行时内存的消耗。</li>
+<li>&#x5982;&#x679C;&#x662F;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#xFF0C;&#x53EF;&#x8FDB;&#x4E00;&#x6B65;&#x901A;&#x8FC7;&#x5DE5;&#x5177;&#x67E5;&#x770B;&#x6CC4;&#x6F0F;&#x5BF9;&#x8C61;&#x5230;GC Roots&#x7684;&#x5F15;&#x7528;&#x94FE;&#x3002;&#x8FD9;&#x6837;&#x5C31;&#x80FD;&#x591F;&#x627E;&#x5230;&#x6CC4;&#x6F0F;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x901A;&#x8FC7;&#x600E;&#x4E48;&#x6837;&#x7684;&#x8DEF;&#x5F84;&#x4E0E;GC Roots&#x76F8;&#x5173;&#x8054;&#x7684;&#x5BFC;&#x81F4;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x65E0;&#x6CD5;&#x5C06;&#x5176;&#x56DE;&#x6536;&#x3002;&#x638C;&#x63E1;&#x4E86;&#x6CC4;&#x6F0F;&#x5BF9;&#x8C61;&#x7684;&#x7C7B;&#x4FE1;&#x606F;&#x548C;GC Roots&#x5F15;&#x7528;&#x94FE;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x6BD4;&#x8F83;&#x51C6;&#x786E;&#x5730;&#x5B9A;&#x4F4D;&#x6CC4;&#x6F0F;&#x4EE3;&#x7801;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</li>
+<li>&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#x6CC4;&#x6F0F;&#xFF0C;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x786E;&#x5B9E;&#x5FC5;&#x987B;&#x5B58;&#x6D3B;&#x7740;&#xFF0C;&#x90A3;&#x4E48;&#x6B64;&#x65F6;&#x5C31;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x865A;&#x62DF;&#x673A;&#x7684;&#x5806;&#x53C2;&#x6570;&#xFF08;       -Xmx&#x548C;-Xms&#xFF09;&#x6765;&#x9002;&#x5F53;&#x8C03;&#x5927;&#x53C2;&#x6570;&#xFF1B;&#x4ECE;&#x4EE3;&#x7801;&#x4E0A;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x5B58;&#x5728;&#x67D0;&#x4E9B;&#x5BF9;&#x8C61;&#x5B58;&#x6D3B;&#x65F6;&#x95F4;&#x8FC7;&#x957F;&#x3001;&#x6301;&#x6709;&#x65F6;&#x95F4;&#x8FC7;&#x957F;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5C1D;&#x8BD5;&#x51CF;&#x5C11;&#x8FD0;&#x884C;&#x65F6;&#x5185;&#x5B58;&#x7684;&#x6D88;&#x8017;&#x3002;</li>
 </ul>
 <blockquote>
-<p>-Xmx : 最大堆空间；</p>
-<p>-Xms : 初始堆空间大小，如果初始堆空间耗尽，JVM会对堆空间扩容，其扩展上限为最大堆空间。通常-Xms与-Xmx设置为同样大小，避免扩容造成性能损耗。</p>
+<p>-Xmx : &#x6700;&#x5927;&#x5806;&#x7A7A;&#x95F4;&#xFF1B;</p>
+<p>-Xms : &#x521D;&#x59CB;&#x5806;&#x7A7A;&#x95F4;&#x5927;&#x5C0F;&#xFF0C;&#x5982;&#x679C;&#x521D;&#x59CB;&#x5806;&#x7A7A;&#x95F4;&#x8017;&#x5C3D;&#xFF0C;JVM&#x4F1A;&#x5BF9;&#x5806;&#x7A7A;&#x95F4;&#x6269;&#x5BB9;&#xFF0C;&#x5176;&#x6269;&#x5C55;&#x4E0A;&#x9650;&#x4E3A;&#x6700;&#x5927;&#x5806;&#x7A7A;&#x95F4;&#x3002;&#x901A;&#x5E38;-Xms&#x4E0E;-Xmx&#x8BBE;&#x7F6E;&#x4E3A;&#x540C;&#x6837;&#x5927;&#x5C0F;&#xFF0C;&#x907F;&#x514D;&#x6269;&#x5BB9;&#x9020;&#x6210;&#x6027;&#x80FD;&#x635F;&#x8017;&#x3002;</p>
 </blockquote>
-<h2 id="虚拟机栈和本地方法栈溢出"><a href="#虚拟机栈和本地方法栈溢出" class="headerlink" title="虚拟机栈和本地方法栈溢出"></a>虚拟机栈和本地方法栈溢出</h2><p>由于在HotSpot虚拟机上并不区分<strong>虚拟机栈</strong>和<strong>本地方法栈</strong>，因此栈容量只能由-Xss参数设定。在Java虚拟机规范中描述了两种异常：</p>
+<h2 id="&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;"><a href="#&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;" class="headerlink" title="&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;"></a>&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;</h2><p>&#x7531;&#x4E8E;&#x5728;HotSpot&#x865A;&#x62DF;&#x673A;&#x4E0A;&#x5E76;&#x4E0D;&#x533A;&#x5206;<strong>&#x865A;&#x62DF;&#x673A;&#x6808;</strong>&#x548C;<strong>&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;</strong>&#xFF0C;&#x56E0;&#x6B64;&#x6808;&#x5BB9;&#x91CF;&#x53EA;&#x80FD;&#x7531;-Xss&#x53C2;&#x6570;&#x8BBE;&#x5B9A;&#x3002;&#x5728;Java&#x865A;&#x62DF;&#x673A;&#x89C4;&#x8303;&#x4E2D;&#x63CF;&#x8FF0;&#x4E86;&#x4E24;&#x79CD;&#x5F02;&#x5E38;&#xFF1A;</p>
 <ul>
-<li>StackOverflowError ：如果线程请求的栈深度超过了虚拟机所允许的最大深度，就会抛出该异常；  </li>
-<li>OutOfMemoryError：如果虚拟机在拓展栈的时候，无法申请到足够的空间，就会抛出该异常。</li>
+<li>StackOverflowError &#xFF1A;&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x8BF7;&#x6C42;&#x7684;&#x6808;&#x6DF1;&#x5EA6;&#x8D85;&#x8FC7;&#x4E86;&#x865A;&#x62DF;&#x673A;&#x6240;&#x5141;&#x8BB8;&#x7684;&#x6700;&#x5927;&#x6DF1;&#x5EA6;&#xFF0C;&#x5C31;&#x4F1A;&#x629B;&#x51FA;&#x8BE5;&#x5F02;&#x5E38;&#xFF1B;  </li>
+<li>OutOfMemoryError&#xFF1A;&#x5982;&#x679C;&#x865A;&#x62DF;&#x673A;&#x5728;&#x62D3;&#x5C55;&#x6808;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x65E0;&#x6CD5;&#x7533;&#x8BF7;&#x5230;&#x8DB3;&#x591F;&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x5C31;&#x4F1A;&#x629B;&#x51FA;&#x8BE5;&#x5F02;&#x5E38;&#x3002;</li>
 </ul>
-<p>对于这两种异常来说，存在着一些互相重叠的地方：当栈空间无法继续分配的时候，到底是<strong>内存太小</strong>还是已使用的<strong>栈空间太大</strong>，其实只是对同一件事情的两种描述罢了。</p>
-<p>当在单线程环境下，无论是由于栈帧太大还是虚拟机栈容量太小，当内存无法继续分配的时候，虚拟机抛出的都是StackOverflowError 异常。</p>
-<p>在多线程环境下，<strong>如果为每个线程的栈分配的内存越大，反而越容易产生OOM异常</strong>。每个线程分配到的栈容量越大，可以建立的线程数量就自然减少了，那么在新建立线程的时候就很容易把内存耗尽，产生OOM异常。虚拟机默认参数栈深度大多数情况下能够达到1000~2000，对于正常的方法调用（包括递归）是完全够用的。但是，在多线程环境下的OOM，就只能<strong>通过减少最大堆和减少栈容量</strong>来换取更多的线程数量。</p>
-<h2 id="方法区和运行时常量池溢出"><a href="#方法区和运行时常量池溢出" class="headerlink" title="方法区和运行时常量池溢出"></a>方法区和运行时常量池溢出</h2><p>方法区用于存放Class的相关信息，如类名、访问修饰符、常量池、字段描述、方法描述等。当前的一些主流框架，如Spring、Hibernate，对于类进行增强的时候都会使用到CGLib这类字节码技术，增强的类越多，就需要越大的方法区来保证动态生成Class可以加载入内存，这样的情况下可能会造成方法区的OOM异常。</p>
-<p>在经常动态生成大量Class的应用中，需要特别注意类的回收状况。这类场景还在：大量JSP或动态生成JSP文件的应用（JSP第一次运行时需要编译为Java类）、基于OSGi的应用（即使是同一个类文件，被不同的加载器加载也会视作不同的类）等。</p>
-<h2 id="直接内存溢出"><a href="#直接内存溢出" class="headerlink" title="直接内存溢出"></a>直接内存溢出</h2><p>直接内存（DirectMemory）容量可以通过-XX : MaxDirectMemorySize指定，如果不指定，则默认与Java最大堆（-Xmx指定）一样。</p>
-<p>由于直接内存（DirectMemory）导致的内存溢出，一个明显的特征是在Heap Dump文件中不会看见明显的异常，如果发现OOM之后Dump文件很小，而程序中又直接或间接使用了NIO，就可以考虑检查一下是否为直接内存（DirectMemory）溢出异常。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
-<li><a href="https://book.douban.com/subject/24722612/" target="_blank" rel="noopener">《深入理解Java虚拟机（第2版）》</a></li>
+<p>&#x5BF9;&#x4E8E;&#x8FD9;&#x4E24;&#x79CD;&#x5F02;&#x5E38;&#x6765;&#x8BF4;&#xFF0C;&#x5B58;&#x5728;&#x7740;&#x4E00;&#x4E9B;&#x4E92;&#x76F8;&#x91CD;&#x53E0;&#x7684;&#x5730;&#x65B9;&#xFF1A;&#x5F53;&#x6808;&#x7A7A;&#x95F4;&#x65E0;&#x6CD5;&#x7EE7;&#x7EED;&#x5206;&#x914D;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5230;&#x5E95;&#x662F;<strong>&#x5185;&#x5B58;&#x592A;&#x5C0F;</strong>&#x8FD8;&#x662F;&#x5DF2;&#x4F7F;&#x7528;&#x7684;<strong>&#x6808;&#x7A7A;&#x95F4;&#x592A;&#x5927;</strong>&#xFF0C;&#x5176;&#x5B9E;&#x53EA;&#x662F;&#x5BF9;&#x540C;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;&#x7684;&#x4E24;&#x79CD;&#x63CF;&#x8FF0;&#x7F62;&#x4E86;&#x3002;</p>
+<p>&#x5F53;&#x5728;&#x5355;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E0B;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;&#x7531;&#x4E8E;&#x6808;&#x5E27;&#x592A;&#x5927;&#x8FD8;&#x662F;&#x865A;&#x62DF;&#x673A;&#x6808;&#x5BB9;&#x91CF;&#x592A;&#x5C0F;&#xFF0C;&#x5F53;&#x5185;&#x5B58;&#x65E0;&#x6CD5;&#x7EE7;&#x7EED;&#x5206;&#x914D;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x865A;&#x62DF;&#x673A;&#x629B;&#x51FA;&#x7684;&#x90FD;&#x662F;StackOverflowError &#x5F02;&#x5E38;&#x3002;</p>
+<p>&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E0B;&#xFF0C;<strong>&#x5982;&#x679C;&#x4E3A;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x6808;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x8D8A;&#x5927;&#xFF0C;&#x53CD;&#x800C;&#x8D8A;&#x5BB9;&#x6613;&#x4EA7;&#x751F;OOM&#x5F02;&#x5E38;</strong>&#x3002;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x5206;&#x914D;&#x5230;&#x7684;&#x6808;&#x5BB9;&#x91CF;&#x8D8A;&#x5927;&#xFF0C;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x5C31;&#x81EA;&#x7136;&#x51CF;&#x5C11;&#x4E86;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x65B0;&#x5EFA;&#x7ACB;&#x7EBF;&#x7A0B;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x5F88;&#x5BB9;&#x6613;&#x628A;&#x5185;&#x5B58;&#x8017;&#x5C3D;&#xFF0C;&#x4EA7;&#x751F;OOM&#x5F02;&#x5E38;&#x3002;&#x865A;&#x62DF;&#x673A;&#x9ED8;&#x8BA4;&#x53C2;&#x6570;&#x6808;&#x6DF1;&#x5EA6;&#x5927;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#x80FD;&#x591F;&#x8FBE;&#x5230;1000~2000&#xFF0C;&#x5BF9;&#x4E8E;&#x6B63;&#x5E38;&#x7684;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#xFF08;&#x5305;&#x62EC;&#x9012;&#x5F52;&#xFF09;&#x662F;&#x5B8C;&#x5168;&#x591F;&#x7528;&#x7684;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E0B;&#x7684;OOM&#xFF0C;&#x5C31;&#x53EA;&#x80FD;<strong>&#x901A;&#x8FC7;&#x51CF;&#x5C11;&#x6700;&#x5927;&#x5806;&#x548C;&#x51CF;&#x5C11;&#x6808;&#x5BB9;&#x91CF;</strong>&#x6765;&#x6362;&#x53D6;&#x66F4;&#x591A;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x3002;</p>
+<h2 id="&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x6EA2;&#x51FA;"><a href="#&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x6EA2;&#x51FA;" class="headerlink" title="&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x6EA2;&#x51FA;"></a>&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x6EA2;&#x51FA;</h2><p>&#x65B9;&#x6CD5;&#x533A;&#x7528;&#x4E8E;&#x5B58;&#x653E;Class&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF0C;&#x5982;&#x7C7B;&#x540D;&#x3001;&#x8BBF;&#x95EE;&#x4FEE;&#x9970;&#x7B26;&#x3001;&#x5E38;&#x91CF;&#x6C60;&#x3001;&#x5B57;&#x6BB5;&#x63CF;&#x8FF0;&#x3001;&#x65B9;&#x6CD5;&#x63CF;&#x8FF0;&#x7B49;&#x3002;&#x5F53;&#x524D;&#x7684;&#x4E00;&#x4E9B;&#x4E3B;&#x6D41;&#x6846;&#x67B6;&#xFF0C;&#x5982;Spring&#x3001;Hibernate&#xFF0C;&#x5BF9;&#x4E8E;&#x7C7B;&#x8FDB;&#x884C;&#x589E;&#x5F3A;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x4F1A;&#x4F7F;&#x7528;&#x5230;CGLib&#x8FD9;&#x7C7B;&#x5B57;&#x8282;&#x7801;&#x6280;&#x672F;&#xFF0C;&#x589E;&#x5F3A;&#x7684;&#x7C7B;&#x8D8A;&#x591A;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x8D8A;&#x5927;&#x7684;&#x65B9;&#x6CD5;&#x533A;&#x6765;&#x4FDD;&#x8BC1;&#x52A8;&#x6001;&#x751F;&#x6210;Class&#x53EF;&#x4EE5;&#x52A0;&#x8F7D;&#x5165;&#x5185;&#x5B58;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x65B9;&#x6CD5;&#x533A;&#x7684;OOM&#x5F02;&#x5E38;&#x3002;</p>
+<p>&#x5728;&#x7ECF;&#x5E38;&#x52A8;&#x6001;&#x751F;&#x6210;&#x5927;&#x91CF;Class&#x7684;&#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x7279;&#x522B;&#x6CE8;&#x610F;&#x7C7B;&#x7684;&#x56DE;&#x6536;&#x72B6;&#x51B5;&#x3002;&#x8FD9;&#x7C7B;&#x573A;&#x666F;&#x8FD8;&#x5728;&#xFF1A;&#x5927;&#x91CF;JSP&#x6216;&#x52A8;&#x6001;&#x751F;&#x6210;JSP&#x6587;&#x4EF6;&#x7684;&#x5E94;&#x7528;&#xFF08;JSP&#x7B2C;&#x4E00;&#x6B21;&#x8FD0;&#x884C;&#x65F6;&#x9700;&#x8981;&#x7F16;&#x8BD1;&#x4E3A;Java&#x7C7B;&#xFF09;&#x3001;&#x57FA;&#x4E8E;OSGi&#x7684;&#x5E94;&#x7528;&#xFF08;&#x5373;&#x4F7F;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x7C7B;&#x6587;&#x4EF6;&#xFF0C;&#x88AB;&#x4E0D;&#x540C;&#x7684;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#x4E5F;&#x4F1A;&#x89C6;&#x4F5C;&#x4E0D;&#x540C;&#x7684;&#x7C7B;&#xFF09;&#x7B49;&#x3002;</p>
+<h2 id="&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;"><a href="#&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;" class="headerlink" title="&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;"></a>&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;</h2><p>&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF08;DirectMemory&#xFF09;&#x5BB9;&#x91CF;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;-XX : MaxDirectMemorySize&#x6307;&#x5B9A;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;&#xFF0C;&#x5219;&#x9ED8;&#x8BA4;&#x4E0E;Java&#x6700;&#x5927;&#x5806;&#xFF08;-Xmx&#x6307;&#x5B9A;&#xFF09;&#x4E00;&#x6837;&#x3002;</p>
+<p>&#x7531;&#x4E8E;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF08;DirectMemory&#xFF09;&#x5BFC;&#x81F4;&#x7684;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#xFF0C;&#x4E00;&#x4E2A;&#x660E;&#x663E;&#x7684;&#x7279;&#x5F81;&#x662F;&#x5728;Heap Dump&#x6587;&#x4EF6;&#x4E2D;&#x4E0D;&#x4F1A;&#x770B;&#x89C1;&#x660E;&#x663E;&#x7684;&#x5F02;&#x5E38;&#xFF0C;&#x5982;&#x679C;&#x53D1;&#x73B0;OOM&#x4E4B;&#x540E;Dump&#x6587;&#x4EF6;&#x5F88;&#x5C0F;&#xFF0C;&#x800C;&#x7A0B;&#x5E8F;&#x4E2D;&#x53C8;&#x76F4;&#x63A5;&#x6216;&#x95F4;&#x63A5;&#x4F7F;&#x7528;&#x4E86;NIO&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x68C0;&#x67E5;&#x4E00;&#x4E0B;&#x662F;&#x5426;&#x4E3A;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF08;DirectMemory&#xFF09;&#x6EA2;&#x51FA;&#x5F02;&#x5E38;&#x3002;</p>
+<h2 id="&#x53C2;&#x8003;&#x8D44;&#x6599;"><a href="#&#x53C2;&#x8003;&#x8D44;&#x6599;" class="headerlink" title="&#x53C2;&#x8003;&#x8D44;&#x6599;"></a>&#x53C2;&#x8003;&#x8D44;&#x6599;</h2><ul>
+<li><a href="https://book.douban.com/subject/24722612/" target="_blank" rel="noopener">&#x300A;&#x6DF1;&#x5165;&#x7406;&#x89E3;Java&#x865A;&#x62DF;&#x673A;&#xFF08;&#x7B2C;2&#x7248;&#xFF09;&#x300B;</a></li>
 </ul>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
           
         
       
@@ -1005,7 +1091,7 @@
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
-               src="/images/IMG_ivan.jpg"
+               src="http://poimikjf2.bkt.clouddn.com/blog/20190317/DatX5jjyDBu4.jpg?imageslim"
                alt="Ivan Lu" />
           <p class="site-author-name" itemprop="name">Ivan Lu</p>
            
@@ -1124,17 +1210,8 @@
   <span class="author" itemprop="copyrightHolder">Ivan Lu</span>
 </div>
 
-<div class="powered-by">
-<i class="fa fa-user-md"></i>
-<span id="busuanzi_container_site_uv">
-  本站访客数:<span id="busuanzi_value_site_uv"></span>
-</span>
-</div>
 
 
-<span id="busuanzi_container_site_pv">
-    本站总访问量<span id="busuanzi_value_site_pv"></span>次
-</span>
 
 
 
@@ -1160,6 +1237,8 @@
     
       <div class="back-to-top">
         <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
         
       </div>
     
@@ -1283,6 +1362,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
