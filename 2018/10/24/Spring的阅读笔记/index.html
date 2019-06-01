@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<script src="/js/click.js"></script>
 <html  lang="zh">
 <head>
     <meta charset="utf-8">
@@ -14,7 +15,7 @@
 <meta property="og:url" content="https://ivanlu1024.github.io/2018/10/24/Spring的阅读笔记/index.html">
 <meta property="og:site_name" content="Ivan的记录">
 <meta property="og:description" content="Spring&amp;#x7684;&amp;#x9605;&amp;#x8BFB;&amp;#x7B14;&amp;#x8BB0; &amp;#x524D;&amp;#x8A00;  &amp;#x5728;&amp;#x9605;&amp;#x8BFB; Spring&amp;#x7684;&amp;#x6E90;&amp;#x4EE3;&amp;#x7801;&amp;#xFF08;&amp;#x4F9D;&amp;#x8D56;&amp;#x6CE8;&amp;#x5165;&amp;#x90E8;&amp;#x5206;&amp;#x548C;&amp;#x9762;">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://ivanlu1024.github.io/images/og_image.png">
 <meta property="og:updated_time" content="2018-10-24T13:14:53.834Z">
 <meta name="twitter:card" content="summary">
@@ -84,6 +85,10 @@
     
     
     
+        <script async="" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+
+    
 
 
 <link rel="stylesheet" href="/css/style.css">
@@ -132,7 +137,7 @@
                 
                 
                 
-                <a class="navbar-item search" title="Search" href="javascript:;">
+                <a class="navbar-item search" title="搜索" href="javascript:;">
                     <i class="fas fa-search"></i>
                 </a>
                 
@@ -156,9 +161,14 @@
                 <span class="level-item has-text-grey">
                     
                     
-                    33 minutes read (About 4884 words)
+                    33 分钟 读完 (大约 4884 个字)
                 </span>
                 
+                
+                <span class="level-item has-text-grey" id="busuanzi_container_page_pv">
+                    <i class="far fa-eye"></i>
+                    <span id="busuanzi_value_page_pv">0</span>次访问
+                </span>
                 
             </div>
         </div>
@@ -256,6 +266,10 @@
         
         
         
+        <div class="social-share"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/css/share.min.css">
+<script src="https://cdn.jsdelivr.net/npm/social-share.js@1.0.16/dist/js/social-share.min.js"></script>
+        
     </div>
 </div>
 
@@ -263,34 +277,9 @@
 
 <div class="card">
     <div class="card-content">
-        <h3 class="menu-label has-text-centered">Suka dengan artikel ini? Bantu penulis dengan donasi melalui</h3>
+        <h3 class="menu-label has-text-centered">喜欢这篇文章？打赏一下作者吧</h3>
         <div class="buttons is-centered">
             
-                
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Alipay. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                
-<div class="notification is-danger">
-    You forgot to set the <code>qrcode</code> for Wechat. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                <!-- Visit https://www.paypal.com/donate/buttons/ to get your donate button -->
-
-<div class="notification is-danger">
-    You forgot to set the <code>business</code> and <code>currency_code</code> for Paypal. Please set it in <code>_config.yml</code>.
-</div>
-
-                
-                
-<div class="notification is-danger">
-    You forgot to set the <code>url</code> Patreon. Please set it in <code>_config.yml</code>.
-</div>
-
-                
         </div>
     </div>
 </div>
@@ -325,7 +314,7 @@
 
 
 
-<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left ">
+<div class="column is-4-tablet is-4-desktop is-3-widescreen  has-order-1 column-left is-sticky">
     
         
 <div class="card widget">
@@ -361,7 +350,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Entradas
+                        文章
                     </p>
                     <p class="title has-text-weight-normal">
                         19
@@ -371,7 +360,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Categoria
+                        分类
                     </p>
                     <p class="title has-text-weight-normal">
                         1
@@ -381,7 +370,7 @@
             <div class="level-item has-text-centered is-marginless">
                 <div>
                     <p class="heading">
-                        Etiquetas
+                        标签
                     </p>
                     <p class="title has-text-weight-normal">
                         16
@@ -391,7 +380,7 @@
         </nav>
         <div class="level">
             <a class="level-item button is-link is-rounded" href="https://github.com/IvanLu1024" target="_blank">
-                SEGUIR</a>
+                关注我</a>
         </div>
         
         
@@ -401,34 +390,6 @@
                 title="Github" href="https://github.com/IvanLu1024">
                 
                 <i class="fab fa-github"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank"
-                title="Facebook" href="https://facebook.com">
-                
-                <i class="fab fa-facebook"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank"
-                title="Twitter" href="https://twitter.com">
-                
-                <i class="fab fa-twitter"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank"
-                title="Dribbble" href="https://dribbble.com">
-                
-                <i class="fab fa-dribbble"></i>
-                
-            </a>
-            
-            <a class="level-item button is-white is-marginless" target="_blank"
-                title="RSS" href="/">
-                
-                <i class="fas fa-rss"></i>
                 
             </a>
             
@@ -445,7 +406,7 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Links
+            链接
         </h3>
         <ul class="menu-list">
         
@@ -483,7 +444,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Categorias
+                分类
             </h3>
             <ul class="menu-list">
             <li>
@@ -504,7 +465,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Nube de etiquetas
+            标签云
         </h3>
         <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/I-O多路复用/" style="font-size: 10px;">I/O多路复用</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java并发/" style="font-size: 10px;">Java并发</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/《谷歌方法论》/" style="font-size: 15px;">《谷歌方法论》</a> <a href="/tags/网站架构/" style="font-size: 10px;">网站架构</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/论文笔记/" style="font-size: 20px;">论文笔记</a> <a href="/tags/读书笔记/" style="font-size: 20px;">读书笔记</a> <a href="/tags/锁/" style="font-size: 10px;">锁</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
     </div>
@@ -518,7 +479,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recientes
+            最新文章
         </h3>
         
         <article class="media">
@@ -624,14 +585,14 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archivos
+            归档
         </h3>
         <ul class="menu-list">
         
         <li>
             <a class="level is-marginless" href="/archives/2019/05/">
                 <span class="level-start">
-                    <span class="level-item">May 2019</span>
+                    <span class="level-item">五月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">3</span>
@@ -642,7 +603,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2019/03/">
                 <span class="level-start">
-                    <span class="level-item">March 2019</span>
+                    <span class="level-item">三月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">9</span>
@@ -653,7 +614,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2019/02/">
                 <span class="level-start">
-                    <span class="level-item">February 2019</span>
+                    <span class="level-item">二月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">5</span>
@@ -664,7 +625,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/10/">
                 <span class="level-start">
-                    <span class="level-item">October 2018</span>
+                    <span class="level-item">十月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">2</span>
@@ -681,7 +642,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Etiquetas
+                标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -817,7 +778,7 @@
 <div class="card widget">
     <div class="card-content">
         <h3 class="menu-label">
-            Recientes
+            最新文章
         </h3>
         
         <article class="media">
@@ -923,14 +884,14 @@
     <div class="card-content">
         <div class="menu">
         <h3 class="menu-label">
-            Archivos
+            归档
         </h3>
         <ul class="menu-list">
         
         <li>
             <a class="level is-marginless" href="/archives/2019/05/">
                 <span class="level-start">
-                    <span class="level-item">May 2019</span>
+                    <span class="level-item">五月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">3</span>
@@ -941,7 +902,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2019/03/">
                 <span class="level-start">
-                    <span class="level-item">March 2019</span>
+                    <span class="level-item">三月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">9</span>
@@ -952,7 +913,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2019/02/">
                 <span class="level-start">
-                    <span class="level-item">February 2019</span>
+                    <span class="level-item">二月 2019</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">5</span>
@@ -963,7 +924,7 @@
         <li>
             <a class="level is-marginless" href="/archives/2018/10/">
                 <span class="level-start">
-                    <span class="level-item">October 2018</span>
+                    <span class="level-item">十月 2018</span>
                 </span>
                 <span class="level-end">
                     <span class="level-item tag">2</span>
@@ -980,7 +941,7 @@
     <div class="card-content">
         <div class="menu">
             <h3 class="menu-label">
-                Etiquetas
+                标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
                 
@@ -1121,6 +1082,11 @@
                 Powered by <a href="https://hexo.io/" target="_blank">Hexo</a> & <a
                         href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank">Icarus</a>
                 
+                <br>
+                <span id="busuanzi_container_site_uv">
+                共<span id="busuanzi_value_site_uv">0</span>个访客
+                </span>
+                
                 </p>
             </div>
             <div class="level-end">
@@ -1156,11 +1122,23 @@
             
             </div>
         </div>
+		<span id="busuanzi_container_site_pv" class="theme-info">
+  |  本站总访问量<span id="busuanzi_value_site_pv">span>次
+ span>
+ <span id="busuanzi_container_site_uv" class="theme-info">
+  |  本站访客数<span id="busuanzi_value_site_uv">span>人次
+ span>
+ <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">script>
     </div>
+	
+
+
+
+
 </footer>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script>
-<script>moment.locale("zh-Hans");</script>
+<script>moment.locale("zh-CN");</script>
 
 
     
@@ -1226,7 +1204,7 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
-<a id="back-to-top" title="Kembali ke atas" href="javascript:;">
+<a id="back-to-top" title="回到顶端" href="javascript:;">
     <i class="fas fa-chevron-up"></i>
 </a>
 <script src="/js/back-to-top.js" defer></script>
@@ -1253,6 +1231,8 @@ document.addEventListener('DOMContentLoaded', function () {
     
     
 
+    
+
 
 <script src="/js/main.js" defer></script>
 
@@ -1260,7 +1240,7 @@ document.addEventListener('DOMContentLoaded', function () {
     <div class="searchbox ins-search">
     <div class="searchbox-container ins-search-container">
         <div class="searchbox-input-wrapper">
-            <input type="text" class="searchbox-input ins-search-input" placeholder="Type something..." />
+            <input type="text" class="searchbox-input ins-search-input" placeholder="想要查找什么..." />
             <span class="searchbox-close ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
         </div>
         <div class="searchbox-result-wrapper ins-section-wrapper">
@@ -1272,11 +1252,11 @@ document.addEventListener('DOMContentLoaded', function () {
     (function (window) {
         var INSIGHT_CONFIG = {
             TRANSLATION: {
-                POSTS: 'Entradas',
-                PAGES: 'Pages',
-                CATEGORIES: 'Categorias',
-                TAGS: 'Etiquetas',
-                UNTITLED: '(Untitled)',
+                POSTS: '文章',
+                PAGES: '页面',
+                CATEGORIES: '分类',
+                TAGS: '标签',
+                UNTITLED: '(无标题)',
             },
             CONTENT_URL: '/content.json',
         };
