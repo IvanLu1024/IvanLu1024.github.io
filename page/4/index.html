@@ -155,90 +155,6 @@
         
         <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
             <div class="level-left">
-                <time class="level-item has-text-grey" datetime="2019-03-14T14:26:46.000Z">2019-03-14</time>
-                
-                
-                <span class="level-item has-text-grey">
-                    
-                    
-                    9 分钟 读完 (大约 1322 个字)
-                </span>
-                
-                
-            </div>
-        </div>
-        
-        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
-            
-                <a class="has-link-black-ter" href="/2019/03/14/Java中常见的几个OOM的情况/">Java中常见的几个OOM的情况</a>
-            
-        </h1>
-        <div class="content">
-            <p>&#x9664;&#x4E86;PC&#xFF08;&#x7A0B;&#x5E8F;&#x8BA1;&#x6570;&#x5668;&#xFF09;&#x4EE5;&#x5916;&#xFF0C;Java&#x865A;&#x62DF;&#x673A;&#x5185;&#x5B58;&#x533A;&#x57DF;&#x7684;&#x90FD;&#x6709;&#x53EF;&#x80FD;&#x53D1;&#x751F;OOM&#xFF08;OutOfMemoryError&#xFF09;&#x3002;</p>
-<h2 id="Java&#x5806;&#x6EA2;&#x51FA;"><a href="#Java&#x5806;&#x6EA2;&#x51FA;" class="headerlink" title="Java&#x5806;&#x6EA2;&#x51FA;"></a>Java&#x5806;&#x6EA2;&#x51FA;</h2><p>Java&#x5806;&#x662F;&#x7528;&#x4E8E;&#x5B58;&#x50A8;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;&#x7684;&#xFF0C;&#x53EA;&#x8981;&#x4E0D;&#x65AD;&#x5730;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF0C;&#x5E76;&#x4E14;&#x4FDD;&#x8BC1;GC Roots&#x5230;&#x5BF9;&#x8C61;&#x4E4B;&#x95F4;&#x6709;&#x53EF;&#x8FBE;&#x8DEF;&#x5F84;&#x907F;&#x514D;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x88AB;&#x6E05;&#x695A;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x5BF9;&#x8C61;&#x6570;&#x91CF;&#x5230;&#x8FBE;&#x6700;&#x5927;&#x5806;&#x7684;&#x5BB9;&#x91CF;&#x9650;&#x5236;&#x4E4B;&#x540E;&#x4FBF;&#x4F1A;&#x4EA7;&#x751F;OOM&#x5F02;&#x5E38;&#x3002;</p>
-<h3 id="&#x89E3;&#x51B3;&#x601D;&#x8DEF;"><a href="#&#x89E3;&#x51B3;&#x601D;&#x8DEF;" class="headerlink" title="&#x89E3;&#x51B3;&#x601D;&#x8DEF;"></a>&#x89E3;&#x51B3;&#x601D;&#x8DEF;</h3><p>&#x4E00;&#x822C;&#x7684;&#x624B;&#x6BB5;&#x662F;&#xFF1A;&#x5148;&#x901A;&#x8FC7;&#x5185;&#x5B58;&#x6620;&#x50CF;&#x5DE5;&#x5177;&#x5BF9;Dump&#x51FA;&#x6765;&#x7684;&#x5806;&#x8F6C;&#x50A8;&#x5FEB;&#x7167;&#x8FDB;&#x884C;&#x5206;&#x6790;&#xFF0C;<strong>&#x91CD;&#x70B9;&#x662F;&#x786E;&#x8BA4;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x5426;&#x662F;&#x5FC5;&#x8981;&#x7684;&#xFF0C;&#x4E5F;&#x5C31;&#x662F;&#x8981;&#x5148;&#x5206;&#x6E05;&#x695A;&#x5230;&#x5E95;&#x662F;&#x51FA;&#x73B0;&#x4E86;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#x8FD8;&#x662F;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#x3002;</strong></p>
-<ul>
-<li>&#x5982;&#x679C;&#x662F;&#x5185;&#x5B58;&#x6CC4;&#x6F0F;&#xFF0C;&#x53EF;&#x8FDB;&#x4E00;&#x6B65;&#x901A;&#x8FC7;&#x5DE5;&#x5177;&#x67E5;&#x770B;&#x6CC4;&#x6F0F;&#x5BF9;&#x8C61;&#x5230;GC Roots&#x7684;&#x5F15;&#x7528;&#x94FE;&#x3002;&#x8FD9;&#x6837;&#x5C31;&#x80FD;&#x591F;&#x627E;&#x5230;&#x6CC4;&#x6F0F;&#x7684;&#x5BF9;&#x8C61;&#x662F;&#x901A;&#x8FC7;&#x600E;&#x4E48;&#x6837;&#x7684;&#x8DEF;&#x5F84;&#x4E0E;GC Roots&#x76F8;&#x5173;&#x8054;&#x7684;&#x5BFC;&#x81F4;&#x5783;&#x573E;&#x56DE;&#x6536;&#x673A;&#x5236;&#x65E0;&#x6CD5;&#x5C06;&#x5176;&#x56DE;&#x6536;&#x3002;&#x638C;&#x63E1;&#x4E86;&#x6CC4;&#x6F0F;&#x5BF9;&#x8C61;&#x7684;&#x7C7B;&#x4FE1;&#x606F;&#x548C;GC Roots&#x5F15;&#x7528;&#x94FE;&#x7684;&#x4FE1;&#x606F;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x6BD4;&#x8F83;&#x51C6;&#x786E;&#x5730;&#x5B9A;&#x4F4D;&#x6CC4;&#x6F0F;&#x4EE3;&#x7801;&#x7684;&#x4F4D;&#x7F6E;&#x3002;</li>
-<li>&#x5982;&#x679C;&#x4E0D;&#x5B58;&#x5728;&#x6CC4;&#x6F0F;&#xFF0C;&#x6362;&#x53E5;&#x8BDD;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#x5185;&#x5B58;&#x4E2D;&#x7684;&#x5BF9;&#x8C61;&#x786E;&#x5B9E;&#x5FC5;&#x987B;&#x5B58;&#x6D3B;&#x7740;&#xFF0C;&#x90A3;&#x4E48;&#x6B64;&#x65F6;&#x5C31;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x865A;&#x62DF;&#x673A;&#x7684;&#x5806;&#x53C2;&#x6570;&#xFF08;       -Xmx&#x548C;-Xms&#xFF09;&#x6765;&#x9002;&#x5F53;&#x8C03;&#x5927;&#x53C2;&#x6570;&#xFF1B;&#x4ECE;&#x4EE3;&#x7801;&#x4E0A;&#x68C0;&#x67E5;&#x662F;&#x5426;&#x5B58;&#x5728;&#x67D0;&#x4E9B;&#x5BF9;&#x8C61;&#x5B58;&#x6D3B;&#x65F6;&#x95F4;&#x8FC7;&#x957F;&#x3001;&#x6301;&#x6709;&#x65F6;&#x95F4;&#x8FC7;&#x957F;&#x7684;&#x60C5;&#x51B5;&#xFF0C;&#x5C1D;&#x8BD5;&#x51CF;&#x5C11;&#x8FD0;&#x884C;&#x65F6;&#x5185;&#x5B58;&#x7684;&#x6D88;&#x8017;&#x3002;</li>
-</ul>
-<blockquote>
-<p>-Xmx : &#x6700;&#x5927;&#x5806;&#x7A7A;&#x95F4;&#xFF1B;</p>
-<p>-Xms : &#x521D;&#x59CB;&#x5806;&#x7A7A;&#x95F4;&#x5927;&#x5C0F;&#xFF0C;&#x5982;&#x679C;&#x521D;&#x59CB;&#x5806;&#x7A7A;&#x95F4;&#x8017;&#x5C3D;&#xFF0C;JVM&#x4F1A;&#x5BF9;&#x5806;&#x7A7A;&#x95F4;&#x6269;&#x5BB9;&#xFF0C;&#x5176;&#x6269;&#x5C55;&#x4E0A;&#x9650;&#x4E3A;&#x6700;&#x5927;&#x5806;&#x7A7A;&#x95F4;&#x3002;&#x901A;&#x5E38;-Xms&#x4E0E;-Xmx&#x8BBE;&#x7F6E;&#x4E3A;&#x540C;&#x6837;&#x5927;&#x5C0F;&#xFF0C;&#x907F;&#x514D;&#x6269;&#x5BB9;&#x9020;&#x6210;&#x6027;&#x80FD;&#x635F;&#x8017;&#x3002;</p>
-</blockquote>
-<h2 id="&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;"><a href="#&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;" class="headerlink" title="&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;"></a>&#x865A;&#x62DF;&#x673A;&#x6808;&#x548C;&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;&#x6EA2;&#x51FA;</h2><p>&#x7531;&#x4E8E;&#x5728;HotSpot&#x865A;&#x62DF;&#x673A;&#x4E0A;&#x5E76;&#x4E0D;&#x533A;&#x5206;<strong>&#x865A;&#x62DF;&#x673A;&#x6808;</strong>&#x548C;<strong>&#x672C;&#x5730;&#x65B9;&#x6CD5;&#x6808;</strong>&#xFF0C;&#x56E0;&#x6B64;&#x6808;&#x5BB9;&#x91CF;&#x53EA;&#x80FD;&#x7531;-Xss&#x53C2;&#x6570;&#x8BBE;&#x5B9A;&#x3002;&#x5728;Java&#x865A;&#x62DF;&#x673A;&#x89C4;&#x8303;&#x4E2D;&#x63CF;&#x8FF0;&#x4E86;&#x4E24;&#x79CD;&#x5F02;&#x5E38;&#xFF1A;</p>
-<ul>
-<li>StackOverflowError &#xFF1A;&#x5982;&#x679C;&#x7EBF;&#x7A0B;&#x8BF7;&#x6C42;&#x7684;&#x6808;&#x6DF1;&#x5EA6;&#x8D85;&#x8FC7;&#x4E86;&#x865A;&#x62DF;&#x673A;&#x6240;&#x5141;&#x8BB8;&#x7684;&#x6700;&#x5927;&#x6DF1;&#x5EA6;&#xFF0C;&#x5C31;&#x4F1A;&#x629B;&#x51FA;&#x8BE5;&#x5F02;&#x5E38;&#xFF1B;  </li>
-<li>OutOfMemoryError&#xFF1A;&#x5982;&#x679C;&#x865A;&#x62DF;&#x673A;&#x5728;&#x62D3;&#x5C55;&#x6808;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x65E0;&#x6CD5;&#x7533;&#x8BF7;&#x5230;&#x8DB3;&#x591F;&#x7684;&#x7A7A;&#x95F4;&#xFF0C;&#x5C31;&#x4F1A;&#x629B;&#x51FA;&#x8BE5;&#x5F02;&#x5E38;&#x3002;</li>
-</ul>
-<p>&#x5BF9;&#x4E8E;&#x8FD9;&#x4E24;&#x79CD;&#x5F02;&#x5E38;&#x6765;&#x8BF4;&#xFF0C;&#x5B58;&#x5728;&#x7740;&#x4E00;&#x4E9B;&#x4E92;&#x76F8;&#x91CD;&#x53E0;&#x7684;&#x5730;&#x65B9;&#xFF1A;&#x5F53;&#x6808;&#x7A7A;&#x95F4;&#x65E0;&#x6CD5;&#x7EE7;&#x7EED;&#x5206;&#x914D;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x5230;&#x5E95;&#x662F;<strong>&#x5185;&#x5B58;&#x592A;&#x5C0F;</strong>&#x8FD8;&#x662F;&#x5DF2;&#x4F7F;&#x7528;&#x7684;<strong>&#x6808;&#x7A7A;&#x95F4;&#x592A;&#x5927;</strong>&#xFF0C;&#x5176;&#x5B9E;&#x53EA;&#x662F;&#x5BF9;&#x540C;&#x4E00;&#x4EF6;&#x4E8B;&#x60C5;&#x7684;&#x4E24;&#x79CD;&#x63CF;&#x8FF0;&#x7F62;&#x4E86;&#x3002;</p>
-<p>&#x5F53;&#x5728;&#x5355;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E0B;&#xFF0C;&#x65E0;&#x8BBA;&#x662F;&#x7531;&#x4E8E;&#x6808;&#x5E27;&#x592A;&#x5927;&#x8FD8;&#x662F;&#x865A;&#x62DF;&#x673A;&#x6808;&#x5BB9;&#x91CF;&#x592A;&#x5C0F;&#xFF0C;&#x5F53;&#x5185;&#x5B58;&#x65E0;&#x6CD5;&#x7EE7;&#x7EED;&#x5206;&#x914D;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x865A;&#x62DF;&#x673A;&#x629B;&#x51FA;&#x7684;&#x90FD;&#x662F;StackOverflowError &#x5F02;&#x5E38;&#x3002;</p>
-<p>&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E0B;&#xFF0C;<strong>&#x5982;&#x679C;&#x4E3A;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x7684;&#x6808;&#x5206;&#x914D;&#x7684;&#x5185;&#x5B58;&#x8D8A;&#x5927;&#xFF0C;&#x53CD;&#x800C;&#x8D8A;&#x5BB9;&#x6613;&#x4EA7;&#x751F;OOM&#x5F02;&#x5E38;</strong>&#x3002;&#x6BCF;&#x4E2A;&#x7EBF;&#x7A0B;&#x5206;&#x914D;&#x5230;&#x7684;&#x6808;&#x5BB9;&#x91CF;&#x8D8A;&#x5927;&#xFF0C;&#x53EF;&#x4EE5;&#x5EFA;&#x7ACB;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x5C31;&#x81EA;&#x7136;&#x51CF;&#x5C11;&#x4E86;&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x65B0;&#x5EFA;&#x7ACB;&#x7EBF;&#x7A0B;&#x7684;&#x65F6;&#x5019;&#x5C31;&#x5F88;&#x5BB9;&#x6613;&#x628A;&#x5185;&#x5B58;&#x8017;&#x5C3D;&#xFF0C;&#x4EA7;&#x751F;OOM&#x5F02;&#x5E38;&#x3002;&#x865A;&#x62DF;&#x673A;&#x9ED8;&#x8BA4;&#x53C2;&#x6570;&#x6808;&#x6DF1;&#x5EA6;&#x5927;&#x591A;&#x6570;&#x60C5;&#x51B5;&#x4E0B;&#x80FD;&#x591F;&#x8FBE;&#x5230;1000~2000&#xFF0C;&#x5BF9;&#x4E8E;&#x6B63;&#x5E38;&#x7684;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#xFF08;&#x5305;&#x62EC;&#x9012;&#x5F52;&#xFF09;&#x662F;&#x5B8C;&#x5168;&#x591F;&#x7528;&#x7684;&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x5728;&#x591A;&#x7EBF;&#x7A0B;&#x73AF;&#x5883;&#x4E0B;&#x7684;OOM&#xFF0C;&#x5C31;&#x53EA;&#x80FD;<strong>&#x901A;&#x8FC7;&#x51CF;&#x5C11;&#x6700;&#x5927;&#x5806;&#x548C;&#x51CF;&#x5C11;&#x6808;&#x5BB9;&#x91CF;</strong>&#x6765;&#x6362;&#x53D6;&#x66F4;&#x591A;&#x7684;&#x7EBF;&#x7A0B;&#x6570;&#x91CF;&#x3002;</p>
-<h2 id="&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x6EA2;&#x51FA;"><a href="#&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x6EA2;&#x51FA;" class="headerlink" title="&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x6EA2;&#x51FA;"></a>&#x65B9;&#x6CD5;&#x533A;&#x548C;&#x8FD0;&#x884C;&#x65F6;&#x5E38;&#x91CF;&#x6C60;&#x6EA2;&#x51FA;</h2><p>&#x65B9;&#x6CD5;&#x533A;&#x7528;&#x4E8E;&#x5B58;&#x653E;Class&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;&#xFF0C;&#x5982;&#x7C7B;&#x540D;&#x3001;&#x8BBF;&#x95EE;&#x4FEE;&#x9970;&#x7B26;&#x3001;&#x5E38;&#x91CF;&#x6C60;&#x3001;&#x5B57;&#x6BB5;&#x63CF;&#x8FF0;&#x3001;&#x65B9;&#x6CD5;&#x63CF;&#x8FF0;&#x7B49;&#x3002;&#x5F53;&#x524D;&#x7684;&#x4E00;&#x4E9B;&#x4E3B;&#x6D41;&#x6846;&#x67B6;&#xFF0C;&#x5982;Spring&#x3001;Hibernate&#xFF0C;&#x5BF9;&#x4E8E;&#x7C7B;&#x8FDB;&#x884C;&#x589E;&#x5F3A;&#x7684;&#x65F6;&#x5019;&#x90FD;&#x4F1A;&#x4F7F;&#x7528;&#x5230;CGLib&#x8FD9;&#x7C7B;&#x5B57;&#x8282;&#x7801;&#x6280;&#x672F;&#xFF0C;&#x589E;&#x5F3A;&#x7684;&#x7C7B;&#x8D8A;&#x591A;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x8D8A;&#x5927;&#x7684;&#x65B9;&#x6CD5;&#x533A;&#x6765;&#x4FDD;&#x8BC1;&#x52A8;&#x6001;&#x751F;&#x6210;Class&#x53EF;&#x4EE5;&#x52A0;&#x8F7D;&#x5165;&#x5185;&#x5B58;&#xFF0C;&#x8FD9;&#x6837;&#x7684;&#x60C5;&#x51B5;&#x4E0B;&#x53EF;&#x80FD;&#x4F1A;&#x9020;&#x6210;&#x65B9;&#x6CD5;&#x533A;&#x7684;OOM&#x5F02;&#x5E38;&#x3002;</p>
-<p>&#x5728;&#x7ECF;&#x5E38;&#x52A8;&#x6001;&#x751F;&#x6210;&#x5927;&#x91CF;Class&#x7684;&#x5E94;&#x7528;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x7279;&#x522B;&#x6CE8;&#x610F;&#x7C7B;&#x7684;&#x56DE;&#x6536;&#x72B6;&#x51B5;&#x3002;&#x8FD9;&#x7C7B;&#x573A;&#x666F;&#x8FD8;&#x5728;&#xFF1A;&#x5927;&#x91CF;JSP&#x6216;&#x52A8;&#x6001;&#x751F;&#x6210;JSP&#x6587;&#x4EF6;&#x7684;&#x5E94;&#x7528;&#xFF08;JSP&#x7B2C;&#x4E00;&#x6B21;&#x8FD0;&#x884C;&#x65F6;&#x9700;&#x8981;&#x7F16;&#x8BD1;&#x4E3A;Java&#x7C7B;&#xFF09;&#x3001;&#x57FA;&#x4E8E;OSGi&#x7684;&#x5E94;&#x7528;&#xFF08;&#x5373;&#x4F7F;&#x662F;&#x540C;&#x4E00;&#x4E2A;&#x7C7B;&#x6587;&#x4EF6;&#xFF0C;&#x88AB;&#x4E0D;&#x540C;&#x7684;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#x4E5F;&#x4F1A;&#x89C6;&#x4F5C;&#x4E0D;&#x540C;&#x7684;&#x7C7B;&#xFF09;&#x7B49;&#x3002;</p>
-<h2 id="&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;"><a href="#&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;" class="headerlink" title="&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;"></a>&#x76F4;&#x63A5;&#x5185;&#x5B58;&#x6EA2;&#x51FA;</h2><p>&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF08;DirectMemory&#xFF09;&#x5BB9;&#x91CF;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;-XX : MaxDirectMemorySize&#x6307;&#x5B9A;&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x6307;&#x5B9A;&#xFF0C;&#x5219;&#x9ED8;&#x8BA4;&#x4E0E;Java&#x6700;&#x5927;&#x5806;&#xFF08;-Xmx&#x6307;&#x5B9A;&#xFF09;&#x4E00;&#x6837;&#x3002;</p>
-<p>&#x7531;&#x4E8E;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF08;DirectMemory&#xFF09;&#x5BFC;&#x81F4;&#x7684;&#x5185;&#x5B58;&#x6EA2;&#x51FA;&#xFF0C;&#x4E00;&#x4E2A;&#x660E;&#x663E;&#x7684;&#x7279;&#x5F81;&#x662F;&#x5728;Heap Dump&#x6587;&#x4EF6;&#x4E2D;&#x4E0D;&#x4F1A;&#x770B;&#x89C1;&#x660E;&#x663E;&#x7684;&#x5F02;&#x5E38;&#xFF0C;&#x5982;&#x679C;&#x53D1;&#x73B0;OOM&#x4E4B;&#x540E;Dump&#x6587;&#x4EF6;&#x5F88;&#x5C0F;&#xFF0C;&#x800C;&#x7A0B;&#x5E8F;&#x4E2D;&#x53C8;&#x76F4;&#x63A5;&#x6216;&#x95F4;&#x63A5;&#x4F7F;&#x7528;&#x4E86;NIO&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x8003;&#x8651;&#x68C0;&#x67E5;&#x4E00;&#x4E0B;&#x662F;&#x5426;&#x4E3A;&#x76F4;&#x63A5;&#x5185;&#x5B58;&#xFF08;DirectMemory&#xFF09;&#x6EA2;&#x51FA;&#x5F02;&#x5E38;&#x3002;</p>
-<h2 id="&#x53C2;&#x8003;&#x8D44;&#x6599;"><a href="#&#x53C2;&#x8003;&#x8D44;&#x6599;" class="headerlink" title="&#x53C2;&#x8003;&#x8D44;&#x6599;"></a>&#x53C2;&#x8003;&#x8D44;&#x6599;</h2><ul>
-<li><a href="https://book.douban.com/subject/24722612/" target="_blank" rel="noopener">&#x300A;&#x6DF1;&#x5165;&#x7406;&#x89E3;Java&#x865A;&#x62DF;&#x673A;&#xFF08;&#x7B2C;2&#x7248;&#xFF09;&#x300B;</a></li>
-</ul>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
-        </div>
-        
-        
-        
-    </div>
-</div>
-
-
-
-
-
-
-
-
-    <div class="card">
-    
-    <div class="card-content article ">
-        
-        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
-            <div class="level-left">
                 <time class="level-item has-text-grey" datetime="2019-03-05T15:13:22.200Z">2019-03-05</time>
                 
                 
@@ -464,6 +380,81 @@
 
 
 
+    <div class="card">
+    
+    <div class="card-content article ">
+        
+        <div class="level article-meta is-size-7 is-uppercase is-mobile is-overflow-x-auto">
+            <div class="level-left">
+                <time class="level-item has-text-grey" datetime="2019-02-24T13:10:34.887Z">2019-02-24</time>
+                
+                
+                <span class="level-item has-text-grey">
+                    
+                    
+                    7 分钟 读完 (大约 1092 个字)
+                </span>
+                
+                
+            </div>
+        </div>
+        
+        <h1 class="title is-size-3 is-size-4-mobile has-text-weight-normal">
+            
+                <a class="has-link-black-ter" href="/2019/02/24/访问一个网站的过程详解/">HTTP访问一个网站的过程详解</a>
+            
+        </h1>
+        <div class="content">
+            <h1 id="&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684;&#x8FC7;&#x7A0B;&#x8BE6;&#x89E3;"><a href="#&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684;&#x8FC7;&#x7A0B;&#x8BE6;&#x89E3;" class="headerlink" title="&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684;&#x8FC7;&#x7A0B;&#x8BE6;&#x89E3;"></a>&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x7F51;&#x7AD9;&#x7684;&#x8FC7;&#x7A0B;&#x8BE6;&#x89E3;</h1><p>&#x4F8B;&#x5982;&#x8BBF;&#x95EE;&#xFF1A;<a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a></p>
+<h2 id="HTTP&#x8BF7;&#x6C42;&#x7684;&#x51C6;&#x5907;"><a href="#HTTP&#x8BF7;&#x6C42;&#x7684;&#x51C6;&#x5907;" class="headerlink" title="HTTP&#x8BF7;&#x6C42;&#x7684;&#x51C6;&#x5907;"></a>HTTP&#x8BF7;&#x6C42;&#x7684;&#x51C6;&#x5907;</h2><p>&#x6D4F;&#x89C8;&#x5668;&#x4F1A;&#x5C06;<a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a> &#x8FD9;&#x4E2A;&#x57DF;&#x540D;&#x53D1;&#x9001;&#x7ED9;DNS&#x670D;&#x52A1;&#x5668;&#xFF0C;&#x8BA9;&#x5B83;&#x89E3;&#x6790;&#x6210;IP&#x5730;&#x5740;&#x3002;&#x7531;&#x4E8E;HTTP&#x662F;&#x57FA;&#x4E8E;TCP&#x534F;&#x8BAE;&#x7684;&#xFF0C;&#x5148;&#x5EFA;&#x7ACB;TCP&#x8FDE;&#x63A5;&#xFF0C;&#x5728;HTTP 1.1&#x7684;&#x534F;&#x8BAE;&#x91CC;&#x9762;&#xFF0C;&#x9ED8;&#x8BA4;&#x5F00;&#x542F;&#x4E86;Keep-Alive,&#x8FD9;&#x6837;&#x5EFA;&#x7ACB;&#x7684;TCP&#x8FDE;&#x63A5;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5728;&#x591A;&#x6B21;&#x8BF7;&#x6C42;&#x4E2D;&#x590D;&#x7528;&#x3002;</p>
+<h2 id="HTTP&#x8BF7;&#x6C42;&#x7684;&#x53D1;&#x9001;"><a href="#HTTP&#x8BF7;&#x6C42;&#x7684;&#x53D1;&#x9001;" class="headerlink" title="HTTP&#x8BF7;&#x6C42;&#x7684;&#x53D1;&#x9001;"></a>HTTP&#x8BF7;&#x6C42;&#x7684;&#x53D1;&#x9001;</h2><p>&#x5EFA;&#x7ACB;TCP&#x8FDE;&#x63A5;&#x4EE5;&#x540E;&#xFF0C;&#x901A;&#x8FC7;<strong>stream&#x4E8C;&#x8FDB;&#x5236;&#x6D41;</strong>&#x7684;&#x65B9;&#x5F0F;&#x4F20;&#x7ED9;&#x5BF9;&#x65B9;&#xFF0C;&#x5230;&#x4E86;TCP&#x5C42;&#xFF0C;&#x4F1A;&#x5C06;&#x4E8C;&#x8FDB;&#x5236;&#x6D41;&#x53D8;&#x6210;&#x4E00;&#x4E2A;&#x62A5;&#x6587;&#x6BB5;&#x53D1;&#x9001;&#x7ED9;&#x670D;&#x52A1;&#x5668;&#x3002;</p>
+<p>&#x5728;<strong>&#x53D1;&#x9001;&#x6BCF;&#x4E2A;&#x62A5;&#x6587;&#x6BB5;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x90FD;&#x9700;&#x8981;&#x5BF9;&#x65B9;&#x6709;&#x4E00;&#x4E2A;&#x56DE;&#x5E94;ACK</strong>&#xFF0C;&#x6765;&#x4FDD;&#x8BC1;&#x62A5;&#x6587;&#x53EF;&#x9760;&#x5730;&#x5230;&#x8FBE;&#x4E86;&#x5BF9;&#x65B9;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x56DE;&#x5E94;&#xFF0C;&#x90A3;&#x4E48;TCP&#x5C31;&#x4F1A;&#x91CD;&#x65B0;&#x4F20;&#x8F93;&#xFF0C;&#x76F4;&#x5230;&#x53EF;&#x4EE5;&#x5230;&#x8FBE;&#x3002;&#x6709;&#x65F6;&#x5019;&#x540C;&#x4E00;&#x4E2A;&#x5305;&#x53EF;&#x80FD;&#x88AB;&#x4F20;&#x8F93;&#x597D;&#x591A;&#x6B21;&#xFF0C;&#x4F46;&#x8FD9;&#x5BF9;&#x4E8E;HTTP&#x662F;&#x900F;&#x660E;&#x7684;&#x3002;</p>
+<p>TCP&#x5C42;&#x53D1;&#x9001;&#x6BCF;&#x4E00;&#x4E2A;&#x62A5;&#x6587;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x90FD;&#x9700;&#x8981;<strong>&#x52A0;&#x4E0A;&#x81EA;&#x5DF1;&#x7684;&#x5730;&#x5740;&#xFF08;&#x6E90;&#x5730;&#x5740;&#xFF09;&#x548C;&#x5B83;&#x60F3;&#x8981;&#x53BB;&#x7684;&#x5730;&#x65B9;&#xFF08;&#x76EE;&#x6807;&#x5730;&#x5740;&#xFF09;&#xFF0C;</strong>&#x7136;&#x540E;&#x5C06;&#x6E90;MAC&#x548C;&#x76EE;&#x6807;MAC&#x653E;&#x5165;MAC&#x5934;&#xFF0C;&#x53D1;&#x9001;&#x51FA;&#x53BB;&#x5373;&#x53EF;&#xFF1B;&#x82E5;&#x4E0D;&#x5728;&#x540C;&#x4E00;&#x5C40;&#x57DF;&#x7F51;&#x5185;&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x53D1;&#x9001;&#x7ED9;<strong>&#x7F51;&#x5173;&#xFF0C;</strong>&#x8FD9;&#x65F6;&#x8FD8;&#x9700;&#x8981;&#x53D1;&#x9001;ARP&#x534F;&#x8BAE;&#xFF0C;&#x6765;&#x83B7;&#x53D6;&#x7F51;&#x5173;&#x7684;MAC&#x5730;&#x5740;&#xFF0C;&#x7136;&#x540E;&#x5C06;<strong>&#x6E90;MAC&#x548C;&#x7F51;&#x5173;MAC</strong>&#x653E;&#x5165;MAC&#x5934;&#xFF0C;&#x53D1;&#x9001;&#x51FA;&#x53BB;&#x3002;</p>
+<p>&#x7F51;&#x5173;&#x6536;&#x5230;&#x5305;&#x4EE5;&#x540E;&#xFF0C;&#x53D1;&#x73B0;MAC&#x7B26;&#x5408;&#xFF0C;&#x53D6;&#x51FA;&#x76EE;&#x6807;IP&#xFF0C;<strong>&#x6839;&#x636E;&#x8DEF;&#x7531;&#x534F;&#x8BAE;</strong>&#x627E;&#x5230;&#x4E0B;&#x4E00;&#x8DF3;&#x7684;&#x8DEF;&#x7531;&#x5668;&#xFF0C;<strong>&#x83B7;&#x53D6;&#x4E0B;&#x4E00;&#x8DF3;&#x8DEF;&#x7531;&#x5668;&#x7684;MAC&#x5730;&#x5740;</strong>&#xFF0C;&#x5C06;&#x5305;&#x53D1;&#x9001;&#x7ED9;&#x4E0B;&#x4E00;&#x8DF3;&#x8DEF;&#x7531;&#x5668;&#x3002;</p>
+<p>&#x8FD9;&#x6837;&#x8DEF;&#x7531;&#x5668;&#x4E00;&#x8DF3;&#x4E00;&#x8DF3;&#x7EC8;&#x4E8E;&#x5230;&#x8FBE;&#x76EE;&#x6807;&#x7684;&#x5C40;&#x57DF;&#x7F51;&#x3002;&#x8FD9;&#x65F6;&#x5019;&#xFF0C;&#x6700;&#x540E;&#x4E00;&#x8DF3;&#x8DEF;&#x7531;&#x5668;&#x80FD;&#x591F;&#x53D1;&#x73B0;&#xFF0C;<strong>&#x76EE;&#x6807;&#x5730;&#x5740;&#x5C31;&#x5728;&#x81EA;&#x5DF1;&#x7684;&#x67D0;&#x4E00;&#x4E2A;&#x51FA;&#x53E3;&#x7684;&#x5C40;&#x57DF;&#x7F51;&#x4E0A;&#x3002;</strong>&#x4E8E;&#x662F;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x5C40;&#x57DF;&#x7F51;&#x4E0A;&#x53D1;&#x9001;ARP&#xFF0C;&#x83B7;&#x5F97;&#x8FD9;&#x4E2A;&#x76EE;&#x6807;&#x5730;&#x5740;&#x7684;MAC&#x5730;&#x5740;&#xFF0C;&#x5C06;&#x5305;&#x53D1;&#x9001;&#x51FA;&#x53BB;&#x3002;</p>
+<p>&#x76EE;&#x6807;&#x673A;&#x5668;&#x53D1;&#x73B0;MAC&#x5730;&#x5740;&#x7B26;&#x5408;&#x5C31;&#x5C06;&#x5305;&#x6536;&#x8D77;&#x6765;&#xFF1B;&#x53D1;&#x73B0;IP&#x5730;&#x5740;&#x7B26;&#x5408;&#xFF0C;&#x6839;&#x636E;IP&#x5934;&#x4E2D;&#x534F;&#x8BAE;&#x9879;&#xFF0C;&#x77E5;&#x9053;&#x81EA;&#x5DF1;&#x4E0A;&#x4E00;&#x5C42;&#x662F;TCP&#x534F;&#x8BAE;&#xFF0C;&#x4E8E;&#x662F;&#x89E3;&#x6790;TCP&#x5934;&#xFF0C;&#x91CC;&#x9762;&#x6709;&#x5E8F;&#x5217;&#x53F7;&#xFF0C;&#x770B;&#x4E00;&#x770B;&#x8FD9;&#x4E2A;&#x5E8F;&#x5217;&#x5305;&#x662F;&#x4E0D;&#x662F;&#x6211;&#x9700;&#x8981;&#x7684;&#xFF0C;&#x5982;&#x679C;&#x662F;&#x5C31;&#x653E;&#x5165;&#x7F13;&#x5B58;&#x4E2D;&#x7136;&#x540E;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;ACK&#xFF0C;&#x5982;&#x679C;&#x4E0D;&#x662F;&#x5219;&#x4E22;&#x5F03;&#x3002;</p>
+<p>TCP&#x5934;&#x91CC;&#x9762;&#x8FD8;&#x6709;&#x7AEF;&#x53E3;&#x53F7;&#xFF0C;HTTP&#x7684;&#x670D;&#x52A1;&#x5668;&#x6B63;&#x5728;&#x76D1;&#x542C;&#x8FD9;&#x4E2A;&#x7AEF;&#x53E3;&#x53F7;&#x3002;&#x4E8E;&#x662F;&#xFF0C;&#x76EE;&#x6807;&#x673A;&#x5668;&#x81EA;&#x7136;&#x77E5;&#x9053;&#x662F; HTTP &#x670D;&#x52A1;&#x5668;&#x8FD9;&#x4E2A;&#x8FDB;&#x7A0B;&#x60F3;&#x8981;&#x8FD9;&#x4E2A;&#x5305;&#xFF0C;&#x4E8E;&#x662F;&#x5C06;&#x5305;&#x53D1;&#x7ED9; HTTP &#x670D;&#x52A1;&#x5668;&#x3002;HTTP &#x670D;&#x52A1;&#x5668;&#x7684;&#x8FDB;&#x7A0B;&#x770B;&#x5230;&#xFF0C;&#x539F;&#x6765;&#x8FD9;&#x4E2A;&#x8BF7;&#x6C42;&#x662F;&#x8981;&#x8BBF;&#x95EE;&#x4E00;&#x4E2A;&#x7F51;&#x9875;&#xFF0C;&#x4E8E;&#x662F;&#x5C31;&#x628A;&#x8FD9;&#x4E2A;&#x7F51;&#x9875;&#x53D1;&#x7ED9;&#x5BA2;&#x6237;&#x7AEF;&#x3002;</p>
+<h2 id="HTTP&#x8FD4;&#x56DE;&#x7684;&#x53D1;&#x9001;"><a href="#HTTP&#x8FD4;&#x56DE;&#x7684;&#x53D1;&#x9001;" class="headerlink" title="HTTP&#x8FD4;&#x56DE;&#x7684;&#x53D1;&#x9001;"></a>HTTP&#x8FD4;&#x56DE;&#x7684;&#x53D1;&#x9001;</h2><p>&#x6839;&#x636E;HTTP &#x54CD;&#x5E94;&#x62A5;&#x6587;&#x7684;&#x683C;&#x5F0F;&#x6784;&#x9020;&#x597D;&#x8FD4;&#x56DE;&#x7684;HTTP&#x62A5;&#x6587;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x662F;&#x628A;&#x8FD9;&#x4E2A;&#x62A5;&#x6587;&#x53D1;&#x9001;&#x51FA;&#x53BB;&#x3002;&#x8FD8;&#x662F;&#x4EA4;&#x7ED9;Socket&#x53BB;&#x53D1;&#x9001;&#xFF0C;&#x8FD8;&#x662F;&#x4EA4;&#x7ED9;TCP&#x5C42;&#xFF0C;&#x8BA9;TCP&#x5C42;&#x5C06;&#x8FD4;&#x56DE;&#x7684;HTML&#xFF0C;&#x4E5F;&#x5206;&#x6210;&#x4E00;&#x4E2A;&#x4E2A;&#x5C0F;&#x7684;&#x6BB5;&#xFF0C;&#x5E76;&#x4E14;&#x4FDD;&#x8BC1;&#x6BCF;&#x4E00;&#x6BB5;&#x90FD;&#x53EF;&#x9760;&#x5230;&#x8FBE;&#x3002;</p>
+<p>&#x8FD9;&#x4E9B;&#x6BB5;<strong>&#x52A0;&#x4E0A; TCP &#x5934;&#x540E;&#x4F1A;&#x4EA4;&#x7ED9; IP &#x5C42;</strong>&#xFF0C;&#x7136;&#x540E;&#x628A;&#x521A;&#x624D;&#x7684;&#x53D1;&#x9001;&#x8FC7;&#x7A0B;&#x53CD;&#x5411;&#x8D70;&#x4E00;&#x904D;&#x3002;&#x867D;&#x7136;&#x4E24;&#x6B21;&#x4E0D;&#x4E00;&#x5B9A;&#x8D70;&#x76F8;&#x540C;&#x7684;&#x8DEF;&#x5F84;&#xFF0C;&#x4F46;&#x662F;&#x903B;&#x8F91;&#x8FC7;&#x7A0B;&#x662F;&#x4E00;&#x6837;&#x7684;&#xFF0C;&#x4E00;&#x76F4;&#x5230;&#x8FBE;&#x5BA2;&#x6237;&#x7AEF;&#x3002;</p>
+<p>&#x5BA2;&#x6237;&#x7AEF;&#x53D1;&#x73B0; <strong>MAC &#x5730;&#x5740;&#x7B26;&#x5408;&#x3001;IP &#x5730;&#x5740;&#x7B26;&#x5408;&#xFF0C;&#x4E8E;&#x662F;&#x5C31;&#x4F1A;&#x4EA4;&#x7ED9; TCP &#x5C42;</strong>&#x3002;&#x6839;&#x636E;&#x5E8F;&#x5217;&#x53F7;&#x770B;&#x662F;&#x4E0D;&#x662F;&#x81EA;&#x5DF1;&#x8981;&#x7684;&#x62A5;&#x6587;&#x6BB5;&#xFF0C;&#x5982;&#x679C;&#x662F;&#xFF0C;&#x5219;&#x4F1A;&#x6839;&#x636E; TCP &#x5934;&#x4E2D;&#x7684;&#x7AEF;&#x53E3;&#x53F7;&#xFF0C;&#x53D1;&#x7ED9;&#x76F8;&#x5E94;&#x7684;&#x8FDB;&#x7A0B;&#x3002;&#x8FD9;&#x4E2A;&#x8FDB;&#x7A0B;&#x5C31;&#x662F;&#x6D4F;&#x89C8;&#x5668;&#xFF0C;&#x6D4F;&#x89C8;&#x5668;&#x4F5C;&#x4E3A;&#x5BA2;&#x6237;&#x7AEF;&#x4E5F;&#x5728;&#x76D1;&#x542C;&#x67D0;&#x4E2A;&#x7AEF;&#x53E3;&#x3002;</p>
+<p>&#x5F53;&#x6D4F;&#x89C8;&#x5668;&#x62FF;&#x5230;&#x4E86; HTTP &#x7684;&#x62A5;&#x6587;&#x3002;&#x53D1;&#x73B0;&#x8FD4;&#x56DE;&#x201C;200&#x201D;&#xFF0C;&#x4E00;&#x5207;&#x6B63;&#x5E38;&#xFF0C;&#x4E8E;&#x662F;&#x5C31;&#x4ECE;&#x6B63;&#x6587;&#x4E2D;&#x5C06; HTML &#x62FF;&#x51FA;&#x6765;&#x3002;HTML &#x662F;&#x4E00;&#x4E2A;&#x6807;&#x51C6;&#x7684;&#x7F51;&#x9875;&#x683C;&#x5F0F;&#x3002;&#x6D4F;&#x89C8;&#x5668;&#x53EA;&#x8981;&#x6839;&#x636E;&#x8FD9;&#x4E2A;&#x683C;&#x5F0F;&#xFF0C;&#x5C55;&#x793A;&#x51FA;&#x4E00;&#x4E2A;&#x7EDA;&#x4E3D;&#x591A;&#x5F69;&#x7684;&#x7F51;&#x9875;&#x3002;</p>
+<p>&#x8FD9;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x6B63;&#x5E38;&#x7684; HTTP &#x8BF7;&#x6C42;&#x548C;&#x8FD4;&#x56DE;&#x7684;&#x5B8C;&#x6574;&#x8FC7;&#x7A0B;&#x3002;</p>
+<h2 id="&#x53C2;&#x8003;&#x8D44;&#x6599;"><a href="#&#x53C2;&#x8003;&#x8D44;&#x6599;" class="headerlink" title="&#x53C2;&#x8003;&#x8D44;&#x6599;"></a>&#x53C2;&#x8003;&#x8D44;&#x6599;</h2><ul>
+<li><a href="https://time.geekbang.org/column/intro/85" target="_blank" rel="noopener">&#x6781;&#x5BA2;&#x65F6;&#x95F4;&#xFF1A;&#x300A;&#x8DA3;&#x8C08;&#x7F51;&#x7EDC;&#x534F;&#x8BAE;&#x300B;</a></li>
+</ul>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+        </div>
+        
+        
+        
+    </div>
+</div>
+
+
+
+
+
+
+
+
 
     
 <div class="card card-transparent">
@@ -487,8 +478,6 @@
             <li><a class="pagination-link has-text-black-ter" href="/page/5/">5</a></li>
             
             <li><a class="pagination-link has-text-black-ter" href="/page/6/">6</a></li>
-            
-            <li><a class="pagination-link has-text-black-ter" href="/page/7/">7</a></li>
             
         </ul>
     </nav>
@@ -538,7 +527,7 @@
                         文章
                     </p>
                     <p class="title has-text-weight-normal">
-                        19
+                        18
                     </p>
                 </div>
             </div>
@@ -558,7 +547,7 @@
                         标签
                     </p>
                     <p class="title has-text-weight-normal">
-                        16
+                        15
                     </p>
                 </div>
             </div>
@@ -652,7 +641,7 @@
         <h3 class="menu-label">
             标签云
         </h3>
-        <a href="/tags/HBase/" style="font-size: 10px;">HBase</a> <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/I-O多路复用/" style="font-size: 10px;">I/O多路复用</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java并发/" style="font-size: 10px;">Java并发</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/《谷歌方法论》/" style="font-size: 15px;">《谷歌方法论》</a> <a href="/tags/网站架构/" style="font-size: 10px;">网站架构</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/论文笔记/" style="font-size: 20px;">论文笔记</a> <a href="/tags/读书笔记/" style="font-size: 20px;">读书笔记</a> <a href="/tags/锁/" style="font-size: 10px;">锁</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
+        <a href="/tags/HTTP/" style="font-size: 10px;">HTTP</a> <a href="/tags/I-O多路复用/" style="font-size: 10px;">I/O多路复用</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a> <a href="/tags/Java并发/" style="font-size: 10px;">Java并发</a> <a href="/tags/Kafka/" style="font-size: 10px;">Kafka</a> <a href="/tags/Redis/" style="font-size: 10px;">Redis</a> <a href="/tags/Spring/" style="font-size: 10px;">Spring</a> <a href="/tags/《谷歌方法论》/" style="font-size: 15px;">《谷歌方法论》</a> <a href="/tags/网站架构/" style="font-size: 10px;">网站架构</a> <a href="/tags/网络/" style="font-size: 10px;">网络</a> <a href="/tags/论文笔记/" style="font-size: 20px;">论文笔记</a> <a href="/tags/读书笔记/" style="font-size: 20px;">读书笔记</a> <a href="/tags/锁/" style="font-size: 10px;">锁</a> <a href="/tags/面试题/" style="font-size: 10px;">面试题</a>
     </div>
 </div>
 
@@ -707,25 +696,6 @@
         
         <article class="media">
             
-            <a href="/2019/05/18/HBase/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HBase笔记总结">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-17T16:00:00.000Z">2019-05-18</time></div>
-                    <a href="/2019/05/18/HBase/" class="has-link-black-ter is-size-6">HBase笔记总结</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/03/24/《大型网站技术架构》读书笔记00/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="《大型网站技术架构》读书笔记——第1篇 概述">
@@ -736,6 +706,25 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-23T16:00:00.000Z">2019-03-24</time></div>
                     <a href="/2019/03/24/《大型网站技术架构》读书笔记00/" class="has-link-black-ter is-size-6">《大型网站技术架构》读书笔记——第1篇 概述</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/03/19/论文笔记04：A Heterogeneity-Aware Task Scheduler for Spark/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="论文笔记04：A Heterogeneity-Aware Task Scheduler for Spark">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-18T16:00:00.000Z">2019-03-19</time></div>
+                    <a href="/2019/03/19/论文笔记04：A Heterogeneity-Aware Task Scheduler for Spark/" class="has-link-black-ter is-size-6">论文笔记04：A Heterogeneity-Aware Task Scheduler for Spark</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -780,7 +769,7 @@
                     <span class="level-item">五月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -830,13 +819,6 @@
                 标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/HBase/">
-                        <span class="tag">HBase</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/HTTP/">
@@ -1006,25 +988,6 @@
         
         <article class="media">
             
-            <a href="/2019/05/18/HBase/" class="media-left">
-                <p class="image is-64x64">
-                    <img class="thumbnail" src="/images/thumbnail.svg" alt="HBase笔记总结">
-                </p>
-            </a>
-            
-            <div class="media-content">
-                <div class="content">
-                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-05-17T16:00:00.000Z">2019-05-18</time></div>
-                    <a href="/2019/05/18/HBase/" class="has-link-black-ter is-size-6">HBase笔记总结</a>
-                    <p class="is-size-7 is-uppercase">
-                        
-                    </p>
-                </div>
-            </div>
-        </article>
-        
-        <article class="media">
-            
             <a href="/2019/03/24/《大型网站技术架构》读书笔记00/" class="media-left">
                 <p class="image is-64x64">
                     <img class="thumbnail" src="/images/thumbnail.svg" alt="《大型网站技术架构》读书笔记——第1篇 概述">
@@ -1035,6 +998,25 @@
                 <div class="content">
                     <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-23T16:00:00.000Z">2019-03-24</time></div>
                     <a href="/2019/03/24/《大型网站技术架构》读书笔记00/" class="has-link-black-ter is-size-6">《大型网站技术架构》读书笔记——第1篇 概述</a>
+                    <p class="is-size-7 is-uppercase">
+                        
+                    </p>
+                </div>
+            </div>
+        </article>
+        
+        <article class="media">
+            
+            <a href="/2019/03/19/论文笔记04：A Heterogeneity-Aware Task Scheduler for Spark/" class="media-left">
+                <p class="image is-64x64">
+                    <img class="thumbnail" src="/images/thumbnail.svg" alt="论文笔记04：A Heterogeneity-Aware Task Scheduler for Spark">
+                </p>
+            </a>
+            
+            <div class="media-content">
+                <div class="content">
+                    <div><time class="has-text-grey is-size-7 is-uppercase" datetime="2019-03-18T16:00:00.000Z">2019-03-19</time></div>
+                    <a href="/2019/03/19/论文笔记04：A Heterogeneity-Aware Task Scheduler for Spark/" class="has-link-black-ter is-size-6">论文笔记04：A Heterogeneity-Aware Task Scheduler for Spark</a>
                     <p class="is-size-7 is-uppercase">
                         
                     </p>
@@ -1079,7 +1061,7 @@
                     <span class="level-item">五月 2019</span>
                 </span>
                 <span class="level-end">
-                    <span class="level-item tag">3</span>
+                    <span class="level-item tag">2</span>
                 </span>
             </a>
         </li>
@@ -1129,13 +1111,6 @@
                 标签
             </h3>
             <div class="field is-grouped is-grouped-multiline">
-                
-                <div class="control">
-                    <a class="tags has-addons" href="/tags/HBase/">
-                        <span class="tag">HBase</span>
-                        <span class="tag is-grey">1</span>
-                    </a>
-                </div>
                 
                 <div class="control">
                     <a class="tags has-addons" href="/tags/HTTP/">
